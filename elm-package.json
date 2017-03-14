@@ -1,0 +1,14 @@
+{
+    "version": "0.1.0",
+    "summary": "A music theory library for Elm",
+    "repository": "https://github.com/oleiade/emt.git",
+    "license": "MIT",
+    "source-directories": [
+        ".",
+        "./src",
+    ],
+    "dependencies": {
+        "elm-lang/core": "5.0.0 <= v < 6.0.0",
+    },
+    "elm-version": "0.18.0 <= v < 0.19.0"
+}
