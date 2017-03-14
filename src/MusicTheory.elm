@@ -1,10 +1,22 @@
 module MusicTheory exposing (Key(..), Mode(..), Adjustment(..), Note, Scale, Octave, scale, isWhite, isBlack)
 
-import Dict exposing (fromList, get)
+{-| This library fills a bunch of important niches in Elm. A `Maybe` can help
+you with optional arguments, error handling, and records with optional fields.
+
+# Definition
+@docs Key, Mode, Adjustment, Note, Scale, Octave
+
+# Common Helpers
+@docs scale, isWhite, isBlack
+
+-}
+
 import List
 import Tuple exposing (first, second)
 
 
+{-|
+-}
 type Key
     = C
     | D
@@ -15,12 +27,35 @@ type Key
     | B
 
 
+{-|
+-}
 type Adjustment
     = Natural
     | Sharp
     | Flat
 
 
+{-|
+-}
+type Degree
+    = First
+    | Second
+    | Third
+    | Fourth
+    | Fifth
+    | Sixth
+    | Seventh
+    | Octave
+    | Ninth
+    | Tenth
+    | Eleventh
+    | Twelfth
+    | Thirteenth
+    | Fourteenth
+
+
+{-|
+-}
 type Interval
     = Unison
     | MinorSecond
@@ -48,19 +83,27 @@ type Interval
     | DoubleOctave
 
 
+{-|
+-}
 type alias Octave =
     Int
 
 
+{-|
+-}
 type alias Scale =
     List Int
 
 
+{-|
+-}
 type Mode
     = Major
     | Minor
 
 
+{-|
+-}
 type alias Note =
     { key : Key
     , adjustment : Adjustment
@@ -68,8 +111,10 @@ type alias Note =
     }
 
 
-noteToValue : Key -> Int
-noteToValue key =
+{-|
+-}
+keyToValue : Key -> Int
+keyToValue key =
     case key of
         C ->
             0
@@ -93,8 +138,10 @@ noteToValue key =
             11
 
 
-noteFromValue : Int -> Maybe Key
-noteFromValue value =
+{-|
+-}
+keyFromValue : Int -> Maybe Key
+keyFromValue value =
     case value of
         0 ->
             Just C
@@ -121,31 +168,43 @@ noteFromValue value =
             Nothing
 
 
+{-|
+-}
 octave : Int -> List Int
 octave n =
     List.range (0 + (n * 12)) (11 + (n * 12))
 
 
+{-|
+-}
 octaveOf : Int -> Int
 octaveOf value =
-    value / 12
+    value // 12
 
 
+{-|
+-}
 noteOf : Int -> Int
 noteOf value =
     value % 12
 
 
+{-|
+-}
 keyAtOctave : Key -> Int -> Int
 keyAtOctave key octave =
-    (noteToValue key) + (12 * octave)
+    (keyToValue key) + (12 * octave)
 
 
+{-|
+-}
 octaveWhiteKeys : Octave -> List Int
 octaveWhiteKeys o =
     List.map (\k -> keyAtOctave k o) [ C, D, E, F, G, A, B ]
 
 
+{-|
+-}
 octaveBlackKeys : Octave -> List Int
 octaveBlackKeys o =
     let
@@ -155,6 +214,8 @@ octaveBlackKeys o =
         List.filter (\v -> notContains whiteKeys v) (octave o)
 
 
+{-|
+-}
 adjustmentToValue : Adjustment -> Int
 adjustmentToValue adjustment =
     case adjustment of
@@ -168,6 +229,8 @@ adjustmentToValue adjustment =
             1
 
 
+{-|
+-}
 adjustmentFromValue : Int -> Maybe Adjustment
 adjustmentFromValue value =
     case value of
@@ -184,6 +247,8 @@ adjustmentFromValue value =
             Nothing
 
 
+{-|
+-}
 intervalToValue : Interval -> Int
 intervalToValue interval =
     case interval of
@@ -260,6 +325,8 @@ intervalToValue interval =
             24
 
 
+{-|
+-}
 intervalFromValue : Int -> Maybe Interval
 intervalFromValue value =
     case value of
@@ -339,6 +406,56 @@ intervalFromValue value =
             Nothing
 
 
+{-|
+-}
+degreeToValue : Degree -> Int
+degreeToValue d =
+    case d of
+        First ->
+            0
+
+        Second ->
+            2
+
+        Third ->
+            3
+
+        Fourth ->
+            4
+
+        Fifth ->
+            5
+
+        Sixth ->
+            6
+
+        Seventh ->
+            7
+
+        Octave ->
+            8
+
+        Ninth ->
+            9
+
+        Tenth ->
+            10
+
+        Eleventh ->
+            11
+
+        Twelfth ->
+            12
+
+        Thirteenth ->
+            13
+
+        Fourteenth ->
+            14
+
+
+{-|
+-}
 modeToIntervals : Mode -> List Interval
 modeToIntervals mode =
     case mode of
@@ -349,16 +466,29 @@ modeToIntervals mode =
             minorIntervals
 
 
+{-|
+-}
 noteToIndex : Note -> Int
 noteToIndex note =
-    note.octave * 12 + (noteToValue note.key) + (adjustmentToValue note.adjustment)
+    note.octave * 12 + (keyToValue note.key) + (adjustmentToValue note.adjustment)
 
 
+{-|
+-}
+addInterval : Note -> Interval -> Note
+addInterval value interval =
+    { key = C, octave = 3, adjustment = Natural }
+
+
+{-|
+-}
 scale : Note -> Mode -> Scale
 scale note mode =
     List.map (\i -> (noteToIndex note) + intervalToValue i) (modeToIntervals mode)
 
 
+{-|
+-}
 majorIntervals : List Interval
 majorIntervals =
     [ Unison
@@ -371,6 +501,8 @@ majorIntervals =
     ]
 
 
+{-|
+-}
 minorIntervals : List Interval
 minorIntervals =
     [ Unison
@@ -383,11 +515,13 @@ minorIntervals =
     ]
 
 
+{-|
+-}
 isWhite : Int -> Bool
 isWhite value =
     let
         note =
-            noteFromValue (value % 12)
+            keyFromValue (value % 12)
     in
         case note of
             Just n ->
@@ -397,11 +531,15 @@ isWhite value =
                 False
 
 
+{-|
+-}
 isBlack : Int -> Bool
 isBlack value =
     not <| isWhite value
 
 
+{-|
+-}
 contains : List a -> a -> Bool
 contains seq v =
     let
@@ -411,6 +549,8 @@ contains seq v =
         (List.length head) /= 0
 
 
+{-|
+-}
 notContains : List a -> a -> Bool
 notContains seq v =
     let
