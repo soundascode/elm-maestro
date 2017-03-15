@@ -1,5 +1,6 @@
 module Tests exposing (..)
 
+import MusicTheory exposing (Key(..), Degree(..), Adjustment(..), diatonicDegreeOf, distance)
 import Test exposing (..)
 import Expect
 import Fuzz exposing (list, int, tuple, string)
@@ -10,28 +11,29 @@ all : Test
 all =
     describe "Sample Test Suite"
         [ describe "Unit test examples"
-            [ test "Addition" <|
+            [ test "diatonicDegreeOf in current octave range" <|
                 \() ->
-                    Expect.equal (3 + 7) 10
-            , test "String.left" <|
+                    Expect.equal (diatonicDegreeOf Second C) (Just D)
+            , test "diatonicDegreeOf overflow over next octave" <|
                 \() ->
-                    Expect.equal "a" (String.left 1 "abcdefg")
-            , test "This test should fail - you should remove it" <|
+                    Expect.equal (diatonicDegreeOf Seventh B) (Just A)
+            , test "diatonicDegreeOf octave" <|
                 \() ->
-                    Expect.fail "Failed as expected!"
-            ]
-        , describe "Fuzz test examples, using randomly generated input"
-            [ fuzz (list int) "Lists always have positive length" <|
-                \aList ->
-                    List.length aList |> Expect.atLeast 0
-            , fuzz (list int) "Sorting a list does not change its length" <|
-                \aList ->
-                    List.sort aList |> List.length |> Expect.equal (List.length aList)
-            , fuzzWith { runs = 1000 } int "List.member will find an integer in a list containing it" <|
-                \i ->
-                    List.member i [ i ] |> Expect.true "If you see this, List.member returned False!"
-            , fuzz2 string string "The length of a string equals the sum of its substrings' lengths" <|
-                \s1 s2 ->
-                    s1 ++ s2 |> String.length |> Expect.equal (String.length s1 + String.length s2)
+                    Expect.equal (diatonicDegreeOf Octave C) (Just C)
+            , test "distance between two natural notes" <|
+                \() ->
+                    Expect.equal (distance { key = C, adjustment = Natural, octave = 3 } { key = D, adjustment = Natural, octave = 3 }) 2
+            , test "distance between a natural note and a sharp" <|
+                \() ->
+                    Expect.equal (distance { key = C, adjustment = Natural, octave = 3 } { key = D, adjustment = Sharp, octave = 3 }) 3
+            , test "distance between a natural note and a flat" <|
+                \() ->
+                    Expect.equal (distance { key = C, adjustment = Natural, octave = 3 } { key = D, adjustment = Flat, octave = 3 }) 1
+            , test "distance between a sharp note and a natural" <|
+                \() ->
+                    Expect.equal (distance { key = C, adjustment = Sharp, octave = 3 } { key = D, adjustment = Natural, octave = 3 }) 1
+            , test "distance between a flat note and a natural" <|
+                \() ->
+                    Expect.equal (distance { key = C, adjustment = Flat, octave = 3 } { key = D, adjustment = Natural, octave = 3 }) 3
             ]
         ]

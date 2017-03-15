@@ -1,4 +1,4 @@
-module MusicTheory exposing (Key(..), Mode(..), Adjustment(..), Note, Scale, Octave, scale, isWhite, isBlack)
+module MusicTheory exposing (Degree(..), Key(..), Mode(..), Adjustment(..), Note, Scale, Octave, scale, isWhite, isBlack, diatonicDegreeOf, distance)
 
 {-| This library fills a bunch of important niches in Elm. A `Maybe` can help
 you with optional arguments, error handling, and records with optional fields.
@@ -109,6 +109,74 @@ type alias Note =
     , adjustment : Adjustment
     , octave : Octave
     }
+
+
+diatonicKeyValue : Key -> Int
+diatonicKeyValue key =
+    case key of
+        C ->
+            0
+
+        D ->
+            1
+
+        E ->
+            2
+
+        F ->
+            3
+
+        G ->
+            4
+
+        A ->
+            5
+
+        B ->
+            6
+
+
+diatonicKeyFromValue : Int -> Maybe Key
+diatonicKeyFromValue value =
+    case value of
+        0 ->
+            Just C
+
+        1 ->
+            Just D
+
+        2 ->
+            Just E
+
+        3 ->
+            Just F
+
+        4 ->
+            Just G
+
+        5 ->
+            Just A
+
+        6 ->
+            Just B
+
+        _ ->
+            Nothing
+
+
+{-| diatonicDegreeOf will compute the note being the given
+degree of a starting note on the diatonic scale
+-}
+diatonicDegreeOf : Degree -> Key -> Maybe Key
+diatonicDegreeOf degree key =
+    diatonicKeyFromValue <| (%) (diatonicKeyValue key + degreeToValue degree) 7
+
+
+{-| distance computes the distance in semitones between two notes
+-}
+distance : Note -> Note -> Int
+distance from to =
+    (-) (noteToIndex to) (noteToIndex from)
 
 
 {-|
@@ -406,6 +474,82 @@ intervalFromValue value =
             Nothing
 
 
+intervalDegree : Interval -> Degree
+intervalDegree interval =
+    case interval of
+        Unison ->
+            First
+
+        MinorSecond ->
+            Second
+
+        MajorSecond ->
+            Second
+
+        MinorThird ->
+            Third
+
+        MajorThird ->
+            Third
+
+        PerfectFourth ->
+            Fourth
+
+        PerfectFifth ->
+            Fifth
+
+        MinorSixth ->
+            Sixth
+
+        MajorSixth ->
+            Sixth
+
+        MinorSeventh ->
+            Seventh
+
+        MajorSeventh ->
+            Seventh
+
+        PerfectOctave ->
+            Octave
+
+        MinorNinth ->
+            Ninth
+
+        MajorNinth ->
+            Ninth
+
+        MinorTenth ->
+            Tenth
+
+        MajorTenth ->
+            Tenth
+
+        PerfectEleventh ->
+            Eleventh
+
+        AugmentedEleventh ->
+            Eleventh
+
+        PerfectTwelfth ->
+            Twelfth
+
+        MinorThirteen ->
+            Thirteenth
+
+        MajorThirteen ->
+            Thirteenth
+
+        MinorFourteenth ->
+            Fourteenth
+
+        MajorFourteenth ->
+            Fourteenth
+
+        DoubleOctave ->
+            Octave
+
+
 {-|
 -}
 degreeToValue : Degree -> Int
@@ -415,43 +559,43 @@ degreeToValue d =
             0
 
         Second ->
-            2
+            1
 
         Third ->
-            3
+            2
 
         Fourth ->
-            4
+            3
 
         Fifth ->
-            5
+            4
 
         Sixth ->
-            6
+            5
 
         Seventh ->
-            7
+            6
 
         Octave ->
-            8
+            7
 
         Ninth ->
-            9
+            8
 
         Tenth ->
-            10
+            9
 
         Eleventh ->
-            11
+            10
 
         Twelfth ->
-            12
+            11
 
         Thirteenth ->
-            13
+            12
 
         Fourteenth ->
-            14
+            13
 
 
 {-|
@@ -475,9 +619,19 @@ noteToIndex note =
 
 {-|
 -}
-addInterval : Note -> Interval -> Note
-addInterval value interval =
-    { key = C, octave = 3, adjustment = Natural }
+
+
+
+-- addInterval : Note -> Interval -> Note
+-- addInterval note interval =
+--     let
+--         baseNoteIndex =
+--             noteOf <| noteToIndex note
+--
+--         newNaturalNoteIndex =
+--             baseNoteIndex + degreeToValue (intervalDegree interval)
+--     in
+--         { key = C, octave = 3, adjustment = Natural }
 
 
 {-|
