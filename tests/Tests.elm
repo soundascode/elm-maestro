@@ -1,6 +1,7 @@
 module Tests exposing (..)
 
-import MusicTheory exposing (Key(..), Degree(..), Adjustment(..), diatonicDegreeOf, distance)
+import MusicTheory exposing (Key(..), Adjustment(..), diatonicDegreeOf, distance)
+import Degree exposing (Degree(..))
 import Test exposing (..)
 import Expect
 import Fuzz exposing (list, int, tuple, string)

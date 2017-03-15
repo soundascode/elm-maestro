@@ -1,4 +1,4 @@
-module MusicTheory exposing (Degree(..), Key(..), Mode(..), Adjustment(..), Note, Scale, Octave, scale, isWhite, isBlack, diatonicDegreeOf, distance)
+module MusicTheory exposing (Key(..), Mode(..), Adjustment(..), Note, Scale, Octave, scale, diatonicDegreeOf, distance)
 
 {-| This library fills a bunch of important niches in Elm. A `Maybe` can help
 you with optional arguments, error handling, and records with optional fields.
@@ -7,9 +7,12 @@ you with optional arguments, error handling, and records with optional fields.
 @docs Key, Mode, Adjustment, Note, Scale, Octave
 
 # Common Helpers
-@docs scale, isWhite, isBlack
+@docs scale, diatonicDegreeOf, distance
 
 -}
+
+import Interval exposing (..)
+import Degree exposing (Degree(..), degreeToValue)
 
 import List
 import Tuple exposing (first, second)
@@ -33,54 +36,6 @@ type Adjustment
     = Natural
     | Sharp
     | Flat
-
-
-{-|
--}
-type Degree
-    = First
-    | Second
-    | Third
-    | Fourth
-    | Fifth
-    | Sixth
-    | Seventh
-    | Octave
-    | Ninth
-    | Tenth
-    | Eleventh
-    | Twelfth
-    | Thirteenth
-    | Fourteenth
-
-
-{-|
--}
-type Interval
-    = Unison
-    | MinorSecond
-    | MajorSecond
-    | MinorThird
-    | MajorThird
-    | PerfectFourth
-    | PerfectFifth
-    | MinorSixth
-    | MajorSixth
-    | MinorSeventh
-    | MajorSeventh
-    | PerfectOctave
-    | MinorNinth
-    | MajorNinth
-    | MinorTenth
-    | MajorTenth
-    | PerfectEleventh
-    | AugmentedEleventh
-    | PerfectTwelfth
-    | MinorThirteen
-    | MajorThirteen
-    | MinorFourteenth
-    | MajorFourteenth
-    | DoubleOctave
 
 
 {-|
@@ -177,6 +132,14 @@ diatonicDegreeOf degree key =
 distance : Note -> Note -> Int
 distance from to =
     (-) (noteToIndex to) (noteToIndex from)
+
+
+-- addInterval : Note -> Interval -> Note
+-- addInterval note interval =
+--     let
+--       degree = intervalDegree interval
+--         newNaturalNote
+--     in
 
 
 {-|
@@ -317,289 +280,6 @@ adjustmentFromValue value =
 
 {-|
 -}
-intervalToValue : Interval -> Int
-intervalToValue interval =
-    case interval of
-        Unison ->
-            0
-
-        MinorSecond ->
-            1
-
-        MajorSecond ->
-            2
-
-        MinorThird ->
-            3
-
-        MajorThird ->
-            4
-
-        PerfectFourth ->
-            5
-
-        PerfectFifth ->
-            7
-
-        MinorSixth ->
-            8
-
-        MajorSixth ->
-            9
-
-        MinorSeventh ->
-            10
-
-        MajorSeventh ->
-            11
-
-        PerfectOctave ->
-            12
-
-        MinorNinth ->
-            13
-
-        MajorNinth ->
-            14
-
-        MinorTenth ->
-            15
-
-        MajorTenth ->
-            16
-
-        PerfectEleventh ->
-            17
-
-        AugmentedEleventh ->
-            18
-
-        PerfectTwelfth ->
-            19
-
-        MinorThirteen ->
-            20
-
-        MajorThirteen ->
-            21
-
-        MinorFourteenth ->
-            22
-
-        MajorFourteenth ->
-            23
-
-        DoubleOctave ->
-            24
-
-
-{-|
--}
-intervalFromValue : Int -> Maybe Interval
-intervalFromValue value =
-    case value of
-        0 ->
-            Just Unison
-
-        1 ->
-            Just MinorSecond
-
-        2 ->
-            Just MajorSecond
-
-        3 ->
-            Just MinorThird
-
-        4 ->
-            Just MajorThird
-
-        5 ->
-            Just PerfectFourth
-
-        7 ->
-            Just PerfectFifth
-
-        8 ->
-            Just MinorSixth
-
-        9 ->
-            Just MajorSixth
-
-        10 ->
-            Just MinorSeventh
-
-        11 ->
-            Just MajorSeventh
-
-        12 ->
-            Just PerfectOctave
-
-        13 ->
-            Just MinorNinth
-
-        14 ->
-            Just MajorNinth
-
-        15 ->
-            Just MinorTenth
-
-        16 ->
-            Just MajorTenth
-
-        17 ->
-            Just PerfectEleventh
-
-        18 ->
-            Just AugmentedEleventh
-
-        19 ->
-            Just PerfectTwelfth
-
-        20 ->
-            Just MinorThirteen
-
-        21 ->
-            Just MajorThirteen
-
-        22 ->
-            Just MinorFourteenth
-
-        23 ->
-            Just MajorFourteenth
-
-        24 ->
-            Just DoubleOctave
-
-        _ ->
-            Nothing
-
-
-intervalDegree : Interval -> Degree
-intervalDegree interval =
-    case interval of
-        Unison ->
-            First
-
-        MinorSecond ->
-            Second
-
-        MajorSecond ->
-            Second
-
-        MinorThird ->
-            Third
-
-        MajorThird ->
-            Third
-
-        PerfectFourth ->
-            Fourth
-
-        PerfectFifth ->
-            Fifth
-
-        MinorSixth ->
-            Sixth
-
-        MajorSixth ->
-            Sixth
-
-        MinorSeventh ->
-            Seventh
-
-        MajorSeventh ->
-            Seventh
-
-        PerfectOctave ->
-            Octave
-
-        MinorNinth ->
-            Ninth
-
-        MajorNinth ->
-            Ninth
-
-        MinorTenth ->
-            Tenth
-
-        MajorTenth ->
-            Tenth
-
-        PerfectEleventh ->
-            Eleventh
-
-        AugmentedEleventh ->
-            Eleventh
-
-        PerfectTwelfth ->
-            Twelfth
-
-        MinorThirteen ->
-            Thirteenth
-
-        MajorThirteen ->
-            Thirteenth
-
-        MinorFourteenth ->
-            Fourteenth
-
-        MajorFourteenth ->
-            Fourteenth
-
-        DoubleOctave ->
-            Octave
-
-
-{-|
--}
-degreeToValue : Degree -> Int
-degreeToValue d =
-    case d of
-        First ->
-            0
-
-        Second ->
-            1
-
-        Third ->
-            2
-
-        Fourth ->
-            3
-
-        Fifth ->
-            4
-
-        Sixth ->
-            5
-
-        Seventh ->
-            6
-
-        Octave ->
-            7
-
-        Ninth ->
-            8
-
-        Tenth ->
-            9
-
-        Eleventh ->
-            10
-
-        Twelfth ->
-            11
-
-        Thirteenth ->
-            12
-
-        Fourteenth ->
-            13
-
-
-{-|
--}
 modeToIntervals : Mode -> List Interval
 modeToIntervals mode =
     case mode of
@@ -615,11 +295,6 @@ modeToIntervals mode =
 noteToIndex : Note -> Int
 noteToIndex note =
     note.octave * 12 + (keyToValue note.key) + (adjustmentToValue note.adjustment)
-
-
-{-|
--}
-
 
 
 -- addInterval : Note -> Interval -> Note
@@ -639,34 +314,6 @@ noteToIndex note =
 scale : Note -> Mode -> Scale
 scale note mode =
     List.map (\i -> (noteToIndex note) + intervalToValue i) (modeToIntervals mode)
-
-
-{-|
--}
-majorIntervals : List Interval
-majorIntervals =
-    [ Unison
-    , MajorSecond
-    , MajorThird
-    , PerfectFourth
-    , PerfectFifth
-    , MajorSixth
-    , MajorSeventh
-    ]
-
-
-{-|
--}
-minorIntervals : List Interval
-minorIntervals =
-    [ Unison
-    , MajorSecond
-    , MinorThird
-    , PerfectFourth
-    , PerfectFifth
-    , MinorSixth
-    , MinorSeventh
-    ]
 
 
 {-|
