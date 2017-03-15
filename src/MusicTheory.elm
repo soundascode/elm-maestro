@@ -1,13 +1,13 @@
-module MusicTheory exposing (Mode(..), Note, Scale, scale, diatonicDegreeOf, distance, addInterval)
+module MusicTheory exposing (Note, diatonicDegreeOf, distance, addInterval)
 
 {-| This library fills a bunch of important niches in Elm. A `Maybe` can help
 you with optional arguments, error handling, and records with optional fields.
 
 # Definition
-@docs Mode, Note, Scale
+@docs Note
 
 # Common Helpers
-@docs scale, diatonicDegreeOf, distance, addInterval
+@docs diatonicDegreeOf, distance, addInterval
 
 -}
 
@@ -27,19 +27,6 @@ import Interval exposing (Interval(..), intervalToValue, minorIntervals, majorIn
 import Degree exposing (Degree(..), degreeToValue, intervalDegree, substractDegree)
 import List
 import Tuple exposing (first, second)
-
-
-{-|
--}
-type alias Scale =
-    List Int
-
-
-{-|
--}
-type Mode
-    = Major
-    | Minor
 
 
 {-|
@@ -121,47 +108,6 @@ keyAtOctave key octave =
 
 {-|
 -}
-modeToIntervals : Mode -> List Interval
-modeToIntervals mode =
-    case mode of
-        Major ->
-            majorIntervals
-
-        Minor ->
-            minorIntervals
-
-
-{-|
--}
 noteToIndex : Note -> Int
 noteToIndex note =
     note.octave * 12 + (keyToValue note.key) + (adjustmentToValue note.adjustment)
-
-
-{-|
--}
-scale : Note -> Mode -> Scale
-scale note mode =
-    List.map (\i -> (noteToIndex note) + intervalToValue i) (modeToIntervals mode)
-
-
-{-|
--}
-contains : List a -> a -> Bool
-contains seq v =
-    let
-        head =
-            List.filter (\e -> e == v) seq
-    in
-        (List.length head) /= 0
-
-
-{-|
--}
-notContains : List a -> a -> Bool
-notContains seq v =
-    let
-        head =
-            List.filter (\e -> e == v) seq
-    in
-        (List.length head) == 0
