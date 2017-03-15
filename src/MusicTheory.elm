@@ -1,4 +1,4 @@
-module MusicTheory exposing (Key(..), Mode(..), Adjustment(..), Note, Scale, Octave, scale, diatonicDegreeOf, distance)
+module MusicTheory exposing (Key(..), Mode(..), Adjustment(..), Note, Scale, Octave, scale, diatonicDegreeOf, distance, addInterval)
 
 {-| This library fills a bunch of important niches in Elm. A `Maybe` can help
 you with optional arguments, error handling, and records with optional fields.
@@ -7,13 +7,12 @@ you with optional arguments, error handling, and records with optional fields.
 @docs Key, Mode, Adjustment, Note, Scale, Octave
 
 # Common Helpers
-@docs scale, diatonicDegreeOf, distance
+@docs scale, diatonicDegreeOf, distance, addInterval
 
 -}
 
-import Interval exposing (..)
-import Degree exposing (Degree(..), degreeToValue)
-
+import Interval exposing (Interval(..), intervalToValue, minorIntervals, majorIntervals)
+import Degree exposing (Degree(..), degreeToValue, intervalDegree, substractDegree)
 import List
 import Tuple exposing (first, second)
 
@@ -36,6 +35,8 @@ type Adjustment
     = Natural
     | Sharp
     | Flat
+    | SharpSharp
+    | FlatFlat
 
 
 {-|
@@ -122,9 +123,21 @@ diatonicKeyFromValue value =
 {-| diatonicDegreeOf will compute the note being the given
 degree of a starting note on the diatonic scale
 -}
-diatonicDegreeOf : Degree -> Key -> Maybe Key
-diatonicDegreeOf degree key =
-    diatonicKeyFromValue <| (%) (diatonicKeyValue key + degreeToValue degree) 7
+diatonicDegreeOf : Degree -> Note -> Note
+diatonicDegreeOf degree note =
+    let
+        diatonicKey =
+            diatonicKeyFromValue <| (%) (diatonicKeyValue note.key + degreeToValue degree) 7
+
+        octaveShift =
+            (//) (diatonicKeyValue note.key + degreeToValue degree) 7
+    in
+        case diatonicKey of
+            Just dk ->
+                { key = dk, adjustment = Natural, octave = note.octave + octaveShift }
+
+            Nothing ->
+                note
 
 
 {-| distance computes the distance in semitones between two notes
@@ -134,12 +147,24 @@ distance from to =
     (-) (noteToIndex to) (noteToIndex from)
 
 
--- addInterval : Note -> Interval -> Note
--- addInterval note interval =
---     let
---       degree = intervalDegree interval
---         newNaturalNote
---     in
+{-|
+-}
+addInterval : Note -> Interval -> Note
+addInterval note interval =
+    let
+        newNaturalNote =
+            diatonicDegreeOf (intervalDegree interval) note
+
+        intervalSemitones =
+            intervalToValue interval
+
+        startToNewNaturalSemitones =
+            distance note newNaturalNote
+
+        adjustment =
+            adjustmentFromValue (intervalSemitones - startToNewNaturalSemitones)
+    in
+        { key = newNaturalNote.key, adjustment = adjustment, octave = newNaturalNote.octave }
 
 
 {-|
@@ -253,29 +278,41 @@ adjustmentToValue adjustment =
         Flat ->
             -1
 
+        FlatFlat ->
+            -2
+
         Natural ->
             0
 
         Sharp ->
             1
 
+        SharpSharp ->
+            2
+
 
 {-|
 -}
-adjustmentFromValue : Int -> Maybe Adjustment
+adjustmentFromValue : Int -> Adjustment
 adjustmentFromValue value =
     case value of
-        -1 ->
-            Just Flat
+        (-1) ->
+            Flat
 
         0 ->
-            Just Natural
+            Natural
 
         1 ->
-            Just Sharp
+            Sharp
+
+        (-2) ->
+            FlatFlat
+
+        2 ->
+            SharpSharp
 
         _ ->
-            Nothing
+            Natural
 
 
 {-|
@@ -295,6 +332,7 @@ modeToIntervals mode =
 noteToIndex : Note -> Int
 noteToIndex note =
     note.octave * 12 + (keyToValue note.key) + (adjustmentToValue note.adjustment)
+
 
 
 -- addInterval : Note -> Interval -> Note

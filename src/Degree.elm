@@ -1,6 +1,8 @@
-module Degree exposing (Degree(..), intervalDegree, degreeToValue)
+module Degree exposing (Degree(..), intervalDegree, degreeToValue, substractDegree)
 
 import Interval exposing (Interval(..))
+
+
 {-|
 -}
 type Degree
@@ -144,3 +146,66 @@ degreeToValue d =
 
         Fourteenth ->
             13
+
+
+degreeFromValue : Int -> Maybe Degree
+degreeFromValue value =
+    case value of
+        0 ->
+            Just First
+
+        1 ->
+            Just Second
+
+        2 ->
+            Just Third
+
+        3 ->
+            Just Fourth
+
+        4 ->
+            Just Fifth
+
+        5 ->
+            Just Sixth
+
+        6 ->
+            Just Seventh
+
+        7 ->
+            Just Octave
+
+        8 ->
+            Just Ninth
+
+        9 ->
+            Just Tenth
+
+        10 ->
+            Just Eleventh
+
+        11 ->
+            Just Twelfth
+
+        12 ->
+            Just Thirteenth
+
+        13 ->
+            Just Fourteenth
+
+        _ ->
+            Nothing
+
+
+substractDegree : Degree -> Int -> Degree
+substractDegree degree value =
+    let
+        newDegree =
+            degreeFromValue <| (degreeToValue degree) - value
+    in
+        case newDegree of
+            Just nd ->
+                nd
+
+            Nothing ->
+                degree
