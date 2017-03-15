@@ -1,48 +1,32 @@
-module MusicTheory exposing (Key(..), Mode(..), Adjustment(..), Note, Scale, Octave, scale, diatonicDegreeOf, distance, addInterval)
+module MusicTheory exposing (Mode(..), Note, Scale, scale, diatonicDegreeOf, distance, addInterval)
 
 {-| This library fills a bunch of important niches in Elm. A `Maybe` can help
 you with optional arguments, error handling, and records with optional fields.
 
 # Definition
-@docs Key, Mode, Adjustment, Note, Scale, Octave
+@docs Mode, Note, Scale
 
 # Common Helpers
 @docs scale, diatonicDegreeOf, distance, addInterval
 
 -}
 
+import Key
+    exposing
+        ( Key(..)
+        , Adjustment(..)
+        , Octave
+        , keyToValue
+        , keyFromValue
+        , diatonicKeyValue
+        , diatonicKeyFromValue
+        , adjustmentToValue
+        , adjustmentFromValue
+        )
 import Interval exposing (Interval(..), intervalToValue, minorIntervals, majorIntervals)
 import Degree exposing (Degree(..), degreeToValue, intervalDegree, substractDegree)
 import List
 import Tuple exposing (first, second)
-
-
-{-|
--}
-type Key
-    = C
-    | D
-    | E
-    | F
-    | G
-    | A
-    | B
-
-
-{-|
--}
-type Adjustment
-    = Natural
-    | Sharp
-    | Flat
-    | SharpSharp
-    | FlatFlat
-
-
-{-|
--}
-type alias Octave =
-    Int
 
 
 {-|
@@ -65,59 +49,6 @@ type alias Note =
     , adjustment : Adjustment
     , octave : Octave
     }
-
-
-diatonicKeyValue : Key -> Int
-diatonicKeyValue key =
-    case key of
-        C ->
-            0
-
-        D ->
-            1
-
-        E ->
-            2
-
-        F ->
-            3
-
-        G ->
-            4
-
-        A ->
-            5
-
-        B ->
-            6
-
-
-diatonicKeyFromValue : Int -> Maybe Key
-diatonicKeyFromValue value =
-    case value of
-        0 ->
-            Just C
-
-        1 ->
-            Just D
-
-        2 ->
-            Just E
-
-        3 ->
-            Just F
-
-        4 ->
-            Just G
-
-        5 ->
-            Just A
-
-        6 ->
-            Just B
-
-        _ ->
-            Nothing
 
 
 {-| diatonicDegreeOf will compute the note being the given
@@ -169,70 +100,6 @@ addInterval note interval =
 
 {-|
 -}
-keyToValue : Key -> Int
-keyToValue key =
-    case key of
-        C ->
-            0
-
-        D ->
-            2
-
-        E ->
-            4
-
-        F ->
-            5
-
-        G ->
-            7
-
-        A ->
-            9
-
-        B ->
-            11
-
-
-{-|
--}
-keyFromValue : Int -> Maybe Key
-keyFromValue value =
-    case value of
-        0 ->
-            Just C
-
-        2 ->
-            Just D
-
-        4 ->
-            Just E
-
-        5 ->
-            Just F
-
-        7 ->
-            Just G
-
-        9 ->
-            Just A
-
-        11 ->
-            Just B
-
-        _ ->
-            Nothing
-
-
-{-|
--}
-octave : Int -> List Int
-octave n =
-    List.range (0 + (n * 12)) (11 + (n * 12))
-
-
-{-|
--}
 octaveOf : Int -> Int
 octaveOf value =
     value // 12
@@ -254,69 +121,6 @@ keyAtOctave key octave =
 
 {-|
 -}
-octaveWhiteKeys : Octave -> List Int
-octaveWhiteKeys o =
-    List.map (\k -> keyAtOctave k o) [ C, D, E, F, G, A, B ]
-
-
-{-|
--}
-octaveBlackKeys : Octave -> List Int
-octaveBlackKeys o =
-    let
-        whiteKeys =
-            octaveWhiteKeys o
-    in
-        List.filter (\v -> notContains whiteKeys v) (octave o)
-
-
-{-|
--}
-adjustmentToValue : Adjustment -> Int
-adjustmentToValue adjustment =
-    case adjustment of
-        Flat ->
-            -1
-
-        FlatFlat ->
-            -2
-
-        Natural ->
-            0
-
-        Sharp ->
-            1
-
-        SharpSharp ->
-            2
-
-
-{-|
--}
-adjustmentFromValue : Int -> Adjustment
-adjustmentFromValue value =
-    case value of
-        (-1) ->
-            Flat
-
-        0 ->
-            Natural
-
-        1 ->
-            Sharp
-
-        (-2) ->
-            FlatFlat
-
-        2 ->
-            SharpSharp
-
-        _ ->
-            Natural
-
-
-{-|
--}
 modeToIntervals : Mode -> List Interval
 modeToIntervals mode =
     case mode of
@@ -334,47 +138,11 @@ noteToIndex note =
     note.octave * 12 + (keyToValue note.key) + (adjustmentToValue note.adjustment)
 
 
-
--- addInterval : Note -> Interval -> Note
--- addInterval note interval =
---     let
---         baseNoteIndex =
---             noteOf <| noteToIndex note
---
---         newNaturalNoteIndex =
---             baseNoteIndex + degreeToValue (intervalDegree interval)
---     in
---         { key = C, octave = 3, adjustment = Natural }
-
-
 {-|
 -}
 scale : Note -> Mode -> Scale
 scale note mode =
     List.map (\i -> (noteToIndex note) + intervalToValue i) (modeToIntervals mode)
-
-
-{-|
--}
-isWhite : Int -> Bool
-isWhite value =
-    let
-        note =
-            keyFromValue (value % 12)
-    in
-        case note of
-            Just n ->
-                True
-
-            Nothing ->
-                False
-
-
-{-|
--}
-isBlack : Int -> Bool
-isBlack value =
-    not <| isWhite value
 
 
 {-|
