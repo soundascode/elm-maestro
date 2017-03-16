@@ -1,4 +1,4 @@
-module MusicTheory exposing (Note, diatonicDegreeOf, distance, addInterval)
+module MusicTheory exposing (Note, newNote, diatonicDegreeOf, distance, addInterval)
 
 {-| This library fills a bunch of important niches in Elm. A `Maybe` can help
 you with optional arguments, error handling, and records with optional fields.
@@ -18,10 +18,10 @@ import Key
         , Octave
         , keyToValue
         , keyFromValue
-        , diatonicKeyValue
-        , diatonicKeyFromValue
         , adjustmentToValue
         , adjustmentFromValue
+        , diatonicKeyValue
+        , diatonicKeyFromValue
         )
 import Interval exposing (Interval(..), intervalToValue, minorIntervals, majorIntervals)
 import Degree exposing (Degree(..), degreeToValue, intervalDegree, substractDegree)
@@ -36,6 +36,11 @@ type alias Note =
     , adjustment : Adjustment
     , octave : Octave
     }
+
+
+newNote : Key -> Adjustment -> Octave -> Note
+newNote k a o =
+    { key = k, adjustment = a, octave = o }
 
 
 {-| diatonicDegreeOf will compute the note being the given
