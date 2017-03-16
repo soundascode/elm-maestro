@@ -13,14 +13,22 @@ all : Test
 all =
     describe "MusicTheory Test Suite"
         [ describe "addInterval tests"
-            [ test "addInterval" <|
+            [ test "from Natural to Natural" <|
                 \() -> Expect.equal (addInterval (newNote C Natural 3) MajorSeventh) (newNote B Natural 3)
-            , test "addInterval" <|
+            , test "from Natural to Flat" <|
                 \() -> Expect.equal (addInterval (newNote C Natural 3) MinorSeventh) (newNote B Flat 3)
-            , test "addInterval" <|
+            , test "from Natural to Sharp" <|
+                \() -> Expect.equal (addInterval (newNote E Natural 3) MajorSecond) (newNote F Sharp 3)
+            , test "from Sharp to Natural" <|
+                \() -> Expect.equal (addInterval (newNote F Sharp 3) MinorThird) (newNote A Natural 3)
+            , test "from Sharp to Sharp" <|
                 \() -> Expect.equal (addInterval (newNote F Sharp 3) PerfectFifth) (newNote C Sharp 4)
-            , test "addInterval" <|
+            , test "from Flat to Natural" <|
+                \() -> Expect.equal (addInterval (newNote G Flat 3) MinorThird) (newNote B FlatFlat 3)
+            , test "from Flat to Flat" <|
                 \() -> Expect.equal (addInterval (newNote D Flat 3) MinorThird) (newNote F Flat 3)
+            , test "octave overflow" <|
+                \() -> Expect.equal (addInterval (newNote B Natural 3) MinorThird) (newNote D Natural 4)
             ]
         , describe "distance tests"
             [ test "distance between two natural notes" <|
