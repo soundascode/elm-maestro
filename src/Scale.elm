@@ -1,13 +1,14 @@
-module Scale exposing (Mode(..), scale)
+module Scale exposing (Scale, Mode(..), scale)
 
-{-|
--}
+import Key exposing (Tone)
+import Note exposing (Note, newNote)
+import Interval exposing (Interval(..), addInterval, majorIntervals, minorIntervals)
 
 
 {-|
 -}
 type alias Scale =
-    List Int
+    List Tone
 
 
 {-|
@@ -29,8 +30,18 @@ modeToIntervals mode =
             minorIntervals
 
 
-{-|
--}
-scale : Note -> Mode -> Scale
-scale note mode =
-    List.map (\i -> (noteToIndex note) + intervalToValue i) (modeToIntervals mode)
+scale : Tone -> Mode -> List Tone
+scale tone mode =
+    let
+        placeholderNote =
+            newNote tone.key tone.adjustment 3
+    in
+        List.map (\i -> (addInterval placeholderNote i).tone) (modeToIntervals mode)
+
+
+
+-- {-|
+-- -}
+-- scale : Note -> Mode -> Scale
+-- scale note mode =
+--     List.map (\i -> addInterval note i) (modeToIntervals mode)

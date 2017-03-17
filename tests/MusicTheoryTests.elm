@@ -1,9 +1,8 @@
 module MusicTheoryTests exposing (all)
 
-import MusicTheory exposing (Note, newNote, diatonicDegreeOf, distance, addInterval)
 import Key exposing (Key(..), Adjustment(..))
-import Degree exposing (Degree(..), substractDegree)
-import Interval exposing (Interval(..))
+import Note exposing (Note, newNote)
+import Interval exposing (Interval(..), Degree(..), diatonicDegreeOf, distance, addInterval)
 import Test exposing (..)
 import Expect
 import String
