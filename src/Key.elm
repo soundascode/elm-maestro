@@ -1,8 +1,9 @@
 module Key
     exposing
-        ( Key(..)
+        ( Tone
+        , Key(..)
         , Adjustment(..)
-        , Octave
+        , newTone
         , keyToValue
         , keyFromValue
         , diatonicKeyValue
@@ -37,10 +38,13 @@ type Adjustment
     | FlatFlat
 
 
-{-|
--}
-type alias Octave =
-    Int
+type alias Tone =
+    { key : Key, adjustment : Adjustment }
+
+
+newTone : Key -> Adjustment -> Tone
+newTone key adjustment =
+    { key = key, adjustment = adjustment }
 
 
 {-|

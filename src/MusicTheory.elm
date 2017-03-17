@@ -7,15 +7,16 @@ you with optional arguments, error handling, and records with optional fields.
 @docs Note
 
 # Common Helpers
-@docs diatonicDegreeOf, distance, addInterval
+@docs diatonicDegreeOf, distance, addInterval, newNote
 
 -}
 
 import Key
     exposing
-        ( Key(..)
+        ( Tone
+        , Key(..)
         , Adjustment(..)
-        , Octave
+        , newTone
         , keyToValue
         , keyFromValue
         , adjustmentToValue
@@ -31,16 +32,23 @@ import Tuple exposing (first, second)
 
 {-|
 -}
+type alias Octave =
+    Int
+
+
+{-|
+-}
 type alias Note =
-    { key : Key
-    , adjustment : Adjustment
+    { tone : Tone
     , octave : Octave
     }
 
 
+{-|
+-}
 newNote : Key -> Adjustment -> Octave -> Note
-newNote k a o =
-    { key = k, adjustment = a, octave = o }
+newNote key adjustment octave =
+    { tone = newTone key adjustment, octave = octave }
 
 
 {-| diatonicDegreeOf will compute the note being the given
@@ -50,14 +58,14 @@ diatonicDegreeOf : Degree -> Note -> Note
 diatonicDegreeOf degree note =
     let
         diatonicKey =
-            diatonicKeyFromValue <| (%) (diatonicKeyValue note.key + degreeToValue degree) 7
+            diatonicKeyFromValue <| (%) (diatonicKeyValue note.tone.key + degreeToValue degree) 7
 
         octaveShift =
-            (//) (diatonicKeyValue note.key + degreeToValue degree) 7
+            (//) (diatonicKeyValue note.tone.key + degreeToValue degree) 7
     in
         case diatonicKey of
             Just dk ->
-                { key = dk, adjustment = Natural, octave = note.octave + octaveShift }
+                { tone = newTone dk Natural, octave = note.octave + octaveShift }
 
             Nothing ->
                 note
@@ -87,7 +95,7 @@ addInterval note interval =
         adjustment =
             adjustmentFromValue (intervalSemitones - startToNewNaturalSemitones)
     in
-        { key = newNaturalNote.key, adjustment = adjustment, octave = newNaturalNote.octave }
+        { tone = newTone newNaturalNote.tone.key adjustment, octave = newNaturalNote.octave }
 
 
 {-|
@@ -115,4 +123,4 @@ keyAtOctave key octave =
 -}
 noteToIndex : Note -> Int
 noteToIndex note =
-    note.octave * 12 + (keyToValue note.key) + (adjustmentToValue note.adjustment)
+    note.octave * 12 + (keyToValue note.tone.key) + (adjustmentToValue note.tone.adjustment)
