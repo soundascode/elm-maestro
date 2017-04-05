@@ -1,4 +1,4 @@
-module Interval
+module Maestro.Interval
     exposing
         ( Degree(..)
         , Interval(..)
@@ -14,8 +14,20 @@ module Interval
         , addInterval
         )
 
-import Note exposing (Note, noteToIndex)
-import Key
+{-| This library fills a bunch of important niches in Elm. A `Maybe` can help
+you with optional arguments, error handling, and records with optional fields.
+
+# Types
+@docs Degree, Interval
+
+# Common Helpers
+@docs distance, diatonicDegreeOf, intervalDegree, degreeToValue, substractDegree,
+      intervalToValue, intervalFromValue, majorIntervals, minorIntervals, addInterval
+
+-}
+
+import Maestro.Note exposing (Note, noteToIndex)
+import Maestro.Key
     exposing
         ( Tone
         , Adjustment(..)
@@ -483,6 +495,8 @@ degreeFromValue value =
             Nothing
 
 
+{-|
+-}
 substractDegree : Degree -> Int -> Degree
 substractDegree degree value =
     let

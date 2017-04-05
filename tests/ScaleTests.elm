@@ -1,9 +1,9 @@
 module ScaleTests exposing (all)
 
-import Note exposing (Note)
-import Key exposing (Key(..), Adjustment(..), newTone)
-import Interval exposing (Interval(..), Degree(..), substractDegree, diatonicDegreeOf, distance, addInterval)
-import Scale exposing (Scale, Mode(..), scale)
+import Maestro.Note exposing (Note)
+import Maestro.Key exposing (Key(..), Adjustment(..), newTone)
+import Maestro.Interval exposing (Interval(..), Degree(..), substractDegree, diatonicDegreeOf, distance, addInterval)
+import Maestro.Scale exposing (Scale, Mode(..), scale)
 import Test exposing (..)
 import Expect
 import String

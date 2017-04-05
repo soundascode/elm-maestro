@@ -1,8 +1,8 @@
 module IntervalTests exposing (..)
 
-import Key exposing (Key(..), Adjustment(..))
-import Note exposing (Note)
-import Interval exposing (Interval(..), Degree(..), substractDegree, diatonicDegreeOf, distance, addInterval)
+import Maestro.Key exposing (Key(..), Adjustment(..))
+import Maestro.Note exposing (Note)
+import Maestro.Interval exposing (Interval(..), Degree(..), substractDegree, diatonicDegreeOf, distance, addInterval)
 import Test exposing (..)
 import Expect
 import String

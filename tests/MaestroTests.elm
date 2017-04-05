@@ -1,8 +1,8 @@
-module MusicTheoryTests exposing (all)
+module MaestroTests exposing (all)
 
-import Key exposing (Key(..), Adjustment(..))
-import Note exposing (Note, newNote)
-import Interval exposing (Interval(..), Degree(..), diatonicDegreeOf, distance, addInterval)
+import Maestro.Key exposing (Key(..), Adjustment(..))
+import Maestro.Note exposing (Note, newNote)
+import Maestro.Interval exposing (Interval(..), Degree(..), diatonicDegreeOf, distance, addInterval)
 import Test exposing (..)
 import Expect
 import String

@@ -1,4 +1,4 @@
-module Key
+module Maestro.Key
     exposing
         ( Tone
         , Key(..)
@@ -12,7 +12,16 @@ module Key
         , adjustmentToValue
         )
 
-{-|
+{-| This library fills a bunch of important niches in Elm. A `Maybe` can help
+you with optional arguments, error handling, and records with optional fields.
+
+# Types
+@docs Tone, Key, Adjustment
+
+# Common Helpers
+@docs newTone, keyToValue, keyFromValue, diatonicKeyValue, diatonicKeyFromValue,
+      adjustmentFromValue, adjustmentToValue
+
 -}
 
 
@@ -38,10 +47,14 @@ type Adjustment
     | FlatFlat
 
 
+{-|
+-}
 type alias Tone =
     { key : Key, adjustment : Adjustment }
 
 
+{-|
+-}
 newTone : Key -> Adjustment -> Tone
 newTone key adjustment =
     { key = key, adjustment = adjustment }
@@ -104,6 +117,8 @@ keyFromValue value =
             Nothing
 
 
+{-|
+-}
 diatonicKeyValue : Key -> Int
 diatonicKeyValue key =
     case key of
@@ -129,6 +144,8 @@ diatonicKeyValue key =
             6
 
 
+{-|
+-}
 diatonicKeyFromValue : Int -> Maybe Key
 diatonicKeyFromValue value =
     case value of

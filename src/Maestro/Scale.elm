@@ -1,8 +1,19 @@
-module Scale exposing (Scale, Mode(..), scale)
+module Maestro.Scale exposing (Scale, Mode(..), scale)
 
-import Key exposing (Tone)
-import Note exposing (Note, newNote)
-import Interval exposing (Interval(..), addInterval, majorIntervals, minorIntervals)
+{-| This library fills a bunch of important niches in Elm. A `Maybe` can help
+you with optional arguments, error handling, and records with optional fields.
+
+# Types
+@docs Scale, Mode
+
+# Common Helpers
+@docs scale
+
+-}
+
+import Maestro.Key exposing (Tone)
+import Maestro.Note exposing (Note, newNote)
+import Maestro.Interval exposing (Interval(..), addInterval, majorIntervals, minorIntervals)
 
 
 {-|
@@ -30,6 +41,8 @@ modeToIntervals mode =
             minorIntervals
 
 
+{-|
+-}
 scale : Tone -> Mode -> List Tone
 scale tone mode =
     let
@@ -37,11 +50,3 @@ scale tone mode =
             newNote tone.key tone.adjustment 3
     in
         List.map (\i -> (addInterval placeholderNote i).tone) (modeToIntervals mode)
-
-
-
--- {-|
--- -}
--- scale : Note -> Mode -> Scale
--- scale note mode =
---     List.map (\i -> addInterval note i) (modeToIntervals mode)

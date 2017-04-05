@@ -1,17 +1,13 @@
-module MusicTheory exposing (..)
+module Maestro exposing (..)
 
 {-| This library fills a bunch of important niches in Elm. A `Maybe` can help
 you with optional arguments, error handling, and records with optional fields.
 
 # Definition
-@docs addInterval, diatonicDegreeOf
-
-# Common Helpers
-@docs diatonicDegreeOf, distance, addInterval
-
+@docs octaveOf, noteOf, keyAtOctave
 -}
 
-import Key exposing (Key, keyToValue)
+import Maestro.Key exposing (Key, keyToValue)
 
 
 {-|

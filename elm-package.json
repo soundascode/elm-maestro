@@ -8,7 +8,11 @@
         "./src"
     ],
     "exposed-modules": [
-        "MusicTheory"
+        "Maestro",
+        "Maestro.Interval",
+        "Maestro.Key",
+        "Maestro.Note",
+        "Maestro.Scale"
     ],
     "dependencies": {
         "elm-lang/core": "5.0.0 <= v < 6.0.0"

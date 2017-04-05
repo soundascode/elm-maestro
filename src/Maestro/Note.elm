@@ -1,6 +1,17 @@
-module Note exposing (..)
+module Maestro.Note exposing (..)
 
-import Key exposing (Tone, Key, Adjustment, newTone, adjustmentToValue, keyToValue)
+{-| This library fills a bunch of important niches in Elm. A `Maybe` can help
+you with optional arguments, error handling, and records with optional fields.
+
+# Types
+@docs Octave, Note
+
+# Common Helpers
+@docs newNote, noteToIndex
+
+-}
+
+import Maestro.Key exposing (Tone, Key, Adjustment, newTone, adjustmentToValue, keyToValue)
 
 
 {-|
