@@ -1,6 +1,6 @@
 module MaestroTests exposing (all)
 
-import Maestro.Pitch exposing (Key(..), Accidental(..))
+import Maestro.Tone exposing (Key(..), Accidental(..))
 import Maestro.Note exposing (Note, newNote)
 import Maestro.Interval exposing (Interval(..), Degree(..), addInterval, distance, diatonicDegreeOf)
 import Test exposing (..)

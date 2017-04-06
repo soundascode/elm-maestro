@@ -10,7 +10,7 @@
     "exposed-modules": [
         "Maestro",
         "Maestro.Interval",
-        "Maestro.Pitch",
+        "Maestro.Tone",
         "Maestro.Note",
         "Maestro.Scale"
     ],
