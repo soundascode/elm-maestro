@@ -12,8 +12,9 @@ module Maestro.Tone
         , adjustmentToValue
         )
 
-{-| This library fills a bunch of important niches in Elm. A `Maybe` can help
-you with optional arguments, error handling, and records with optional fields.
+{-| This module provides types and functions to manipulate musical tones.
+It allows you to represent tones (pitches) like `C`, `C Sharp` and so on, as
+well as helpers to represent these as numerical values.
 
 # Types
 @docs Tone, Key, Accidental
@@ -25,7 +26,7 @@ you with optional arguments, error handling, and records with optional fields.
 -}
 
 
-{-|
+{-| Key represents a Pitch class without accidental
 -}
 type Key
     = C
@@ -37,7 +38,7 @@ type Key
     | B
 
 
-{-|
+{-| Accidental represents an adjustment applied to a key
 -}
 type Accidental
     = Natural
@@ -47,20 +48,21 @@ type Accidental
     | FlatFlat
 
 
-{-|
+{-| Tone represents a pitch and is defined by a key and an accidental
 -}
 type alias Tone =
     { key : Key, adjustment : Accidental }
 
 
-{-|
+{-| newTone is a helper function to create a tone
 -}
 newTone : Key -> Accidental -> Tone
 newTone key adjustment =
     { key = key, adjustment = adjustment }
 
 
-{-|
+{-| keyToValue returns the chromatic position of a Key relative to an octave
+as a numeric value
 -}
 keyToValue : Key -> Int
 keyToValue key =
@@ -87,7 +89,8 @@ keyToValue key =
             11
 
 
-{-|
+{-| keyFromValue given a position relative to an octave returns the
+corresponding key
 -}
 keyFromValue : Int -> Maybe Key
 keyFromValue value =
@@ -117,7 +120,8 @@ keyFromValue value =
             Nothing
 
 
-{-|
+{-| diatonicKeyValue returns the diatonic position of a Key relative to an octave
+(composed of only natural notes (white notes of your piano)) as a numeric value.
 -}
 diatonicKeyValue : Key -> Int
 diatonicKeyValue key =
@@ -144,7 +148,9 @@ diatonicKeyValue key =
             6
 
 
-{-|
+{-| diatonicKeyFromValue given a position relative to an octave
+(composed of only natural notes (white notes of your piano)) returns the
+corresponding key.
 -}
 diatonicKeyFromValue : Int -> Maybe Key
 diatonicKeyFromValue value =
@@ -174,7 +180,8 @@ diatonicKeyFromValue value =
             Nothing
 
 
-{-|
+{-| adjustmentToValue returns the numbers of semitones to apply to a
+Key when calculating its position.
 -}
 adjustmentToValue : Accidental -> Int
 adjustmentToValue adjustment =
@@ -195,11 +202,15 @@ adjustmentToValue adjustment =
             2
 
 
-{-|
+{-| adjustmentFromValue returns the adjustment corresponding to a given
+number of semitones
 -}
 adjustmentFromValue : Int -> Accidental
 adjustmentFromValue value =
     case value of
+        (-2) ->
+            FlatFlat
+
         (-1) ->
             Flat
 
@@ -208,9 +219,6 @@ adjustmentFromValue value =
 
         1 ->
             Sharp
-
-        (-2) ->
-            FlatFlat
 
         2 ->
             SharpSharp
