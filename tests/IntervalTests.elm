@@ -1,6 +1,6 @@
 module IntervalTests exposing (..)
 
-import Maestro.Tone exposing (Key(..), Accidental(..))
+import Maestro.Tone exposing (Key(..), Adjustment(..))
 import Maestro.Note exposing (Note)
 import Maestro.Interval exposing (Interval(..), Degree(..))
 import Test exposing (..)

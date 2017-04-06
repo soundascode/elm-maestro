@@ -2,7 +2,7 @@ module Maestro.Tone
     exposing
         ( Tone
         , Key(..)
-        , Accidental(..)
+        , Adjustment(..)
         , newTone
         , keyToValue
         , keyFromValue
@@ -17,7 +17,7 @@ It allows you to represent tones (pitches) like `C`, `C Sharp` and so on, as
 well as helpers to represent these as numerical values.
 
 # Types
-@docs Tone, Key, Accidental
+@docs Tone, Key, Adjustment
 
 # Common Helpers
 @docs newTone, keyToValue, keyFromValue, diatonicKeyValue, diatonicKeyFromValue,
@@ -26,7 +26,7 @@ well as helpers to represent these as numerical values.
 -}
 
 
-{-| Key represents a Pitch class without accidental
+{-| Key represents a Pitch class without adjustment
 -}
 type Key
     = C
@@ -38,9 +38,9 @@ type Key
     | B
 
 
-{-| Accidental represents an adjustment applied to a key
+{-| Adjustment represents an adjustment applied to a key
 -}
-type Accidental
+type Adjustment
     = Natural
     | Sharp
     | Flat
@@ -48,15 +48,15 @@ type Accidental
     | FlatFlat
 
 
-{-| Tone represents a pitch and is defined by a key and an accidental
+{-| Tone represents a pitch and is defined by a key and an adjustment
 -}
 type alias Tone =
-    { key : Key, adjustment : Accidental }
+    { key : Key, adjustment : Adjustment }
 
 
 {-| newTone is a helper function to create a tone
 -}
-newTone : Key -> Accidental -> Tone
+newTone : Key -> Adjustment -> Tone
 newTone key adjustment =
     { key = key, adjustment = adjustment }
 
@@ -183,7 +183,7 @@ diatonicKeyFromValue value =
 {-| adjustmentToValue returns the numbers of semitones to apply to a
 Key when calculating its position.
 -}
-adjustmentToValue : Accidental -> Int
+adjustmentToValue : Adjustment -> Int
 adjustmentToValue adjustment =
     case adjustment of
         Flat ->
@@ -205,7 +205,7 @@ adjustmentToValue adjustment =
 {-| adjustmentFromValue returns the adjustment corresponding to a given
 number of semitones
 -}
-adjustmentFromValue : Int -> Accidental
+adjustmentFromValue : Int -> Adjustment
 adjustmentFromValue value =
     case value of
         (-2) ->

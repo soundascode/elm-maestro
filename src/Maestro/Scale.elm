@@ -34,13 +34,13 @@ composing a scale.
 
     (==)
       scale (newTone C Major) Major
-      [ { key = C, accidental = Natural }
-      , { key = D, accidental = Natural }
-      , { key = E, accidental = Natural }
-      , { key = F, accidental = Natural }
-      , { key = G, accidental = Natural }
-      , { key = A, accidental = Natural }
-      , { key = B, accidental = Natural }
+      [ { key = C, adjustment = Natural }
+      , { key = D, adjustment = Natural }
+      , { key = E, adjustment = Natural }
+      , { key = F, adjustment = Natural }
+      , { key = G, adjustment = Natural }
+      , { key = A, adjustment = Natural }
+      , { key = B, adjustment = Natural }
       ]
 -}
 scale : Tone -> Mode -> List Tone

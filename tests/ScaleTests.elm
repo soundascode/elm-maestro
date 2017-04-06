@@ -1,7 +1,7 @@
 module ScaleTests exposing (all)
 
 import Maestro.Note exposing (Note)
-import Maestro.Tone exposing (Key(..), Accidental(..), newTone)
+import Maestro.Tone exposing (Key(..), Adjustment(..), newTone)
 import Maestro.Interval exposing (Interval(..), Degree(..))
 import Maestro.Scale exposing (Scale, Mode(..), scale)
 import Test exposing (..)
