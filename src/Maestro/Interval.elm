@@ -5,6 +5,8 @@ module Maestro.Interval
         , majorIntervals
         , minorIntervals
         , addInterval
+        , distance
+        , diatonicDegreeOf
         )
 
 {-| This library fills a bunch of important niches in Elm. A `Maybe` can help
