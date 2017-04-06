@@ -7,7 +7,7 @@ you with optional arguments, error handling, and records with optional fields.
 @docs octaveOf, noteOf, keyAtOctave
 -}
 
-import Maestro.Key exposing (Key, keyToValue)
+import Maestro.Tone exposing (Key, keyToValue)
 
 
 {-|

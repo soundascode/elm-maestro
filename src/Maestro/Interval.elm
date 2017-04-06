@@ -27,7 +27,7 @@ you with optional arguments, error handling, and records with optional fields.
 -}
 
 import Maestro.Note exposing (Note, noteToIndex)
-import Maestro.Key
+import Maestro.Tone
     exposing
         ( Tone
         , Adjustment(..)

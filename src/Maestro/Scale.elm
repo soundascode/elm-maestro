@@ -11,7 +11,7 @@ you with optional arguments, error handling, and records with optional fields.
 
 -}
 
-import Maestro.Key exposing (Tone)
+import Maestro.Tone exposing (Tone)
 import Maestro.Note exposing (Note, newNote)
 import Maestro.Interval exposing (Interval(..), addInterval, majorIntervals, minorIntervals)
 

@@ -1,4 +1,4 @@
-module Maestro.Key
+module Maestro.Tone
     exposing
         ( Tone
         , Key(..)

@@ -11,7 +11,7 @@ you with optional arguments, error handling, and records with optional fields.
 
 -}
 
-import Maestro.Key exposing (Tone, Key, Adjustment, newTone, adjustmentToValue, keyToValue)
+import Maestro.Tone exposing (Tone, Key, Adjustment, newTone, adjustmentToValue, keyToValue)
 
 
 {-|
