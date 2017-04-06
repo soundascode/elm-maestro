@@ -2,13 +2,6 @@ module Maestro.Interval
     exposing
         ( Degree(..)
         , Interval(..)
-        , distance
-        , diatonicDegreeOf
-        , intervalDegree
-        , degreeToValue
-        , substractDegree
-        , intervalToValue
-        , intervalFromValue
         , majorIntervals
         , minorIntervals
         , addInterval
@@ -21,8 +14,7 @@ you with optional arguments, error handling, and records with optional fields.
 @docs Degree, Interval
 
 # Common Helpers
-@docs distance, diatonicDegreeOf, intervalDegree, degreeToValue, substractDegree,
-      intervalToValue, intervalFromValue, majorIntervals, minorIntervals, addInterval
+@docs addInterval, majorIntervals, minorIntervals, distance, diatonicDegreeOf
 
 -}
 
