@@ -1,9 +1,9 @@
-module Maestro.Tone
+module Maestro.Pitch
     exposing
-        ( Tone
+        ( Pitch
         , Key(..)
         , Adjustment(..)
-        , newTone
+        , newPitch
         , keyToValue
         , keyFromValue
         , diatonicKeyValue
@@ -16,10 +16,10 @@ module Maestro.Tone
 you with optional arguments, error handling, and records with optional fields.
 
 # Types
-@docs Tone, Key, Adjustment
+@docs Pitch, Key, Adjustment
 
 # Common Helpers
-@docs newTone, keyToValue, keyFromValue, diatonicKeyValue, diatonicKeyFromValue,
+@docs newPitch, keyToValue, keyFromValue, diatonicKeyValue, diatonicKeyFromValue,
       adjustmentFromValue, adjustmentToValue
 
 -}
@@ -49,14 +49,14 @@ type Adjustment
 
 {-|
 -}
-type alias Tone =
+type alias Pitch =
     { key : Key, adjustment : Adjustment }
 
 
 {-|
 -}
-newTone : Key -> Adjustment -> Tone
-newTone key adjustment =
+newPitch : Key -> Adjustment -> Pitch
+newPitch key adjustment =
     { key = key, adjustment = adjustment }
 
 

@@ -19,11 +19,11 @@ you with optional arguments, error handling, and records with optional fields.
 -}
 
 import Maestro.Note exposing (Note, noteToIndex)
-import Maestro.Tone
+import Maestro.Pitch
     exposing
-        ( Tone
+        ( Pitch
         , Adjustment(..)
-        , newTone
+        , newPitch
         , adjustmentFromValue
         , diatonicKeyFromValue
         , diatonicKeyValue
@@ -95,7 +95,7 @@ addInterval note interval =
         adjustment =
             adjustmentFromValue (intervalSemitones - startToNewNaturalSemitones)
     in
-        { tone = newTone newNaturalNote.tone.key adjustment, octave = newNaturalNote.octave }
+        { tone = newPitch newNaturalNote.tone.key adjustment, octave = newNaturalNote.octave }
 
 
 {-| diatonicDegreeOf will compute the note being the given
@@ -112,7 +112,7 @@ diatonicDegreeOf degree note =
     in
         case diatonicKey of
             Just dk ->
-                { tone = newTone dk Natural, octave = note.octave + octaveShift }
+                { tone = newPitch dk Natural, octave = note.octave + octaveShift }
 
             Nothing ->
                 note

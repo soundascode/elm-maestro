@@ -11,7 +11,7 @@ you with optional arguments, error handling, and records with optional fields.
 
 -}
 
-import Maestro.Tone exposing (Tone)
+import Maestro.Pitch exposing (Pitch)
 import Maestro.Note exposing (Note, newNote)
 import Maestro.Interval exposing (Interval(..), addInterval, majorIntervals, minorIntervals)
 
@@ -19,7 +19,7 @@ import Maestro.Interval exposing (Interval(..), addInterval, majorIntervals, min
 {-|
 -}
 type alias Scale =
-    List Tone
+    List Pitch
 
 
 {-|
@@ -43,7 +43,7 @@ modeToIntervals mode =
 
 {-|
 -}
-scale : Tone -> Mode -> List Tone
+scale : Pitch -> Mode -> List Pitch
 scale tone mode =
     let
         placeholderNote =
