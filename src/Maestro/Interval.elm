@@ -24,7 +24,7 @@ import Maestro.Note exposing (Note, noteToIndex)
 import Maestro.Pitch
     exposing
         ( Pitch
-        , Adjustment(..)
+        , Accidental(..)
         , newPitch
         , adjustmentFromValue
         , diatonicKeyFromValue

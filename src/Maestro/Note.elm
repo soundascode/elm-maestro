@@ -11,7 +11,7 @@ you with optional arguments, error handling, and records with optional fields.
 
 -}
 
-import Maestro.Pitch exposing (Pitch, Key, Adjustment, newPitch, adjustmentToValue, keyToValue)
+import Maestro.Pitch exposing (Pitch, Key, Accidental, newPitch, adjustmentToValue, keyToValue)
 
 
 {-|
@@ -30,7 +30,7 @@ type alias Note =
 
 {-|
 -}
-newNote : Key -> Adjustment -> Octave -> Note
+newNote : Key -> Accidental -> Octave -> Note
 newNote key adjustment octave =
     { tone = newPitch key adjustment, octave = octave }
 

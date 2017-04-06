@@ -2,7 +2,7 @@ module Maestro.Pitch
     exposing
         ( Pitch
         , Key(..)
-        , Adjustment(..)
+        , Accidental(..)
         , newPitch
         , keyToValue
         , keyFromValue
@@ -16,7 +16,7 @@ module Maestro.Pitch
 you with optional arguments, error handling, and records with optional fields.
 
 # Types
-@docs Pitch, Key, Adjustment
+@docs Pitch, Key, Accidental
 
 # Common Helpers
 @docs newPitch, keyToValue, keyFromValue, diatonicKeyValue, diatonicKeyFromValue,
@@ -39,7 +39,7 @@ type Key
 
 {-|
 -}
-type Adjustment
+type Accidental
     = Natural
     | Sharp
     | Flat
@@ -50,12 +50,12 @@ type Adjustment
 {-|
 -}
 type alias Pitch =
-    { key : Key, adjustment : Adjustment }
+    { key : Key, adjustment : Accidental }
 
 
 {-|
 -}
-newPitch : Key -> Adjustment -> Pitch
+newPitch : Key -> Accidental -> Pitch
 newPitch key adjustment =
     { key = key, adjustment = adjustment }
 
@@ -176,7 +176,7 @@ diatonicKeyFromValue value =
 
 {-|
 -}
-adjustmentToValue : Adjustment -> Int
+adjustmentToValue : Accidental -> Int
 adjustmentToValue adjustment =
     case adjustment of
         Flat ->
@@ -197,7 +197,7 @@ adjustmentToValue adjustment =
 
 {-|
 -}
-adjustmentFromValue : Int -> Adjustment
+adjustmentFromValue : Int -> Accidental
 adjustmentFromValue value =
     case value of
         (-1) ->
