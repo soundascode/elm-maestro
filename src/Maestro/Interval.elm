@@ -9,8 +9,8 @@ module Maestro.Interval
         , diatonicDegreeOf
         )
 
-{-| This library fills a bunch of important niches in Elm. A `Maybe` can help
-you with optional arguments, error handling, and records with optional fields.
+{-| This module provides types and functions to compute, represent and
+manipulate intervals.
 
 # Types
 @docs Degree, Interval
@@ -51,7 +51,7 @@ type Degree
     | Fourteenth
 
 
-{-|
+{-| Interval represents the difference between two pitches
 -}
 type Interval
     = Unison
@@ -80,7 +80,8 @@ type Interval
     | DoubleOctave
 
 
-{-|
+{-| addInterval applies an interval to a given note, and returns
+the resulting note
 -}
 addInterval : Note -> Interval -> Note
 addInterval note interval =
@@ -127,7 +128,8 @@ distance from to =
     (-) (noteToIndex to) (noteToIndex from)
 
 
-{-|
+{-| intervalToValue returns the number of semitones corresponding
+to the provided interval
 -}
 intervalToValue : Interval -> Int
 intervalToValue interval =
@@ -205,7 +207,7 @@ intervalToValue interval =
             24
 
 
-{-|
+{-| intervalFromValue computes the Interval from a number of semitones
 -}
 intervalFromValue : Int -> Maybe Interval
 intervalFromValue value =
@@ -286,7 +288,8 @@ intervalFromValue value =
             Nothing
 
 
-{-|
+{-| majorIntervals represents the sequence of intervals composing
+the Major scale
 -}
 majorIntervals : List Interval
 majorIntervals =
@@ -300,7 +303,8 @@ majorIntervals =
     ]
 
 
-{-|
+{-| minorIntervals represents the sequence of intervals composing
+the minor scale
 -}
 minorIntervals : List Interval
 minorIntervals =
@@ -314,7 +318,9 @@ minorIntervals =
     ]
 
 
-{-|
+{-| intervalDegree returns the degree of an interval. You could consider the
+degree as the absolute value of an interval; an interval stripped of its modal
+color (Major, minor).
 -}
 intervalDegree : Interval -> Degree
 intervalDegree interval =
@@ -392,7 +398,7 @@ intervalDegree interval =
             Octave
 
 
-{-|
+{-| degreeToValue returns the numeric value of a degree
 -}
 degreeToValue : Degree -> Int
 degreeToValue d =
@@ -440,6 +446,8 @@ degreeToValue d =
             13
 
 
+{-| degreeFromValue computes the degree represented by the provided value
+-}
 degreeFromValue : Int -> Maybe Degree
 degreeFromValue value =
     case value of
@@ -489,7 +497,8 @@ degreeFromValue value =
             Nothing
 
 
-{-|
+{-| substractDegree substracts value from a degree and returns the resulting
+degree
 -}
 substractDegree : Degree -> Int -> Degree
 substractDegree degree value =
