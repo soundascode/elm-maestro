@@ -1,7 +1,7 @@
 module Maestro.Note exposing (..)
 
-{-| This library fills a bunch of important niches in Elm. A `Maybe` can help
-you with optional arguments, error handling, and records with optional fields.
+{-| This module provides types and functions to manipulate musical notes.
+Notes being represented as a tone and an octave convertible to an index (MIDI value)
 
 # Types
 @docs Octave, Note
@@ -14,13 +14,13 @@ you with optional arguments, error handling, and records with optional fields.
 import Maestro.Tone exposing (Tone, Key, Adjustment, newTone, adjustmentToValue, keyToValue)
 
 
-{-|
+{-| Octave represents an octave number, as represented in piano or MIDI notation
 -}
 type alias Octave =
     Int
 
 
-{-|
+{-| Note represents a tone on a given octave
 -}
 type alias Note =
     { tone : Tone
@@ -28,14 +28,14 @@ type alias Note =
     }
 
 
-{-|
+{-| newNote is a helper function to create a note
 -}
 newNote : Key -> Adjustment -> Octave -> Note
 newNote key adjustment octave =
     { tone = newTone key adjustment, octave = octave }
 
 
-{-|
+{-| noteToIndex returns the MIDI value of a given note
 -}
 noteToIndex : Note -> Int
 noteToIndex note =
