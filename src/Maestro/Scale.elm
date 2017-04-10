@@ -33,7 +33,7 @@ type Mode
 composing a scale.
 
     (==)
-      scale (newTone C Major) Major
+      scale (newTone C Natural) Major
       [ { key = C, adjustment = Natural }
       , { key = D, adjustment = Natural }
       , { key = E, adjustment = Natural }

@@ -1,5 +1,5 @@
 {
-    "version": "0.1.0",
+    "version": "1.0.0",
     "summary": "A music theory library for Elm",
     "repository": "https://github.com/oleiade/elm-maestro.git",
     "license": "MIT",
@@ -9,10 +9,11 @@
     ],
     "exposed-modules": [
         "Maestro",
+        "Maestro.Chord",
         "Maestro.Interval",
-        "Maestro.Tone",
         "Maestro.Note",
-        "Maestro.Scale"
+        "Maestro.Scale",
+        "Maestro.Tone"
     ],
     "dependencies": {
         "elm-lang/core": "5.0.0 <= v < 6.0.0"
