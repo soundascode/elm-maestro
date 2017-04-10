@@ -93,6 +93,54 @@ type Interval
     | MajorFourteenth
 
 
+{-| addInterval applies an interval to a given note, and returns
+the resulting note
+-}
+addInterval : Note -> Interval -> Note
+addInterval note interval =
+    let
+        newNaturalNote =
+            diatonicDegreeOf (intervalDegree interval) note
+
+        intervalSemitones =
+            intervalToValue interval
+
+        startToNewNaturalSemitones =
+            distance note newNaturalNote
+
+        adjustment =
+            adjustmentFromValue (intervalSemitones - startToNewNaturalSemitones)
+    in
+        { tone = newTone newNaturalNote.tone.key adjustment, octave = newNaturalNote.octave }
+
+
+{-| diatonicDegreeOf will compute the note being the given
+degree of a starting note on the diatonic scale
+-}
+diatonicDegreeOf : Degree -> Note -> Note
+diatonicDegreeOf degree note =
+    let
+        diatonicKey =
+            diatonicKeyFromValue <| (%) (diatonicKeyValue note.tone.key + degreeToValue degree) 7
+
+        octaveShift =
+            (//) (diatonicKeyValue note.tone.key + degreeToValue degree) 7
+    in
+        case diatonicKey of
+            Just dk ->
+                { tone = newTone dk Natural, octave = note.octave + octaveShift }
+
+            Nothing ->
+                note
+
+
+{-| distance computes the distance in semitones between two notes
+-}
+distance : Note -> Note -> Int
+distance from to =
+    (-) (noteToIndex to) (noteToIndex from)
+
+
 {-| intervalToValue returns the number of semitones corresponding
 to the provided interval
 -}
@@ -209,84 +257,6 @@ intervalToValue interval =
 
         MajorFourteenth ->
             23
-
-
-{-| addInterval applies an interval to a given note, and returns
-the resulting note
--}
-addInterval : Note -> Interval -> Note
-addInterval note interval =
-    let
-        newNaturalNote =
-            diatonicDegreeOf (intervalDegree interval) note
-
-        intervalSemitones =
-            intervalToValue interval
-
-        startToNewNaturalSemitones =
-            distance note newNaturalNote
-
-        adjustment =
-            adjustmentFromValue (intervalSemitones - startToNewNaturalSemitones)
-    in
-        { tone = newTone newNaturalNote.tone.key adjustment, octave = newNaturalNote.octave }
-
-
-{-| diatonicDegreeOf will compute the note being the given
-degree of a starting note on the diatonic scale
--}
-diatonicDegreeOf : Degree -> Note -> Note
-diatonicDegreeOf degree note =
-    let
-        diatonicKey =
-            diatonicKeyFromValue <| (%) (diatonicKeyValue note.tone.key + degreeToValue degree) 7
-
-        octaveShift =
-            (//) (diatonicKeyValue note.tone.key + degreeToValue degree) 7
-    in
-        case diatonicKey of
-            Just dk ->
-                { tone = newTone dk Natural, octave = note.octave + octaveShift }
-
-            Nothing ->
-                note
-
-
-{-| distance computes the distance in semitones between two notes
--}
-distance : Note -> Note -> Int
-distance from to =
-    (-) (noteToIndex to) (noteToIndex from)
-
-
-{-| majorIntervals represents the sequence of intervals composing
-the Major scale
--}
-majorIntervals : List Interval
-majorIntervals =
-    [ PerfectUnison
-    , MajorSecond
-    , MajorThird
-    , PerfectFourth
-    , PerfectFifth
-    , MajorSixth
-    , MajorSeventh
-    ]
-
-
-{-| minorIntervals represents the sequence of intervals composing
-the minor scale
--}
-minorIntervals : List Interval
-minorIntervals =
-    [ PerfectUnison
-    , MajorSecond
-    , MinorThird
-    , PerfectFourth
-    , PerfectFifth
-    , MinorSixth
-    , MinorSeventh
-    ]
 
 
 {-| intervalDegree returns the degree of an interval. You could consider the
@@ -454,3 +424,33 @@ degreeToValue d =
 
         Fourteenth ->
             13
+
+
+{-| majorIntervals represents the sequence of intervals composing
+the Major scale
+-}
+majorIntervals : List Interval
+majorIntervals =
+    [ PerfectUnison
+    , MajorSecond
+    , MajorThird
+    , PerfectFourth
+    , PerfectFifth
+    , MajorSixth
+    , MajorSeventh
+    ]
+
+
+{-| minorIntervals represents the sequence of intervals composing
+the minor scale
+-}
+minorIntervals : List Interval
+minorIntervals =
+    [ PerfectUnison
+    , MajorSecond
+    , MinorThird
+    , PerfectFourth
+    , PerfectFifth
+    , MinorSixth
+    , MinorSeventh
+    ]
