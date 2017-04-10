@@ -54,18 +54,34 @@ type Degree
 {-| Interval represents the difference between two pitches
 -}
 type Interval
-    = Unison
+    = PerfectUnison
+    | DiminishedSecond
     | MinorSecond
+    | AugmentedUnison
     | MajorSecond
+    | DiminishedThird
     | MinorThird
+    | AugmentedSecond
     | MajorThird
+    | DiminishedFourth
     | PerfectFourth
+    | AugmentedThird
+    | DiminishedFifth
+      -- 6
+    | AugmentedFourth
+      -- 6
     | PerfectFifth
+    | DiminishedSixth
     | MinorSixth
+    | AugmentedFifth
     | MajorSixth
+    | DiminishedSeventh
     | MinorSeventh
+    | AugmentedSixth
     | MajorSeventh
+    | DiminishedOctave
     | PerfectOctave
+    | AugmentedSeventh
     | MinorNinth
     | MajorNinth
     | MinorTenth
@@ -77,7 +93,124 @@ type Interval
     | MajorThirteen
     | MinorFourteenth
     | MajorFourteenth
-    | DoubleOctave
+
+
+{-| intervalToValue returns the number of semitones corresponding
+to the provided interval
+-}
+intervalToValue : Interval -> Int
+intervalToValue interval =
+    case interval of
+        PerfectUnison ->
+            0
+
+        DiminishedSecond ->
+            0
+
+        MinorSecond ->
+            1
+
+        AugmentedUnison ->
+            1
+
+        MajorSecond ->
+            2
+
+        DiminishedThird ->
+            2
+
+        MinorThird ->
+            3
+
+        AugmentedSecond ->
+            3
+
+        MajorThird ->
+            4
+
+        DiminishedFourth ->
+            4
+
+        PerfectFourth ->
+            5
+
+        AugmentedThird ->
+            5
+
+        DiminishedFifth ->
+            6
+
+        AugmentedFourth ->
+            6
+
+        PerfectFifth ->
+            7
+
+        DiminishedSixth ->
+            7
+
+        MinorSixth ->
+            8
+
+        AugmentedFifth ->
+            8
+
+        MajorSixth ->
+            9
+
+        DiminishedSeventh ->
+            9
+
+        MinorSeventh ->
+            10
+
+        AugmentedSixth ->
+            10
+
+        MajorSeventh ->
+            11
+
+        DiminishedOctave ->
+            11
+
+        PerfectOctave ->
+            12
+
+        AugmentedSeventh ->
+            12
+
+        MinorNinth ->
+            13
+
+        MajorNinth ->
+            14
+
+        MinorTenth ->
+            15
+
+        MajorTenth ->
+            16
+
+        PerfectEleventh ->
+            17
+
+        AugmentedEleventh ->
+            18
+
+        PerfectTwelfth ->
+            19
+
+        MinorThirteen ->
+            20
+
+        MajorThirteen ->
+            21
+
+        MinorFourteenth ->
+            22
+
+        MajorFourteenth ->
+            23
 
 
 {-| addInterval applies an interval to a given note, and returns
@@ -128,92 +261,13 @@ distance from to =
     (-) (noteToIndex to) (noteToIndex from)
 
 
-{-| intervalToValue returns the number of semitones corresponding
-to the provided interval
--}
-intervalToValue : Interval -> Int
-intervalToValue interval =
-    case interval of
-        Unison ->
-            0
-
-        MinorSecond ->
-            1
-
-        MajorSecond ->
-            2
-
-        MinorThird ->
-            3
-
-        MajorThird ->
-            4
-
-        PerfectFourth ->
-            5
-
-        PerfectFifth ->
-            7
-
-        MinorSixth ->
-            8
-
-        MajorSixth ->
-            9
-
-        MinorSeventh ->
-            10
-
-        MajorSeventh ->
-            11
-
-        PerfectOctave ->
-            12
-
-        MinorNinth ->
-            13
-
-        MajorNinth ->
-            14
-
-        MinorTenth ->
-            15
-
-        MajorTenth ->
-            16
-
-        PerfectEleventh ->
-            17
-
-        AugmentedEleventh ->
-            18
-
-        PerfectTwelfth ->
-            19
-
-        MinorThirteen ->
-            20
-
-        MajorThirteen ->
-            21
-
-        MinorFourteenth ->
-            22
-
-        MajorFourteenth ->
-            23
-
-        DoubleOctave ->
-            24
-
-
 {-| intervalFromValue computes the Interval from a number of semitones
 -}
 intervalFromValue : Int -> Maybe Interval
 intervalFromValue value =
     case value of
         0 ->
-            Just Unison
+            Just PerfectUnison
 
         1 ->
             Just MinorSecond
@@ -281,9 +335,6 @@ intervalFromValue value =
         23 ->
             Just MajorFourteenth
 
-        24 ->
-            Just DoubleOctave
-
         _ ->
             Nothing
 
@@ -293,7 +344,7 @@ the Major scale
 -}
 majorIntervals : List Interval
 majorIntervals =
-    [ Unison
+    [ PerfectUnison
     , MajorSecond
     , MajorThird
     , PerfectFourth
@@ -308,7 +359,7 @@ the minor scale
 -}
 minorIntervals : List Interval
 minorIntervals =
-    [ Unison
+    [ PerfectUnison
     , MajorSecond
     , MinorThird
     , PerfectFourth
@@ -320,46 +371,88 @@ minorIntervals =
 
 {-| intervalDegree returns the degree of an interval. You could consider the
 degree as the absolute value of an interval; an interval stripped of its modal
-color (Major, minor).
+quality (Perfect, Major, minor, augmented, diminished).
 -}
 intervalDegree : Interval -> Degree
 intervalDegree interval =
     case interval of
-        Unison ->
+        PerfectUnison ->
             First
+
+        DiminishedSecond ->
+            Second
 
         MinorSecond ->
             Second
 
+        AugmentedUnison ->
+            First
+
         MajorSecond ->
             Second
+
+        DiminishedThird ->
+            Third
 
         MinorThird ->
             Third
 
+        AugmentedSecond ->
+            Second
+
         MajorThird ->
             Third
 
+        DiminishedFourth ->
+            Fourth
+
         PerfectFourth ->
+            Fourth
+
+        AugmentedThird ->
+            Third
+
+        DiminishedFifth ->
+            Fifth
+
+        AugmentedFourth ->
             Fourth
 
         PerfectFifth ->
             Fifth
 
+        DiminishedSixth ->
+            Sixth
+
         MinorSixth ->
             Sixth
+
+        AugmentedFifth ->
+            Fifth
 
         MajorSixth ->
             Sixth
 
+        DiminishedSeventh ->
+            Seventh
+
         MinorSeventh ->
             Seventh
+
+        AugmentedSixth ->
+            Sixth
 
         MajorSeventh ->
             Seventh
 
+        DiminishedOctave ->
+            Octave
+
         PerfectOctave ->
             Octave
+
+        AugmentedSeventh ->
+            Seventh
 
         MinorNinth ->
             Ninth
@@ -393,9 +486,6 @@ intervalDegree interval =
 
         MajorFourteenth ->
             Fourteenth
-
-        DoubleOctave ->
-            Octave
 
 
 {-| degreeToValue returns the numeric value of a degree

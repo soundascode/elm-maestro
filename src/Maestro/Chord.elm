@@ -60,7 +60,7 @@ qualityToIntervals quality =
 
 majorTriad : List Interval
 majorTriad =
-    [ Unison
+    [ PerfectUnison
     , MajorThird
     , PerfectFifth
     ]
@@ -68,7 +68,7 @@ majorTriad =
 
 minorTriad : List Interval
 minorTriad =
-    [ Unison
+    [ PerfectUnison
     , MinorThird
     , PerfectFifth
     ]
