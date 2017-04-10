@@ -1,4 +1,4 @@
-module Maestro.Chord exposing (Chord, Quality(..), chord)
+module Maestro.Chord exposing (Chord, Quality(..), chord, inversion1)
 
 {-| This module provides types and functions to create and
 manipulate chords.
@@ -7,13 +7,14 @@ manipulate chords.
 @docs Chord, Quality
 
 # Chord generation
-@docs chord
+@docs chord, inversion1
 
 -}
 
 import Maestro.Tone exposing (Tone)
 import Maestro.Note exposing (newNote)
 import Maestro.Interval exposing (Interval(..), addInterval)
+import ListUtils exposing (rotateR)
 
 
 {-| Chord represents a list of tones composing it
@@ -59,6 +60,20 @@ chord tone quality =
         List.map (\i -> (addInterval placeholderNote i).tone) (qualityToIntervals quality)
 
 
+{-| inversion1 produces the first inversion of a given chord
+-}
+inversion1 : Tone -> Quality -> Chord
+inversion1 tone quality =
+    let
+        placeholderNote =
+            newNote tone.key tone.adjustment 3
+
+        intervals =
+            qualityToIntervals quality
+    in
+        List.map (\i -> (addInterval placeholderNote i).tone) <| rotateR <| qualityToIntervals quality
+
+
 qualityToIntervals : Quality -> List Interval
 qualityToIntervals quality =
     case quality of
@@ -100,6 +115,49 @@ qualityToIntervals quality =
 
         SeventhFlatFive ->
             seventhFlatFive
+
+
+tonesCount : Quality -> Int
+tonesCount q =
+    case q of
+        MajorTriad ->
+            3
+
+        MinorTriad ->
+            3
+
+        AugmentedTriad ->
+            3
+
+        DiminishedTriad ->
+            3
+
+        Seventh ->
+            4
+
+        MajorSeventh ->
+            4
+
+        MinorMajorSeventh ->
+            4
+
+        MinorSeventh ->
+            4
+
+        AugmentedMajorSeventh ->
+            4
+
+        AugmentedSeventh ->
+            4
+
+        HalfDiminishedSeventh ->
+            4
+
+        DiminishedSeventh ->
+            4
+
+        SeventhFlatFive ->
+            4
 
 
 majorTriad : List Interval

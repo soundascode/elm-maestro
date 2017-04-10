@@ -2,14 +2,31 @@ module ChordTests exposing (all)
 
 import Test exposing (..)
 import Expect
-import Maestro.Chord exposing (Quality(..), chord)
+import Maestro.Chord exposing (Quality(..), chord, inversion1)
 import Maestro.Tone exposing (Tone, Key(..), Adjustment(..), newTone)
 
 
 all : Test
 all =
     describe "Chord Test Suite"
-        [ describe "Major chords tests"
+        [ describe "Inversions tests"
+            [ test "inversion1 triad" <|
+                \() ->
+                    Expect.equal (inversion1 (newTone C Natural) MajorTriad)
+                        [ newTone E Natural
+                        , newTone G Natural
+                        , newTone C Natural
+                        ]
+            , test "inversion1 extended chord" <|
+                \() ->
+                    Expect.equal (inversion1 (newTone C Natural) MajorSeventh)
+                        [ newTone E Natural
+                        , newTone G Natural
+                        , newTone B Natural
+                        , newTone C Natural
+                        ]
+            ]
+        , describe "Major chords tests"
             [ test "C Major" <|
                 \() ->
                     Expect.equal (chord (newTone C Natural) MajorTriad)
