@@ -67,9 +67,7 @@ type Interval
     | PerfectFourth
     | AugmentedThird
     | DiminishedFifth
-      -- 6
     | AugmentedFourth
-      -- 6
     | PerfectFifth
     | DiminishedSixth
     | MinorSixth
@@ -259,84 +257,6 @@ diatonicDegreeOf degree note =
 distance : Note -> Note -> Int
 distance from to =
     (-) (noteToIndex to) (noteToIndex from)
-
-
-{-| intervalFromValue computes the Interval from a number of semitones
--}
-intervalFromValue : Int -> Maybe Interval
-intervalFromValue value =
-    case value of
-        0 ->
-            Just PerfectUnison
-
-        1 ->
-            Just MinorSecond
-
-        2 ->
-            Just MajorSecond
-
-        3 ->
-            Just MinorThird
-
-        4 ->
-            Just MajorThird
-
-        5 ->
-            Just PerfectFourth
-
-        7 ->
-            Just PerfectFifth
-
-        8 ->
-            Just MinorSixth
-
-        9 ->
-            Just MajorSixth
-
-        10 ->
-            Just MinorSeventh
-
-        11 ->
-            Just MajorSeventh
-
-        12 ->
-            Just PerfectOctave
-
-        13 ->
-            Just MinorNinth
-
-        14 ->
-            Just MajorNinth
-
-        15 ->
-            Just MinorTenth
-
-        16 ->
-            Just MajorTenth
-
-        17 ->
-            Just PerfectEleventh
-
-        18 ->
-            Just AugmentedEleventh
-
-        19 ->
-            Just PerfectTwelfth
-
-        20 ->
-            Just MinorThirteen
-
-        21 ->
-            Just MajorThirteen
-
-        22 ->
-            Just MinorFourteenth
-
-        23 ->
-            Just MajorFourteenth
-
-        _ ->
-            Nothing
 
 
 {-| majorIntervals represents the sequence of intervals composing
@@ -534,71 +454,3 @@ degreeToValue d =
 
         Fourteenth ->
             13
-
-
-{-| degreeFromValue computes the degree represented by the provided value
--}
-degreeFromValue : Int -> Maybe Degree
-degreeFromValue value =
-    case value of
-        0 ->
-            Just First
-
-        1 ->
-            Just Second
-
-        2 ->
-            Just Third
-
-        3 ->
-            Just Fourth
-
-        4 ->
-            Just Fifth
-
-        5 ->
-            Just Sixth
-
-        6 ->
-            Just Seventh
-
-        7 ->
-            Just Octave
-
-        8 ->
-            Just Ninth
-
-        9 ->
-            Just Tenth
-
-        10 ->
-            Just Eleventh
-
-        11 ->
-            Just Twelfth
-
-        12 ->
-            Just Thirteenth
-
-        13 ->
-            Just Fourteenth
-
-        _ ->
-            Nothing
-
-
-{-| substractDegree substracts value from a degree and returns the resulting
-degree
--}
-substractDegree : Degree -> Int -> Degree
-substractDegree degree value =
-    let
-        newDegree =
-            degreeFromValue <| (degreeToValue degree) - value
-    in
-        case newDegree of
-            Just nd ->
-                nd
-
-            Nothing ->
-                degree
