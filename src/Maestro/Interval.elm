@@ -3,6 +3,7 @@ module Maestro.Interval
         ( Degree(..)
         , Interval(..)
         , ionianIntervals
+        , dorianIntervals
         , aeolianIntervals
         , addInterval
         , distance
@@ -438,6 +439,21 @@ ionianIntervals =
     , PerfectFifth
     , MajorSixth
     , MajorSeventh
+    ]
+
+
+{-| dorianIntervals represents the sequence of intervals composing
+the Dorian mode
+-}
+dorianIntervals : List Interval
+dorianIntervals =
+    [ PerfectUnison
+    , MajorSecond
+    , MinorThird
+    , PerfectFourth
+    , PerfectFifth
+    , MajorSixth
+    , MinorSeventh
     ]
 
 
