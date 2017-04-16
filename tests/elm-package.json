@@ -7,7 +7,9 @@
         ".",
         "../src"
     ],
-    "exposed-modules": [],
+    "exposed-modules": [
+      "Scale"
+    ],
     "dependencies": {
         "elm-community/json-extra": "2.0.0 <= v < 3.0.0",
         "elm-community/list-extra": "6.0.0 <= v < 7.0.0",
