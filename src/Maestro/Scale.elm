@@ -21,6 +21,7 @@ import Maestro.Interval
         , dorianIntervals
         , phrygianIntervals
         , lydianIntervals
+        , mixolydianIntervals
         , aeolianIntervals
         )
 
@@ -38,6 +39,7 @@ type Mode
     | Dorian
     | Phrygian
     | Lydian
+    | Mixolydian
     | Aeolian
 
 
@@ -78,6 +80,9 @@ modeToIntervals mode =
 
         Lydian ->
             lydianIntervals
+
+        Mixolydian ->
+            mixolydianIntervals
 
         Aeolian ->
             aeolianIntervals

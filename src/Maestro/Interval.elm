@@ -6,6 +6,7 @@ module Maestro.Interval
         , dorianIntervals
         , phrygianIntervals
         , lydianIntervals
+        , mixolydianIntervals
         , aeolianIntervals
         , addInterval
         , distance
@@ -486,6 +487,21 @@ lydianIntervals =
     , PerfectFifth
     , MajorSixth
     , MajorSeventh
+    ]
+
+
+{-| mixolydian represents the sequence of intervals composing
+the Mixolydian scale
+-}
+mixolydianIntervals : List Interval
+mixolydianIntervals =
+    [ PerfectUnison
+    , MajorSecond
+    , MajorThird
+    , PerfectFourth
+    , PerfectFifth
+    , MajorSixth
+    , MinorSeventh
     ]
 
 
