@@ -20,8 +20,12 @@ manipulate intervals.
 # Types
 @docs Degree, Interval
 
-# Common Helpers
-@docs addInterval, ionianIntervals, dorianIntervals, phrygianIntervals, aeolianIntervals, distance, diatonicDegreeOf
+# Interval calculation
+@docs addInterval, distance, diatonicDegreeOf
+
+# Scales intervals
+@docs ionianIntervals, dorianIntervals, phrygianIntervals, lydianIntervals,
+      mixolydianIntervals, aeolianIntervals, locrianIntervals
 
 -}
 

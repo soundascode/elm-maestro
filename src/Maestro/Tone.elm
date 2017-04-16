@@ -6,10 +6,12 @@ module Maestro.Tone
         , newTone
         , keyToValue
         , keyFromValue
+        , keyFromString
+        , adjustmentToValue
+        , adjustmentFromValue
+        , adjustmentFromString
         , diatonicKeyValue
         , diatonicKeyFromValue
-        , adjustmentFromValue
-        , adjustmentToValue
         )
 
 {-| This module provides types and functions to manipulate musical tones.
@@ -20,10 +22,13 @@ well as helpers to represent these as numerical values.
 @docs Tone, Key, Adjustment
 
 # Common Helpers
-@docs newTone, keyToValue, keyFromValue, diatonicKeyValue, diatonicKeyFromValue,
-      adjustmentFromValue, adjustmentToValue
+@docs newTone, keyToValue, keyFromValue, keyFromString,
+      adjustmentToValue, adjustmentFromValue, adjustmentFromString,
+      diatonicKeyValue, diatonicKeyFromValue
 
 -}
+
+import String exposing (toLower)
 
 
 {-| Key represents a Pitch class without adjustment
@@ -120,6 +125,110 @@ keyFromValue value =
             Nothing
 
 
+{-| keyFromString parses a Key from a String
+-}
+keyFromString : String -> Maybe Key
+keyFromString key =
+    case toLower key of
+        "c" ->
+            Just C
+
+        "d" ->
+            Just D
+
+        "e" ->
+            Just E
+
+        "f" ->
+            Just F
+
+        "g" ->
+            Just G
+
+        "a" ->
+            Just A
+
+        "b" ->
+            Just B
+
+        _ ->
+            Nothing
+
+
+{-| adjustmentToValue returns the numbers of semitones to apply to a
+Key when calculating its position.
+-}
+adjustmentToValue : Adjustment -> Int
+adjustmentToValue adjustment =
+    case adjustment of
+        Flat ->
+            -1
+
+        FlatFlat ->
+            -2
+
+        Natural ->
+            0
+
+        Sharp ->
+            1
+
+        SharpSharp ->
+            2
+
+
+{-| adjustmentFromValue returns the adjustment corresponding to a given
+number of semitones
+-}
+adjustmentFromValue : Int -> Adjustment
+adjustmentFromValue value =
+    case value of
+        (-2) ->
+            FlatFlat
+
+        (-1) ->
+            Flat
+
+        0 ->
+            Natural
+
+        1 ->
+            Sharp
+
+        2 ->
+            SharpSharp
+
+        _ ->
+            Natural
+
+
+{-| adjustmentFromString parses an adjustment from a String
+-}
+adjustmentFromString : String -> Maybe Adjustment
+adjustmentFromString adj =
+    case toLower adj of
+        "" ->
+            Just Natural
+
+        "natural" ->
+            Just Natural
+
+        "#" ->
+            Just Sharp
+
+        "sharp" ->
+            Just Sharp
+
+        "b" ->
+            Just Flat
+
+        "flat" ->
+            Just Flat
+
+        _ ->
+            Nothing
+
+
 {-| diatonicKeyValue returns the diatonic position of a Key relative to an octave
 (composed of only natural notes (white notes of your piano)) as a numeric value.
 -}
@@ -178,50 +287,3 @@ diatonicKeyFromValue value =
 
         _ ->
             Nothing
-
-
-{-| adjustmentToValue returns the numbers of semitones to apply to a
-Key when calculating its position.
--}
-adjustmentToValue : Adjustment -> Int
-adjustmentToValue adjustment =
-    case adjustment of
-        Flat ->
-            -1
-
-        FlatFlat ->
-            -2
-
-        Natural ->
-            0
-
-        Sharp ->
-            1
-
-        SharpSharp ->
-            2
-
-
-{-| adjustmentFromValue returns the adjustment corresponding to a given
-number of semitones
--}
-adjustmentFromValue : Int -> Adjustment
-adjustmentFromValue value =
-    case value of
-        (-2) ->
-            FlatFlat
-
-        (-1) ->
-            Flat
-
-        0 ->
-            Natural
-
-        1 ->
-            Sharp
-
-        2 ->
-            SharpSharp
-
-        _ ->
-            Natural

@@ -1,4 +1,4 @@
-module Maestro.Scale exposing (Scale, Mode(..), scale)
+module Maestro.Scale exposing (Scale, Mode(..), scale, modeFromString)
 
 {-| This module provides types and functions to create and
 manipulate scales.
@@ -9,6 +9,8 @@ manipulate scales.
 # Scales manipulation
 @docs scale
 
+# Helpers
+@docs modeFromString
 -}
 
 import Maestro.Tone exposing (Tone)
@@ -25,6 +27,7 @@ import Maestro.Interval
         , aeolianIntervals
         , locrianIntervals
         )
+import String exposing (toLower)
 
 
 {-| Scale represents a list of tones composing it
@@ -91,3 +94,39 @@ modeToIntervals mode =
 
         Locrian ->
             locrianIntervals
+
+
+{-| modeFromString parses a Mode from a String
+-}
+modeFromString : String -> Maybe Mode
+modeFromString mode =
+    case toLower mode of
+        "major" ->
+            Just Ionian
+
+        "ionian" ->
+            Just Ionian
+
+        "minor" ->
+            Just Aeolian
+
+        "aeolian" ->
+            Just Aeolian
+
+        "dorian" ->
+            Just Dorian
+
+        "phrygian" ->
+            Just Phrygian
+
+        "lydian" ->
+            Just Lydian
+
+        "mixolydian" ->
+            Just Mixolydian
+
+        "locrian" ->
+            Just Locrian
+
+        _ ->
+            Nothing
