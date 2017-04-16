@@ -34,6 +34,17 @@ all =
                         , newTone A Sharp
                         , newTone B Sharp
                         ]
+            , test "Db Ionian" <|
+                \() ->
+                    Expect.equal (scale (newTone D Flat) Ionian)
+                        [ newTone D Flat
+                        , newTone E Flat
+                        , newTone F Natural
+                        , newTone G Flat
+                        , newTone A Flat
+                        , newTone B Flat
+                        , newTone C Natural
+                        ]
             , test "D Ionian" <|
                 \() ->
                     Expect.equal (scale (newTone D Natural) Ionian)
@@ -56,6 +67,17 @@ all =
                         , newTone B Sharp
                         , newTone C SharpSharp
                         ]
+            , test "Eb Ionian" <|
+                \() ->
+                    Expect.equal (scale (newTone E Flat) Ionian)
+                        [ newTone E Flat
+                        , newTone F Natural
+                        , newTone G Natural
+                        , newTone A Flat
+                        , newTone B Flat
+                        , newTone C Natural
+                        , newTone D Natural
+                        ]
             , test "E Ionian" <|
                 \() ->
                     Expect.equal (scale (newTone E Natural) Ionian)
@@ -66,6 +88,17 @@ all =
                         , newTone B Natural
                         , newTone C Sharp
                         , newTone D Sharp
+                        ]
+            , test "E# Ionian" <|
+                \() ->
+                    Expect.equal (scale (newTone E Sharp) Ionian)
+                        [ newTone E Sharp
+                        , newTone F SharpSharp
+                        , newTone G SharpSharp
+                        , newTone A Sharp
+                        , newTone B Sharp
+                        , newTone C SharpSharp
+                        , newTone D SharpSharp
                         ]
             , test "Fb Ionian" <|
                 \() ->
@@ -100,6 +133,17 @@ all =
                         , newTone D Sharp
                         , newTone E Sharp
                         ]
+            , test "Gb Ionian" <|
+                \() ->
+                    Expect.equal (scale (newTone G Flat) Ionian)
+                        [ newTone G Flat
+                        , newTone A Flat
+                        , newTone B Flat
+                        , newTone C Flat
+                        , newTone D Flat
+                        , newTone E Flat
+                        , newTone F Natural
+                        ]
             , test "G Ionian" <|
                 \() ->
                     Expect.equal (scale (newTone G Natural) Ionian)
@@ -121,6 +165,17 @@ all =
                         , newTone D Sharp
                         , newTone E Sharp
                         , newTone F SharpSharp
+                        ]
+            , test "Ab Ionian" <|
+                \() ->
+                    Expect.equal (scale (newTone A Flat) Ionian)
+                        [ newTone A Flat
+                        , newTone B Flat
+                        , newTone C Natural
+                        , newTone D Flat
+                        , newTone E Flat
+                        , newTone F Natural
+                        , newTone G Natural
                         ]
             , test "A Ionian" <|
                 \() ->
@@ -144,6 +199,17 @@ all =
                         , newTone F SharpSharp
                         , newTone G SharpSharp
                         ]
+            , test "Bb Ionian" <|
+                \() ->
+                    Expect.equal (scale (newTone B Flat) Ionian)
+                        [ newTone B Flat
+                        , newTone C Natural
+                        , newTone D Natural
+                        , newTone E Flat
+                        , newTone F Natural
+                        , newTone G Natural
+                        , newTone A Natural
+                        ]
             , test "B Ionian" <|
                 \() ->
                     Expect.equal (scale (newTone B Natural) Ionian)
@@ -154,6 +220,17 @@ all =
                         , newTone F Sharp
                         , newTone G Sharp
                         , newTone A Sharp
+                        ]
+            , test "B# Ionian" <|
+                \() ->
+                    Expect.equal (scale (newTone B Sharp) Ionian)
+                        [ newTone B Sharp
+                        , newTone C SharpSharp
+                        , newTone D SharpSharp
+                        , newTone E Sharp
+                        , newTone F SharpSharp
+                        , newTone G SharpSharp
+                        , newTone A SharpSharp
                         ]
             ]
         ]
