@@ -4,6 +4,7 @@ module Maestro.Interval
         , Interval(..)
         , ionianIntervals
         , dorianIntervals
+        , phrygianIntervals
         , aeolianIntervals
         , addInterval
         , distance
@@ -17,7 +18,7 @@ manipulate intervals.
 @docs Degree, Interval
 
 # Common Helpers
-@docs addInterval, ionianIntervals, aeolianIntervals, distance, diatonicDegreeOf
+@docs addInterval, ionianIntervals, dorianIntervals, phrygianIntervals, aeolianIntervals, distance, diatonicDegreeOf
 
 -}
 
@@ -453,6 +454,21 @@ dorianIntervals =
     , PerfectFourth
     , PerfectFifth
     , MajorSixth
+    , MinorSeventh
+    ]
+
+
+{-| phrygianIntervals represents the sequence of intervals composing
+the Phrygian mode
+-}
+phrygianIntervals : List Interval
+phrygianIntervals =
+    [ PerfectUnison
+    , MinorSecond
+    , MinorThird
+    , PerfectFourth
+    , PerfectFifth
+    , MinorSixth
     , MinorSeventh
     ]
 
