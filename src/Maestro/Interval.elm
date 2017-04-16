@@ -5,6 +5,7 @@ module Maestro.Interval
         , ionianIntervals
         , dorianIntervals
         , phrygianIntervals
+        , lydianIntervals
         , aeolianIntervals
         , addInterval
         , distance
@@ -470,6 +471,21 @@ phrygianIntervals =
     , PerfectFifth
     , MinorSixth
     , MinorSeventh
+    ]
+
+
+{-| lydianIntervals represents the sequence of intervals composing
+the Lydian mode
+-}
+lydianIntervals : List Interval
+lydianIntervals =
+    [ PerfectUnison
+    , MajorSecond
+    , MajorThird
+    , AugmentedFourth
+    , PerfectFifth
+    , MajorSixth
+    , MajorSeventh
     ]
 
 
