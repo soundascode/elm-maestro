@@ -12,10 +12,10 @@ import String
 all : Test
 all =
     describe "Scale Test Suite"
-        [ describe "Major scale tests"
-            [ test "C Major" <|
+        [ describe "Ionian scale tests"
+            [ test "C Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone C Natural) Major)
+                    Expect.equal (scale (newTone C Natural) Ionian)
                         [ newTone C Natural
                         , newTone D Natural
                         , newTone E Natural
@@ -24,9 +24,9 @@ all =
                         , newTone A Natural
                         , newTone B Natural
                         ]
-            , test "C# Major" <|
+            , test "C# Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone C Sharp) Major)
+                    Expect.equal (scale (newTone C Sharp) Ionian)
                         [ newTone C Sharp
                         , newTone D Sharp
                         , newTone E Sharp
@@ -35,9 +35,9 @@ all =
                         , newTone A Sharp
                         , newTone B Sharp
                         ]
-            , test "D Major" <|
+            , test "D Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone D Natural) Major)
+                    Expect.equal (scale (newTone D Natural) Ionian)
                         [ newTone D Natural
                         , newTone E Natural
                         , newTone F Sharp
@@ -46,9 +46,9 @@ all =
                         , newTone B Natural
                         , newTone C Sharp
                         ]
-            , test "D# Major" <|
+            , test "D# Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone D Sharp) Major)
+                    Expect.equal (scale (newTone D Sharp) Ionian)
                         [ newTone D Sharp
                         , newTone E Sharp
                         , newTone F SharpSharp
@@ -57,9 +57,9 @@ all =
                         , newTone B Sharp
                         , newTone C SharpSharp
                         ]
-            , test "E Major" <|
+            , test "E Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Natural) Major)
+                    Expect.equal (scale (newTone E Natural) Ionian)
                         [ newTone E Natural
                         , newTone F Sharp
                         , newTone G Sharp
@@ -68,9 +68,9 @@ all =
                         , newTone C Sharp
                         , newTone D Sharp
                         ]
-            , test "Fb Major" <|
+            , test "Fb Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Flat) Major)
+                    Expect.equal (scale (newTone F Flat) Ionian)
                         [ newTone F Flat
                         , newTone G Flat
                         , newTone A Flat
@@ -79,9 +79,9 @@ all =
                         , newTone D Flat
                         , newTone E Flat
                         ]
-            , test "F Major" <|
+            , test "F Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Natural) Major)
+                    Expect.equal (scale (newTone F Natural) Ionian)
                         [ newTone F Natural
                         , newTone G Natural
                         , newTone A Natural
@@ -90,9 +90,9 @@ all =
                         , newTone D Natural
                         , newTone E Natural
                         ]
-            , test "F# Major" <|
+            , test "F# Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Sharp) Major)
+                    Expect.equal (scale (newTone F Sharp) Ionian)
                         [ newTone F Sharp
                         , newTone G Sharp
                         , newTone A Sharp
@@ -101,9 +101,9 @@ all =
                         , newTone D Sharp
                         , newTone E Sharp
                         ]
-            , test "G Major" <|
+            , test "G Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Natural) Major)
+                    Expect.equal (scale (newTone G Natural) Ionian)
                         [ newTone G Natural
                         , newTone A Natural
                         , newTone B Natural
@@ -112,9 +112,9 @@ all =
                         , newTone E Natural
                         , newTone F Sharp
                         ]
-            , test "G# Major" <|
+            , test "G# Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Sharp) Major)
+                    Expect.equal (scale (newTone G Sharp) Ionian)
                         [ newTone G Sharp
                         , newTone A Sharp
                         , newTone B Sharp
@@ -123,9 +123,9 @@ all =
                         , newTone E Sharp
                         , newTone F SharpSharp
                         ]
-            , test "A Major" <|
+            , test "A Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Natural) Major)
+                    Expect.equal (scale (newTone A Natural) Ionian)
                         [ newTone A Natural
                         , newTone B Natural
                         , newTone C Sharp
@@ -134,9 +134,9 @@ all =
                         , newTone F Sharp
                         , newTone G Sharp
                         ]
-            , test "A# Major" <|
+            , test "A# Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Sharp) Major)
+                    Expect.equal (scale (newTone A Sharp) Ionian)
                         [ newTone A Sharp
                         , newTone B Sharp
                         , newTone C SharpSharp
@@ -145,9 +145,9 @@ all =
                         , newTone F SharpSharp
                         , newTone G SharpSharp
                         ]
-            , test "B Major" <|
+            , test "B Ionian" <|
                 \() ->
-                    Expect.equal (scale (newTone B Natural) Major)
+                    Expect.equal (scale (newTone B Natural) Ionian)
                         [ newTone B Natural
                         , newTone C Sharp
                         , newTone D Sharp
@@ -160,7 +160,7 @@ all =
         , describe "minor scale tests"
             [ test "C minor" <|
                 \() ->
-                    Expect.equal (scale (newTone C Natural) Minor)
+                    Expect.equal (scale (newTone C Natural) Aeolian)
                         [ newTone C Natural
                         , newTone D Natural
                         , newTone E Flat
@@ -171,7 +171,7 @@ all =
                         ]
             , test "C# minor" <|
                 \() ->
-                    Expect.equal (scale (newTone C Sharp) Minor)
+                    Expect.equal (scale (newTone C Sharp) Aeolian)
                         [ newTone C Sharp
                         , newTone D Sharp
                         , newTone E Natural
@@ -182,7 +182,7 @@ all =
                         ]
             , test "D minor" <|
                 \() ->
-                    Expect.equal (scale (newTone D Natural) Minor)
+                    Expect.equal (scale (newTone D Natural) Aeolian)
                         [ newTone D Natural
                         , newTone E Natural
                         , newTone F Natural
@@ -193,7 +193,7 @@ all =
                         ]
             , test "D# minor" <|
                 \() ->
-                    Expect.equal (scale (newTone D Sharp) Minor)
+                    Expect.equal (scale (newTone D Sharp) Aeolian)
                         [ newTone D Sharp
                         , newTone E Sharp
                         , newTone F Sharp
@@ -204,7 +204,7 @@ all =
                         ]
             , test "E minor" <|
                 \() ->
-                    Expect.equal (scale (newTone E Natural) Minor)
+                    Expect.equal (scale (newTone E Natural) Aeolian)
                         [ newTone E Natural
                         , newTone F Sharp
                         , newTone G Natural
@@ -215,7 +215,7 @@ all =
                         ]
             , test "E# minor" <|
                 \() ->
-                    Expect.equal (scale (newTone E Sharp) Minor)
+                    Expect.equal (scale (newTone E Sharp) Aeolian)
                         [ newTone E Sharp
                         , newTone F SharpSharp
                         , newTone G Sharp
@@ -226,7 +226,7 @@ all =
                         ]
             , test "F minor" <|
                 \() ->
-                    Expect.equal (scale (newTone F Natural) Minor)
+                    Expect.equal (scale (newTone F Natural) Aeolian)
                         [ newTone F Natural
                         , newTone G Natural
                         , newTone A Flat
@@ -237,7 +237,7 @@ all =
                         ]
             , test "F# minor" <|
                 \() ->
-                    Expect.equal (scale (newTone F Sharp) Minor)
+                    Expect.equal (scale (newTone F Sharp) Aeolian)
                         [ newTone F Sharp
                         , newTone G Sharp
                         , newTone A Natural
@@ -248,7 +248,7 @@ all =
                         ]
             , test "G minor" <|
                 \() ->
-                    Expect.equal (scale (newTone G Natural) Minor)
+                    Expect.equal (scale (newTone G Natural) Aeolian)
                         [ newTone G Natural
                         , newTone A Natural
                         , newTone B Flat
@@ -259,7 +259,7 @@ all =
                         ]
             , test "G# minor" <|
                 \() ->
-                    Expect.equal (scale (newTone G Sharp) Minor)
+                    Expect.equal (scale (newTone G Sharp) Aeolian)
                         [ newTone G Sharp
                         , newTone A Sharp
                         , newTone B Natural
@@ -270,7 +270,7 @@ all =
                         ]
             , test "A minor" <|
                 \() ->
-                    Expect.equal (scale (newTone A Natural) Minor)
+                    Expect.equal (scale (newTone A Natural) Aeolian)
                         [ newTone A Natural
                         , newTone B Natural
                         , newTone C Natural
@@ -281,7 +281,7 @@ all =
                         ]
             , test "A# minor" <|
                 \() ->
-                    Expect.equal (scale (newTone A Sharp) Minor)
+                    Expect.equal (scale (newTone A Sharp) Aeolian)
                         [ newTone A Sharp
                         , newTone B Sharp
                         , newTone C Sharp
@@ -292,7 +292,7 @@ all =
                         ]
             , test "B minor" <|
                 \() ->
-                    Expect.equal (scale (newTone B Natural) Minor)
+                    Expect.equal (scale (newTone B Natural) Aeolian)
                         [ newTone B Natural
                         , newTone C Sharp
                         , newTone D Natural

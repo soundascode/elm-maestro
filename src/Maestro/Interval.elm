@@ -2,8 +2,8 @@ module Maestro.Interval
     exposing
         ( Degree(..)
         , Interval(..)
-        , majorIntervals
-        , minorIntervals
+        , ionianIntervals
+        , aeolianIntervals
         , addInterval
         , distance
         , diatonicDegreeOf
@@ -16,7 +16,7 @@ manipulate intervals.
 @docs Degree, Interval
 
 # Common Helpers
-@docs addInterval, majorIntervals, minorIntervals, distance, diatonicDegreeOf
+@docs addInterval, ionianIntervals, aeolianIntervals, distance, diatonicDegreeOf
 
 -}
 
@@ -426,11 +426,11 @@ degreeToValue d =
             13
 
 
-{-| majorIntervals represents the sequence of intervals composing
+{-| ionianIntervals represents the sequence of intervals composing
 the Major scale
 -}
-majorIntervals : List Interval
-majorIntervals =
+ionianIntervals : List Interval
+ionianIntervals =
     [ PerfectUnison
     , MajorSecond
     , MajorThird
@@ -441,11 +441,11 @@ majorIntervals =
     ]
 
 
-{-| minorIntervals represents the sequence of intervals composing
+{-| aeolianIntervals represents the sequence of intervals composing
 the minor scale
 -}
-minorIntervals : List Interval
-minorIntervals =
+aeolianIntervals : List Interval
+aeolianIntervals =
     [ PerfectUnison
     , MajorSecond
     , MinorThird

@@ -13,7 +13,7 @@ manipulate scales.
 
 import Maestro.Tone exposing (Tone)
 import Maestro.Note exposing (Note, newNote)
-import Maestro.Interval exposing (Interval(..), addInterval, majorIntervals, minorIntervals)
+import Maestro.Interval exposing (Interval(..), addInterval, ionianIntervals, aeolianIntervals)
 
 
 {-| Scale represents a list of tones composing it
@@ -25,8 +25,8 @@ type alias Scale =
 {-| Mode represents the mode of a scale.
 -}
 type Mode
-    = Major
-    | Minor
+    = Ionian
+    | Aeolian
 
 
 {-| Given a Tone and a Mode, generates the tones
@@ -55,8 +55,8 @@ scale tone mode =
 modeToIntervals : Mode -> List Interval
 modeToIntervals mode =
     case mode of
-        Major ->
-            majorIntervals
+        Ionian ->
+            ionianIntervals
 
-        Minor ->
-            minorIntervals
+        Aeolian ->
+            aeolianIntervals
