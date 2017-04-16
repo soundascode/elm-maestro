@@ -23,6 +23,7 @@ import Maestro.Interval
         , lydianIntervals
         , mixolydianIntervals
         , aeolianIntervals
+        , locrianIntervals
         )
 
 
@@ -41,6 +42,7 @@ type Mode
     | Lydian
     | Mixolydian
     | Aeolian
+    | Locrian
 
 
 {-| Given a Tone and a Mode, generates the tones
@@ -86,3 +88,6 @@ modeToIntervals mode =
 
         Aeolian ->
             aeolianIntervals
+
+        Locrian ->
+            locrianIntervals

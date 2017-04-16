@@ -8,6 +8,7 @@ module Maestro.Interval
         , lydianIntervals
         , mixolydianIntervals
         , aeolianIntervals
+        , locrianIntervals
         , addInterval
         , distance
         , diatonicDegreeOf
@@ -515,6 +516,21 @@ aeolianIntervals =
     , MinorThird
     , PerfectFourth
     , PerfectFifth
+    , MinorSixth
+    , MinorSeventh
+    ]
+
+
+{-| locrianIntervals represents the sequence of intervals composing
+the locrian scale
+-}
+locrianIntervals : List Interval
+locrianIntervals =
+    [ PerfectUnison
+    , MinorSecond
+    , MinorThird
+    , PerfectFourth
+    , DiminishedFifth
     , MinorSixth
     , MinorSeventh
     ]

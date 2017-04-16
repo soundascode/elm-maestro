@@ -6,6 +6,7 @@ import Scale.DorianTests
 import Scale.PhrygianTests
 import Scale.LydianTests
 import Scale.MixolydianTests
+import Scale.LocrianTests
 import Maestro.Note exposing (Note)
 import Maestro.Tone exposing (Key(..), Adjustment(..), newTone)
 import Maestro.Interval exposing (Interval(..), Degree(..))
@@ -24,4 +25,5 @@ all =
         , Scale.LydianTests.all
         , Scale.MixolydianTests.all
         , Scale.AeolianTests.all
+        , Scale.LocrianTests.all
         ]
