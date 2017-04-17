@@ -4,6 +4,7 @@ module Maestro.Tone
         , Key(..)
         , Adjustment(..)
         , newTone
+        , chromaticTones
         , keyToValue
         , keyFromValue
         , keyFromString
@@ -64,6 +65,60 @@ type alias Tone =
 newTone : Key -> Adjustment -> Tone
 newTone key adjustment =
     { key = key, adjustment = adjustment }
+
+
+{-| chromaticTones returns the chromatic scale tones starting at C.
+The adjusted tones will be sharped or flatted according to the provided Adjustment.
+This is mostly a helper function.
+-}
+chromaticTones : Adjustment -> List Tone
+chromaticTones adj =
+    let
+        sharpedTones =
+            [ newTone C Natural
+            , newTone C Sharp
+            , newTone D Natural
+            , newTone D Sharp
+            , newTone E Natural
+            , newTone F Natural
+            , newTone F Sharp
+            , newTone G Natural
+            , newTone G Sharp
+            , newTone A Natural
+            , newTone A Sharp
+            , newTone B Natural
+            ]
+
+        flattedTones =
+            [ newTone C Natural
+            , newTone D Flat
+            , newTone D Natural
+            , newTone E Flat
+            , newTone E Natural
+            , newTone F Natural
+            , newTone G Flat
+            , newTone G Natural
+            , newTone A Flat
+            , newTone A Natural
+            , newTone B Flat
+            , newTone B Natural
+            ]
+    in
+        case adj of
+            Natural ->
+                sharpedTones
+
+            Sharp ->
+                sharpedTones
+
+            Flat ->
+                flattedTones
+
+            SharpSharp ->
+                sharpedTones
+
+            FlatFlat ->
+                flattedTones
 
 
 {-| keyToValue returns the chromatic position of a Key relative to an octave
