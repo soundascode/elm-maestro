@@ -13,7 +13,7 @@ manipulate scales.
 @docs modeFromString
 -}
 
-import Maestro.Tone exposing (Tone)
+import Maestro.Tone exposing (Tone, Key(..), Adjustment(..), newTone)
 import Maestro.Note exposing (Note, newNote)
 import Maestro.Interval
     exposing
@@ -69,6 +69,60 @@ scale tone mode =
             newNote tone.key tone.adjustment 3
     in
         List.map (\i -> (addInterval placeholderNote i).tone) (modeToIntervals mode)
+
+
+{-| chromaticScale returns the chromatic scale tones starting at C.
+The adjusted tones will be sharped or flatted according to the provided Adjustment.
+This is mostly a helper function.
+-}
+chromaticScale : Adjustment -> List Tone
+chromaticScale adj =
+    let
+        sharpedTones =
+            [ newTone C Natural
+            , newTone C Sharp
+            , newTone D Natural
+            , newTone D Sharp
+            , newTone E Natural
+            , newTone F Natural
+            , newTone F Sharp
+            , newTone G Natural
+            , newTone G Sharp
+            , newTone A Natural
+            , newTone A Sharp
+            , newTone B Natural
+            ]
+
+        flattedTones =
+            [ newTone C Natural
+            , newTone D Flat
+            , newTone D Natural
+            , newTone E Flat
+            , newTone E Natural
+            , newTone F Natural
+            , newTone G Flat
+            , newTone G Natural
+            , newTone A Flat
+            , newTone A Natural
+            , newTone B Flat
+            , newTone B Natural
+            ]
+    in
+        case adj of
+            Natural ->
+                sharpedTones
+
+            Sharp ->
+                sharpedTones
+
+            Flat ->
+                flattedTones
+
+            SharpSharp ->
+                sharpedTones
+
+            FlatFlat ->
+                flattedTones
 
 
 modeToIntervals : Mode -> List Interval
