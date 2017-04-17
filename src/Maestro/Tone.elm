@@ -4,6 +4,7 @@ module Maestro.Tone
         , Key(..)
         , Adjustment(..)
         , newTone
+        , toneToIndex
         , chromaticTones
         , keyToValue
         , keyFromValue
@@ -65,6 +66,14 @@ type alias Tone =
 newTone : Key -> Adjustment -> Tone
 newTone key adjustment =
     { key = key, adjustment = adjustment }
+
+
+{-| toneToIndex returns the index in an octave of the provided note. C would be zero,
+while E Flat would be 3, or G Sharp would be 8.
+-}
+toneToIndex : Tone -> Int
+toneToIndex t =
+    (keyToValue t.key) + (adjustmentToValue t.adjustment)
 
 
 {-| chromaticTones returns the chromatic scale tones starting at C.
