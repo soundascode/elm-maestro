@@ -1,4 +1,4 @@
-module Maestro.Scale exposing (Scale, Mode(..), scale, modeFromString)
+module Maestro.Scale exposing (Scale, Mode(..), scale, scaleFrom, modeFromString)
 
 {-| This module provides types and functions to create and
 manipulate scales.
@@ -69,6 +69,14 @@ scale tone mode =
             newNote tone.key tone.adjustment 3
     in
         List.map (\i -> (addInterval placeholderNote i).tone) (modeToIntervals mode)
+
+
+{-| scaleFrom generates the notes composing a scale, according
+to a provided note (tone + octave) and mode
+-}
+scaleFrom : Note -> Mode -> List Note
+scaleFrom note mode =
+    List.map (\i -> (addInterval note i)) (modeToIntervals mode)
 
 
 modeToIntervals : Mode -> List Interval
