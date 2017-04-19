@@ -36,6 +36,7 @@ import Maestro.Tone
         , Adjustment(..)
         , newTone
         , adjustmentFromValue
+        , adjustmentToValue
         , diatonicKeyFromValue
         , diatonicKeyValue
         )
@@ -119,8 +120,11 @@ addInterval note interval =
 
         adjustment =
             adjustmentFromValue (intervalSemitones - startToNewNaturalSemitones)
+
+        newOctave =
+            ((noteToIndex newNaturalNote) + (adjustmentToValue adjustment)) // 12
     in
-        { tone = newTone newNaturalNote.tone.key adjustment, octave = newNaturalNote.octave }
+        { tone = newTone newNaturalNote.tone.key adjustment, octave = newOctave }
 
 
 {-| diatonicDegreeOf will compute the note being the given
