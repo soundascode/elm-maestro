@@ -73,7 +73,7 @@ while E Flat would be 3, or G Sharp would be 8.
 -}
 toneToIndex : Tone -> Int
 toneToIndex t =
-    (keyToValue t.key) + (adjustmentToValue t.adjustment)
+    (%) ((keyToValue t.key) + (adjustmentToValue t.adjustment)) 12
 
 
 {-| chromaticTones returns the chromatic scale tones starting at C.
