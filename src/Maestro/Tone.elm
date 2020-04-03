@@ -73,7 +73,7 @@ while E Flat would be 3, or G Sharp would be 8.
 -}
 toneToIndex : Tone -> Int
 toneToIndex t =
-    (%) ((keyToValue t.key) + (adjustmentToValue t.adjustment)) 12
+    remainderBy ((keyToValue t.key) + (adjustmentToValue t.adjustment)) 12
 
 
 {-| chromaticTones returns the chromatic scale tones starting at C.
@@ -246,24 +246,18 @@ number of semitones
 -}
 adjustmentFromValue : Int -> Adjustment
 adjustmentFromValue value =
-    case value of
-        (-2) ->
-            FlatFlat
-
-        (-1) ->
-            Flat
-
-        0 ->
-            Natural
-
-        1 ->
-            Sharp
-
-        2 ->
-            SharpSharp
-
-        _ ->
-            Natural
+    if value == -2 then
+        FlatFlat
+    else if value == -1 then
+        Flat
+    else if value == 0 then
+        Natural
+    else if value == 1 then
+        Sharp
+    else if value == 2 then
+        SharpSharp
+    else
+        Natural
 
 
 {-| adjustmentFromString parses an adjustment from a String
