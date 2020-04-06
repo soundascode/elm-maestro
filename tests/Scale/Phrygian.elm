@@ -1,11 +1,11 @@
-module Scale.PhrygianTests exposing (all)
+module Scale.Phrygian exposing (all)
 
-import Maestro.Note exposing (Note)
-import Maestro.Tone exposing (Key(..), Adjustment(..), newTone)
-import Maestro.Interval exposing (Interval(..), Degree(..))
-import Maestro.Scale exposing (Scale, Mode(..), scale)
-import Test exposing (..)
 import Expect
+import Maestro.Interval exposing (Degree(..), Interval(..))
+import Maestro.Note exposing (Note)
+import Maestro.Scale exposing (Mode(..), Scale, scale)
+import Maestro.Tone exposing (Adjustment(..), Key(..), newTone)
+import Test exposing (..)
 
 
 all : Test
@@ -220,17 +220,6 @@ all =
                         , newTone F Sharp
                         , newTone G Natural
                         , newTone A Natural
-                        ]
-            , test "B# Phrygian" <|
-                \() ->
-                    Expect.equal (scale (newTone B Sharp) Phrygian)
-                        [ newTone B Sharp
-                        , newTone C Sharp
-                        , newTone D Sharp
-                        , newTone E Sharp
-                        , newTone F SharpSharp
-                        , newTone G Sharp
-                        , newTone A Sharp
                         ]
             ]
         ]

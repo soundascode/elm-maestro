@@ -1,32 +1,26 @@
-module Maestro.Tone
-    exposing
-        ( Tone
-        , Key(..)
-        , Adjustment(..)
-        , newTone
-        , toneToIndex
-        , chromaticTones
-        , keyToValue
-        , keyFromValue
-        , keyFromString
-        , adjustmentToValue
-        , adjustmentFromValue
-        , adjustmentFromString
-        , diatonicKeyValue
-        , diatonicKeyFromValue
-        )
+module Maestro.Tone exposing
+    ( Tone, Key(..), Adjustment(..)
+    , newTone, keyToValue, keyFromValue, keyFromString
+    , adjustmentToValue, adjustmentFromValue, adjustmentFromString
+    , diatonicKeyValue, diatonicKeyFromValue
+    , adjustmentToString, chromaticTones, keyToString, toneToIndex, toneToString
+    )
 
 {-| This module provides types and functions to manipulate musical tones.
 It allows you to represent tones (pitches) like `C`, `C Sharp` and so on, as
 well as helpers to represent these as numerical values.
 
+
 # Types
+
 @docs Tone, Key, Adjustment
 
+
 # Common Helpers
-@docs newTone, keyToValue, keyFromValue, keyFromString,
-      adjustmentToValue, adjustmentFromValue, adjustmentFromString,
-      diatonicKeyValue, diatonicKeyFromValue
+
+@docs newTone, keyToValue, keyFromValue, keyFromString
+@docs adjustmentToValue, adjustmentFromValue, adjustmentFromString
+@docs diatonicKeyValue, diatonicKeyFromValue
 
 -}
 
@@ -73,7 +67,12 @@ while E Flat would be 3, or G Sharp would be 8.
 -}
 toneToIndex : Tone -> Int
 toneToIndex t =
-    remainderBy ((keyToValue t.key) + (adjustmentToValue t.adjustment)) 12
+    remainderBy 12 (keyToValue t.key + adjustmentToValue t.adjustment)
+
+
+toneToString : Tone -> String
+toneToString t =
+    keyToString t.key ++ adjustmentToString t.adjustment
 
 
 {-| chromaticTones returns the chromatic scale tones starting at C.
@@ -113,21 +112,21 @@ chromaticTones adj =
             , newTone B Natural
             ]
     in
-        case adj of
-            Natural ->
-                sharpedTones
+    case adj of
+        Natural ->
+            sharpedTones
 
-            Sharp ->
-                sharpedTones
+        Sharp ->
+            sharpedTones
 
-            Flat ->
-                flattedTones
+        Flat ->
+            flattedTones
 
-            SharpSharp ->
-                sharpedTones
+        SharpSharp ->
+            sharpedTones
 
-            FlatFlat ->
-                flattedTones
+        FlatFlat ->
+            flattedTones
 
 
 {-| keyToValue returns the chromatic position of a Key relative to an octave
@@ -219,6 +218,31 @@ keyFromString key =
             Nothing
 
 
+keyToString : Key -> String
+keyToString k =
+    case k of
+        C ->
+            "C"
+
+        D ->
+            "D"
+
+        E ->
+            "E"
+
+        F ->
+            "F"
+
+        G ->
+            "G"
+
+        A ->
+            "A"
+
+        B ->
+            "B"
+
+
 {-| adjustmentToValue returns the numbers of semitones to apply to a
 Key when calculating its position.
 -}
@@ -248,14 +272,19 @@ adjustmentFromValue : Int -> Adjustment
 adjustmentFromValue value =
     if value == -2 then
         FlatFlat
+
     else if value == -1 then
         Flat
+
     else if value == 0 then
         Natural
+
     else if value == 1 then
         Sharp
+
     else if value == 2 then
         SharpSharp
+
     else
         Natural
 
@@ -285,6 +314,27 @@ adjustmentFromString adj =
 
         _ ->
             Nothing
+
+
+{-| adjustmentFromString parses an adjustment from a String
+-}
+adjustmentToString : Adjustment -> String
+adjustmentToString adj =
+    case adj of
+        Natural ->
+            ""
+
+        Sharp ->
+            "♯"
+
+        SharpSharp ->
+            "♯♯"
+
+        Flat ->
+            "♭"
+
+        FlatFlat ->
+            "♭♭"
 
 
 {-| diatonicKeyValue returns the diatonic position of a Key relative to an octave

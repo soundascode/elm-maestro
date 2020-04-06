@@ -1,12 +1,12 @@
-module Scale.AeolianTests exposing (all)
+module Scale.Aeolian exposing (all)
 
-import Maestro.Note exposing (Note)
-import Maestro.Tone exposing (Key(..), Adjustment(..), newTone)
-import Maestro.Interval exposing (Interval(..), Degree(..))
-import Maestro.Scale exposing (Scale, Mode(..), scale)
-import Test exposing (..)
 import Expect
+import Maestro.Interval exposing (Degree(..), Interval(..))
+import Maestro.Note exposing (Note)
+import Maestro.Scale exposing (Mode(..), Scale, scale)
+import Maestro.Tone exposing (Adjustment(..), Key(..), newTone)
 import String
+import Test exposing (..)
 
 
 all : Test

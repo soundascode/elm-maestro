@@ -1,11 +1,11 @@
-module MaestroTests exposing (all)
+module Interval exposing (all)
 
-import Maestro.Tone exposing (Key(..), Adjustment(..))
-import Maestro.Note exposing (Note, newNote)
-import Maestro.Interval exposing (Interval(..), Degree(..), addInterval, distance, diatonicDegreeOf)
-import Test exposing (..)
 import Expect
+import Maestro.Interval exposing (Degree(..), Interval(..), addInterval, diatonicDegreeOf, distance)
+import Maestro.Note exposing (Note, newNote)
+import Maestro.Tone exposing (Adjustment(..), Key(..))
 import String
+import Test exposing (..)
 
 
 all : Test

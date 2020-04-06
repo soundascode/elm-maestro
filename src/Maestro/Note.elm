@@ -3,15 +3,19 @@ module Maestro.Note exposing (..)
 {-| This module provides types and functions to manipulate musical notes.
 Notes being represented as a tone and an octave convertible to an index (MIDI value)
 
+
 # Types
+
 @docs Octave, Note
 
+
 # Common Helpers
+
 @docs newNote, noteToIndex
 
 -}
 
-import Maestro.Tone exposing (Tone, Key, Adjustment, newTone, toneToIndex, chromaticTones, adjustmentToValue, keyToValue)
+import Maestro.Tone exposing (Adjustment, Key, Tone, adjustmentToValue, chromaticTones, keyToValue, newTone, toneToIndex)
 
 
 {-| Octave represents an octave number, as represented in piano or MIDI notation
@@ -31,15 +35,15 @@ type alias Note =
 {-| newNote is a helper function to create a note
 -}
 newNote : Key -> Adjustment -> Octave -> Note
-newNote key adjustment octave =
-    { tone = newTone key adjustment, octave = octave }
+newNote key adjustment oct =
+    { tone = newTone key adjustment, octave = oct }
 
 
 {-| noteToIndex returns the MIDI value of a given note
 -}
 noteToIndex : Note -> Int
 noteToIndex note =
-    note.octave * 12 + (toneToIndex note.tone)
+    note.octave * 12 + toneToIndex note.tone
 
 
 octave : Int -> Adjustment -> List Note

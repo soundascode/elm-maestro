@@ -1,9 +1,9 @@
-module ChordTests exposing (all)
+module Chord exposing (all)
 
-import Test exposing (..)
 import Expect
 import Maestro.Chord exposing (Quality(..), chord, inversion1)
-import Maestro.Tone exposing (Tone, Key(..), Adjustment(..), newTone)
+import Maestro.Tone exposing (Adjustment(..), Key(..), Tone, newTone)
+import Test exposing (..)
 
 
 all : Test

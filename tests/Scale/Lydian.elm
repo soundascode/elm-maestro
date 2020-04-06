@@ -1,235 +1,224 @@
-module Scale.MixolydianTests exposing (all)
+module Scale.Lydian exposing (all)
 
-import Maestro.Note exposing (Note)
-import Maestro.Tone exposing (Key(..), Adjustment(..), newTone)
-import Maestro.Interval exposing (Interval(..), Degree(..))
-import Maestro.Scale exposing (Scale, Mode(..), scale)
-import Test exposing (..)
 import Expect
+import Maestro.Interval exposing (Degree(..), Interval(..))
+import Maestro.Note exposing (Note)
+import Maestro.Scale exposing (Mode(..), Scale, scale)
+import Maestro.Tone exposing (Adjustment(..), Key(..), newTone)
+import Test exposing (..)
 
 
 all : Test
 all =
     describe "Scale Test Suite"
-        [ describe "Mixolydian scale tests"
-            [ test "C Mixolydian" <|
+        [ describe "Lydian scale tests"
+            [ test "C Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone C Natural) Mixolydian)
+                    Expect.equal (scale (newTone C Natural) Lydian)
                         [ newTone C Natural
                         , newTone D Natural
                         , newTone E Natural
-                        , newTone F Natural
+                        , newTone F Sharp
                         , newTone G Natural
                         , newTone A Natural
-                        , newTone B Flat
+                        , newTone B Natural
                         ]
-            , test "C# Mixolydian" <|
+            , test "C# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone C Sharp) Mixolydian)
+                    Expect.equal (scale (newTone C Sharp) Lydian)
                         [ newTone C Sharp
                         , newTone D Sharp
-                        , newTone E Sharp
-                        , newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Sharp
-                        , newTone B Natural
-                        ]
-            , test "Db Mixolydian" <|
-                \() ->
-                    Expect.equal (scale (newTone D Flat) Mixolydian)
-                        [ newTone D Flat
-                        , newTone E Flat
-                        , newTone F Natural
-                        , newTone G Flat
-                        , newTone A Flat
-                        , newTone B Flat
-                        , newTone C Flat
-                        ]
-            , test "D Mixolydian" <|
-                \() ->
-                    Expect.equal (scale (newTone D Natural) Mixolydian)
-                        [ newTone D Natural
-                        , newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Natural
-                        , newTone A Natural
-                        , newTone B Natural
-                        , newTone C Natural
-                        ]
-            , test "D# Mixolydian" <|
-                \() ->
-                    Expect.equal (scale (newTone D Sharp) Mixolydian)
-                        [ newTone D Sharp
                         , newTone E Sharp
                         , newTone F SharpSharp
                         , newTone G Sharp
                         , newTone A Sharp
                         , newTone B Sharp
-                        , newTone C Sharp
                         ]
-            , test "Eb Mixolydian" <|
+            , test "Db Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Flat) Mixolydian)
-                        [ newTone E Flat
+                    Expect.equal (scale (newTone D Flat) Lydian)
+                        [ newTone D Flat
+                        , newTone E Flat
                         , newTone F Natural
                         , newTone G Natural
                         , newTone A Flat
                         , newTone B Flat
                         , newTone C Natural
-                        , newTone D Flat
                         ]
-            , test "E Mixolydian" <|
+            , test "D Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Natural) Mixolydian)
-                        [ newTone E Natural
+                    Expect.equal (scale (newTone D Natural) Lydian)
+                        [ newTone D Natural
+                        , newTone E Natural
                         , newTone F Sharp
                         , newTone G Sharp
                         , newTone A Natural
                         , newTone B Natural
                         , newTone C Sharp
-                        , newTone D Natural
                         ]
-            , test "E# Mixolydian" <|
+            , test "D# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Sharp) Mixolydian)
-                        [ newTone E Sharp
+                    Expect.equal (scale (newTone D Sharp) Lydian)
+                        [ newTone D Sharp
+                        , newTone E Sharp
                         , newTone F SharpSharp
                         , newTone G SharpSharp
                         , newTone A Sharp
                         , newTone B Sharp
                         , newTone C SharpSharp
-                        , newTone D Sharp
                         ]
-            , test "Fb Mixolydian" <|
+            , test "Eb Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Flat) Mixolydian)
-                        [ newTone F Flat
-                        , newTone G Flat
-                        , newTone A Flat
-                        , newTone B FlatFlat
-                        , newTone C Flat
-                        , newTone D Flat
-                        , newTone E FlatFlat
-                        ]
-            , test "F Mixolydian" <|
-                \() ->
-                    Expect.equal (scale (newTone F Natural) Mixolydian)
-                        [ newTone F Natural
+                    Expect.equal (scale (newTone E Flat) Lydian)
+                        [ newTone E Flat
+                        , newTone F Natural
                         , newTone G Natural
                         , newTone A Natural
                         , newTone B Flat
                         , newTone C Natural
                         , newTone D Natural
-                        , newTone E Flat
                         ]
-            , test "F# Mixolydian" <|
+            , test "E Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Sharp) Mixolydian)
-                        [ newTone F Sharp
+                    Expect.equal (scale (newTone E Natural) Lydian)
+                        [ newTone E Natural
+                        , newTone F Sharp
                         , newTone G Sharp
                         , newTone A Sharp
                         , newTone B Natural
                         , newTone C Sharp
                         , newTone D Sharp
-                        , newTone E Natural
                         ]
-            , test "Gb Mixolydian" <|
+            , test "E# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Flat) Mixolydian)
-                        [ newTone G Flat
+                    Expect.equal (scale (newTone E Sharp) Lydian)
+                        [ newTone E Sharp
+                        , newTone F SharpSharp
+                        , newTone G SharpSharp
+                        , newTone A SharpSharp
+                        , newTone B Sharp
+                        , newTone C SharpSharp
+                        , newTone D SharpSharp
+                        ]
+            , test "Fb Lydian" <|
+                \() ->
+                    Expect.equal (scale (newTone F Flat) Lydian)
+                        [ newTone F Flat
+                        , newTone G Flat
                         , newTone A Flat
                         , newTone B Flat
                         , newTone C Flat
                         , newTone D Flat
                         , newTone E Flat
-                        , newTone F Flat
                         ]
-            , test "G Mixolydian" <|
+            , test "F Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Natural) Mixolydian)
-                        [ newTone G Natural
+                    Expect.equal (scale (newTone F Natural) Lydian)
+                        [ newTone F Natural
+                        , newTone G Natural
                         , newTone A Natural
                         , newTone B Natural
                         , newTone C Natural
                         , newTone D Natural
                         , newTone E Natural
-                        , newTone F Natural
                         ]
-            , test "G# Mixolydian" <|
+            , test "F# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Sharp) Mixolydian)
-                        [ newTone G Sharp
+                    Expect.equal (scale (newTone F Sharp) Lydian)
+                        [ newTone F Sharp
+                        , newTone G Sharp
                         , newTone A Sharp
                         , newTone B Sharp
                         , newTone C Sharp
                         , newTone D Sharp
                         , newTone E Sharp
-                        , newTone F Sharp
                         ]
-            , test "Ab Mixolydian" <|
+            , test "Gb Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Flat) Mixolydian)
-                        [ newTone A Flat
+                    Expect.equal (scale (newTone G Flat) Lydian)
+                        [ newTone G Flat
+                        , newTone A Flat
                         , newTone B Flat
                         , newTone C Natural
                         , newTone D Flat
                         , newTone E Flat
                         , newTone F Natural
-                        , newTone G Flat
                         ]
-            , test "A Mixolydian" <|
+            , test "G Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Natural) Mixolydian)
-                        [ newTone A Natural
+                    Expect.equal (scale (newTone G Natural) Lydian)
+                        [ newTone G Natural
+                        , newTone A Natural
                         , newTone B Natural
                         , newTone C Sharp
                         , newTone D Natural
                         , newTone E Natural
                         , newTone F Sharp
-                        , newTone G Natural
                         ]
-            , test "A# Mixolydian" <|
+            , test "G# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Sharp) Mixolydian)
-                        [ newTone A Sharp
+                    Expect.equal (scale (newTone G Sharp) Lydian)
+                        [ newTone G Sharp
+                        , newTone A Sharp
                         , newTone B Sharp
                         , newTone C SharpSharp
                         , newTone D Sharp
                         , newTone E Sharp
                         , newTone F SharpSharp
-                        , newTone G Sharp
                         ]
-            , test "Bb Mixolydian" <|
+            , test "Ab Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone B Flat) Mixolydian)
-                        [ newTone B Flat
+                    Expect.equal (scale (newTone A Flat) Lydian)
+                        [ newTone A Flat
+                        , newTone B Flat
                         , newTone C Natural
                         , newTone D Natural
                         , newTone E Flat
                         , newTone F Natural
                         , newTone G Natural
-                        , newTone A Flat
                         ]
-            , test "B Mixolydian" <|
+            , test "A Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone B Natural) Mixolydian)
-                        [ newTone B Natural
+                    Expect.equal (scale (newTone A Natural) Lydian)
+                        [ newTone A Natural
+                        , newTone B Natural
                         , newTone C Sharp
                         , newTone D Sharp
                         , newTone E Natural
                         , newTone F Sharp
                         , newTone G Sharp
-                        , newTone A Natural
                         ]
-            , test "B# Mixolydian" <|
+            , test "A# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newTone B Sharp) Mixolydian)
-                        [ newTone B Sharp
+                    Expect.equal (scale (newTone A Sharp) Lydian)
+                        [ newTone A Sharp
+                        , newTone B Sharp
                         , newTone C SharpSharp
                         , newTone D SharpSharp
                         , newTone E Sharp
                         , newTone F SharpSharp
                         , newTone G SharpSharp
+                        ]
+            , test "Bb Lydian" <|
+                \() ->
+                    Expect.equal (scale (newTone B Flat) Lydian)
+                        [ newTone B Flat
+                        , newTone C Natural
+                        , newTone D Natural
+                        , newTone E Natural
+                        , newTone F Natural
+                        , newTone G Natural
+                        , newTone A Natural
+                        ]
+            , test "B Lydian" <|
+                \() ->
+                    Expect.equal (scale (newTone B Natural) Lydian)
+                        [ newTone B Natural
+                        , newTone C Sharp
+                        , newTone D Sharp
+                        , newTone E Sharp
+                        , newTone F Sharp
+                        , newTone G Sharp
                         , newTone A Sharp
                         ]
             ]

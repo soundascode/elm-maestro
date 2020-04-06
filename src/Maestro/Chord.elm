@@ -1,20 +1,28 @@
-module Maestro.Chord exposing (Chord, Quality(..), chord, inversion1)
+module Maestro.Chord exposing
+    ( Chord, Quality(..)
+    , chord
+    , inversion, qualityToString
+    )
 
 {-| This module provides types and functions to create and
 manipulate chords.
 
+
 # Types
+
 @docs Chord, Quality
 
+
 # Chord generation
+
 @docs chord, inversion1
 
 -}
 
-import Maestro.Tone exposing (Tone)
-import Maestro.Note exposing (newNote)
-import Maestro.Interval exposing (Interval(..), addInterval)
 import ListUtils exposing (rotateR)
+import Maestro.Interval exposing (Interval(..), addInterval)
+import Maestro.Note exposing (newNote)
+import Maestro.Tone exposing (Tone)
 
 
 {-| Chord represents a list of tones composing it
@@ -45,11 +53,14 @@ type Quality
 composing a chord.
 
     (==)
-      chord (newTone C Natural) MajorTriad
-      [ { key = C, adjustment = Natural }
-      , { key = E, adjustment = Natural }
-      , { key = G, adjustment = Natural }
-      ]
+        chord
+        (newTone C Natural)
+        Major
+        [ { key = C, adjustment = Natural }
+        , { key = E, adjustment = Natural }
+        , { key = G, adjustment = Natural }
+        ]
+
 -}
 chord : Tone -> Quality -> Chord
 chord tone quality =
@@ -57,7 +68,7 @@ chord tone quality =
         placeholderNote =
             newNote tone.key tone.adjustment 3
     in
-        List.map (\i -> (addInterval placeholderNote i).tone) (qualityToIntervals quality)
+    List.map (\i -> (addInterval placeholderNote i).tone) (qualityToIntervals quality)
 
 
 {-| inversion1 produces the first inversion of a given chord
@@ -71,7 +82,7 @@ inversion1 tone quality =
         intervals =
             qualityToIntervals quality
     in
-        List.map (\i -> (addInterval placeholderNote i).tone) <| rotateR <| qualityToIntervals quality
+    List.map (\i -> (addInterval placeholderNote i).tone) <| rotateR <| qualityToIntervals quality
 
 
 qualityToIntervals : Quality -> List Interval
@@ -115,6 +126,49 @@ qualityToIntervals quality =
 
         SeventhFlatFive ->
             seventhFlatFive
+
+
+qualityToString : Quality -> String
+qualityToString q =
+    case q of
+        MajorTriad ->
+            "M"
+
+        MinorTriad ->
+            "m"
+
+        AugmentedTriad ->
+            "+"
+
+        DiminishedTriad ->
+            "-"
+
+        Seventh ->
+            "7"
+
+        MajorSeventh ->
+            "maj7"
+
+        MinorMajorSeventh ->
+            "mM7"
+
+        MinorSeventh ->
+            "7"
+
+        AugmentedMajorSeventh ->
+            "+M7"
+
+        AugmentedSeventh ->
+            "+7"
+
+        HalfDiminishedSeventh ->
+            "ø7"
+
+        DiminishedSeventh ->
+            "-7"
+
+        SeventhFlatFive ->
+            "7♭5"
 
 
 tonesCount : Quality -> Int
