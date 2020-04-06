@@ -14,14 +14,10 @@ first l =
             Nothing
 
 
-rotateR : List a -> List a
-rotateR l =
-    case ( first l, tail l ) of
-        ( Nothing, _ ) ->
-            l
 
-        ( Just e, Just t ) ->
-            t ++ [ e ]
+{- Rotate a list n times -}
 
-        _ ->
-            l
+
+rotate : Int -> List a -> List a
+rotate n l =
+    List.drop n l ++ List.take n l

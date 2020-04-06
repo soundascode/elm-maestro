@@ -1,7 +1,7 @@
 module Chord exposing (all)
 
 import Expect
-import Maestro.Chord exposing (Quality(..), chord, inversion1)
+import Maestro.Chord exposing (Quality(..), chord, inversion)
 import Maestro.Tone exposing (Adjustment(..), Key(..), Tone, newTone)
 import Test exposing (..)
 
@@ -10,21 +10,33 @@ all : Test
 all =
     describe "Chord Test Suite"
         [ describe "Inversions tests"
-            [ test "inversion1 triad" <|
-                \() ->
-                    Expect.equal (inversion1 (newTone C Natural) MajorTriad)
-                        [ newTone E Natural
-                        , newTone G Natural
-                        , newTone C Natural
-                        ]
-            , test "inversion1 extended chord" <|
-                \() ->
-                    Expect.equal (inversion1 (newTone C Natural) MajorSeventh)
-                        [ newTone E Natural
-                        , newTone G Natural
-                        , newTone B Natural
-                        , newTone C Natural
-                        ]
+            [ test "first inversion of major triad" <|
+                \_ ->
+                    chord (newTone C Natural) MajorTriad
+                        |> inversion 1
+                        |> Expect.equal
+                            [ newTone C Natural
+                            , newTone E Natural
+                            , newTone G Natural
+                            ]
+            , test "second inversion of major triad" <|
+                \_ ->
+                    chord (newTone C Natural) MajorTriad
+                        |> inversion 2
+                        |> Expect.equal
+                            [ newTone E Natural
+                            , newTone G Natural
+                            , newTone C Natural
+                            ]
+            , test "third inversion of major triad" <|
+                \_ ->
+                    chord (newTone C Natural) MajorTriad
+                        |> inversion 3
+                        |> Expect.equal
+                            [ newTone G Natural
+                            , newTone C Natural
+                            , newTone E Natural
+                            ]
             ]
         , describe "Major chords tests"
             [ test "C Major" <|
