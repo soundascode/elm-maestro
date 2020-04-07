@@ -9,7 +9,7 @@ module Maestro exposing (..)
 
 -}
 
-import Maestro.Tone exposing (Key, keyToValue)
+import Maestro.PitchClass exposing (PitchClass, keyToValue)
 
 
 {-| -}
@@ -25,6 +25,6 @@ noteOf value =
 
 
 {-| -}
-keyAtOctave : Key -> Int -> Int
-keyAtOctave key octave =
-    keyToValue key + (12 * octave)
+keyAtOctave : PitchClass -> Int -> Int
+keyAtOctave class octave =
+    keyToValue class + (12 * octave)

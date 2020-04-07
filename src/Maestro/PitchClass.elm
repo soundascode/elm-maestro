@@ -1,8 +1,8 @@
-module Maestro.Tone exposing
-    ( Tone, Key(..), Adjustment(..)
+module Maestro.PitchClass exposing
+    ( Tone, PitchClass(..), Adjustment(..)
     , newTone, keyToValue, keyFromValue, keyFromString
     , adjustmentToValue, adjustmentFromValue, adjustmentFromString
-    , diatonicKeyValue, diatonicKeyFromValue
+    , diatonicPitchClassValue, diatonicPitchClassFromValue
     , adjustmentToString, chromaticTones, keyToString, toneToIndex, toneToString
     )
 
@@ -13,23 +13,23 @@ well as helpers to represent these as numerical values.
 
 # Types
 
-@docs Tone, Key, Adjustment
+@docs Tone, PitchClass, Adjustment
 
 
 # Common Helpers
 
 @docs newTone, keyToValue, keyFromValue, keyFromString
 @docs adjustmentToValue, adjustmentFromValue, adjustmentFromString
-@docs diatonicKeyValue, diatonicKeyFromValue
+@docs diatonicPitchClassValue, diatonicPitchClassFromValue
 
 -}
 
 import String exposing (toLower)
 
 
-{-| Key represents a Pitch class without adjustment
+{-| PitchClass represents a Pitch class without adjustment
 -}
-type Key
+type PitchClass
     = C
     | D
     | E
@@ -49,17 +49,17 @@ type Adjustment
     | FlatFlat
 
 
-{-| Tone represents a pitch and is defined by a key and an adjustment
+{-| Tone represents a pitch and is defined by a class and an adjustment
 -}
 type alias Tone =
-    { key : Key, adjustment : Adjustment }
+    { class : PitchClass, adjustment : Adjustment }
 
 
 {-| newTone is a helper function to create a tone
 -}
-newTone : Key -> Adjustment -> Tone
-newTone key adjustment =
-    { key = key, adjustment = adjustment }
+newTone : PitchClass -> Adjustment -> Tone
+newTone class adjustment =
+    { class = class, adjustment = adjustment }
 
 
 {-| toneToIndex returns the index in an octave of the provided note. C would be zero,
@@ -67,12 +67,12 @@ while E Flat would be 3, or G Sharp would be 8.
 -}
 toneToIndex : Tone -> Int
 toneToIndex t =
-    remainderBy 12 (keyToValue t.key + adjustmentToValue t.adjustment)
+    remainderBy 12 (keyToValue t.class + adjustmentToValue t.adjustment)
 
 
 toneToString : Tone -> String
 toneToString t =
-    keyToString t.key ++ adjustmentToString t.adjustment
+    keyToString t.class ++ adjustmentToString t.adjustment
 
 
 {-| chromaticTones returns the chromatic scale tones starting at C.
@@ -129,12 +129,12 @@ chromaticTones adj =
             flattedTones
 
 
-{-| keyToValue returns the chromatic position of a Key relative to an octave
+{-| keyToValue returns the chromatic position of a PitchClass relative to an octave
 as a numeric value
 -}
-keyToValue : Key -> Int
-keyToValue key =
-    case key of
+keyToValue : PitchClass -> Int
+keyToValue class =
+    case class of
         C ->
             0
 
@@ -160,7 +160,7 @@ keyToValue key =
 {-| keyFromValue given a position relative to an octave returns the
 corresponding key
 -}
-keyFromValue : Int -> Maybe Key
+keyFromValue : Int -> Maybe PitchClass
 keyFromValue value =
     case value of
         0 ->
@@ -188,11 +188,11 @@ keyFromValue value =
             Nothing
 
 
-{-| keyFromString parses a Key from a String
+{-| keyFromString parses a PitchClass from a String
 -}
-keyFromString : String -> Maybe Key
-keyFromString key =
-    case toLower key of
+keyFromString : String -> Maybe PitchClass
+keyFromString class =
+    case toLower class of
         "c" ->
             Just C
 
@@ -218,7 +218,7 @@ keyFromString key =
             Nothing
 
 
-keyToString : Key -> String
+keyToString : PitchClass -> String
 keyToString k =
     case k of
         C ->
@@ -244,7 +244,7 @@ keyToString k =
 
 
 {-| adjustmentToValue returns the numbers of semitones to apply to a
-Key when calculating its position.
+PitchClass when calculating its position.
 -}
 adjustmentToValue : Adjustment -> Int
 adjustmentToValue adjustment =
@@ -337,12 +337,12 @@ adjustmentToString adj =
             "♭♭"
 
 
-{-| diatonicKeyValue returns the diatonic position of a Key relative to an octave
+{-| diatonicPitchClassValue returns the diatonic position of a PitchClass relative to an octave
 (composed of only natural notes (white notes of your piano)) as a numeric value.
 -}
-diatonicKeyValue : Key -> Int
-diatonicKeyValue key =
-    case key of
+diatonicPitchClassValue : PitchClass -> Int
+diatonicPitchClassValue class =
+    case class of
         C ->
             0
 
@@ -365,12 +365,12 @@ diatonicKeyValue key =
             6
 
 
-{-| diatonicKeyFromValue given a position relative to an octave
+{-| diatonicPitchClassFromValue given a position relative to an octave
 (composed of only natural notes (white notes of your piano)) returns the
 corresponding key.
 -}
-diatonicKeyFromValue : Int -> Maybe Key
-diatonicKeyFromValue value =
+diatonicPitchClassFromValue : Int -> Maybe PitchClass
+diatonicPitchClassFromValue value =
     case value of
         0 ->
             Just C

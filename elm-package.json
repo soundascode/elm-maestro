@@ -13,7 +13,7 @@
         "Maestro.Interval",
         "Maestro.Note",
         "Maestro.Scale",
-        "Maestro.Tone"
+        "Maestro.PitchClass"
     ],
     "dependencies": {
         "elm-lang/core": "5.0.0 <= v < 6.0.0",

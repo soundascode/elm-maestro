@@ -1,32 +1,44 @@
-module Maestro.Scale exposing (Scale, Mode(..), scale, scaleFrom, modeFromString)
+module Maestro.Scale exposing
+    ( Scale, Mode(..)
+    , scale
+    , modeFromString
+    , scaleFrom
+    )
 
 {-| This module provides types and functions to create and
 manipulate scales.
 
+
 # Types
+
 @docs Scale, Mode
 
+
 # Scales manipulation
+
 @docs scale
 
+
 # Helpers
+
 @docs modeFromString
+
 -}
 
-import Maestro.Tone exposing (Tone)
-import Maestro.Note exposing (Note, newNote)
 import Maestro.Interval
     exposing
         ( Interval(..)
         , addInterval
-        , ionianIntervals
+        , aeolianIntervals
         , dorianIntervals
-        , phrygianIntervals
+        , ionianIntervals
+        , locrianIntervals
         , lydianIntervals
         , mixolydianIntervals
-        , aeolianIntervals
-        , locrianIntervals
+        , phrygianIntervals
         )
+import Maestro.Note exposing (Note, newNote)
+import Maestro.PitchClass exposing (Tone)
 import String exposing (toLower)
 
 
@@ -52,23 +64,26 @@ type Mode
 composing a scale.
 
     (==)
-      scale (newTone C Natural) Major
-      [ { key = C, adjustment = Natural }
-      , { key = D, adjustment = Natural }
-      , { key = E, adjustment = Natural }
-      , { key = F, adjustment = Natural }
-      , { key = G, adjustment = Natural }
-      , { key = A, adjustment = Natural }
-      , { key = B, adjustment = Natural }
-      ]
+        scale
+        (newTone C Natural)
+        Major
+        [ { class = C, adjustment = Natural }
+        , { class = D, adjustment = Natural }
+        , { class = E, adjustment = Natural }
+        , { class = F, adjustment = Natural }
+        , { class = G, adjustment = Natural }
+        , { class = A, adjustment = Natural }
+        , { class = B, adjustment = Natural }
+        ]
+
 -}
 scale : Tone -> Mode -> List Tone
 scale tone mode =
     let
         placeholderNote =
-            newNote tone.key tone.adjustment 3
+            newNote tone.class tone.adjustment 3
     in
-        List.map (\i -> (addInterval placeholderNote i).tone) (modeToIntervals mode)
+    List.map (\i -> (addInterval placeholderNote i).tone) (modeToIntervals mode)
 
 
 {-| scaleFrom generates the notes composing a scale, according
@@ -76,7 +91,7 @@ to a provided note (tone + octave) and mode
 -}
 scaleFrom : Note -> Mode -> List Note
 scaleFrom note mode =
-    List.map (\i -> (addInterval note i)) (modeToIntervals mode)
+    List.map (\i -> addInterval note i) (modeToIntervals mode)
 
 
 modeToIntervals : Mode -> List Interval

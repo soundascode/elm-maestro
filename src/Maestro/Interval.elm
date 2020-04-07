@@ -27,14 +27,14 @@ manipulate intervals.
 -}
 
 import Maestro.Note exposing (Note, noteToIndex)
-import Maestro.Tone
+import Maestro.PitchClass
     exposing
         ( Adjustment(..)
         , Tone
         , adjustmentFromValue
         , adjustmentToValue
-        , diatonicKeyFromValue
-        , diatonicKeyValue
+        , diatonicPitchClassFromValue
+        , diatonicPitchClassValue
         , newTone
         )
 
@@ -120,7 +120,7 @@ addInterval note interval =
         newOctave =
             (noteToIndex newNaturalNote + adjustmentToValue adjustment) // 12
     in
-    { tone = newTone newNaturalNote.tone.key adjustment, octave = newOctave }
+    { tone = newTone newNaturalNote.tone.class adjustment, octave = newOctave }
 
 
 {-| diatonicDegreeOf will compute the note being the given
@@ -129,13 +129,13 @@ degree of a starting note on the diatonic scale
 diatonicDegreeOf : Degree -> Note -> Note
 diatonicDegreeOf degree note =
     let
-        diatonicKey =
-            diatonicKeyFromValue <| remainderBy 7 (diatonicKeyValue note.tone.key + degreeToValue degree)
+        diatonicPitchClass =
+            diatonicPitchClassFromValue <| remainderBy 7 (diatonicPitchClassValue note.tone.class + degreeToValue degree)
 
         octaveShift =
-            (diatonicKeyValue note.tone.key + degreeToValue degree) // 7
+            (diatonicPitchClassValue note.tone.class + degreeToValue degree) // 7
     in
-    case diatonicKey of
+    case diatonicPitchClass of
         Just dk ->
             { tone = newTone dk Natural, octave = note.octave + octaveShift }
 

@@ -1,8 +1,7 @@
 module Maestro.Chord exposing
     ( Chord, Quality(..)
     , chord
-    , inversion
-    , qualityToString
+    , inversion, qualityToString
     )
 
 {-| This module provides types and functions to create and
@@ -23,7 +22,7 @@ manipulate chords.
 import ListUtils exposing (rotate)
 import Maestro.Interval exposing (Interval(..), addInterval)
 import Maestro.Note exposing (newNote)
-import Maestro.Tone exposing (Tone)
+import Maestro.PitchClass exposing (Tone)
 
 
 {-| Chord represents a list of tones composing it
@@ -57,9 +56,9 @@ composing a chord.
         chord
         (newTone C Natural)
         Major
-        [ { key = C, adjustment = Natural }
-        , { key = E, adjustment = Natural }
-        , { key = G, adjustment = Natural }
+        [ { class = C, adjustment = Natural }
+        , { class = E, adjustment = Natural }
+        , { class = G, adjustment = Natural }
         ]
 
 -}
@@ -67,7 +66,7 @@ chord : Tone -> Quality -> Chord
 chord tone quality =
     let
         placeholderNote =
-            newNote tone.key tone.adjustment 3
+            newNote tone.class tone.adjustment 3
     in
     List.map (\i -> (addInterval placeholderNote i).tone) (qualityToIntervals quality)
 

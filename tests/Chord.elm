@@ -2,7 +2,7 @@ module Chord exposing (all)
 
 import Expect
 import Maestro.Chord exposing (Quality(..), chord, inversion)
-import Maestro.Tone exposing (Adjustment(..), Key(..), Tone, newTone)
+import Maestro.PitchClass exposing (Adjustment(..), PitchClass(..), Tone, newTone)
 import Test exposing (..)
 
 

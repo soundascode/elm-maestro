@@ -23,13 +23,13 @@ or add the dependency in your `elm-package.json` file directly
 
 #### Tone
 
-The `Maestro.Tone` module exposes the following types:
+The `Maestro.PitchClass` module exposes the following types:
 
 ```elm
 type alias Tone =
-    { key : Key, adjustment : Adjustment }
+    { class : PitchClass, adjustment : Adjustment }
 
-type Key
+type PitchClass
     = C
     | D
     | E
@@ -49,7 +49,7 @@ type Adjustment
 in order to represent pitches/tones as follows:
 
 ```elm
-import Maestro.Tone exposing(Key(..), Adjustment(..))
+import Maestro.PitchClass exposing(PitchClass(..), Adjustment(..))
 
 cNatural = newTone C Natural
 dSharp = newTone D Sharp
@@ -73,7 +73,7 @@ type alias Octave =
 in order to represent notes as follows:
 
 ```elm
-import Maestro.Tone exposing (Tone, Key(..), Adjustment(..))
+import Maestro.PitchClass exposing (Tone, PitchClass(..), Adjustment(..))
 import Maestro.Note exposing (newNote)
 
 e3Natural = newNote E Natural 3
@@ -117,7 +117,7 @@ and will allow you to find the note at interval from a start note
 like follows:
 
 ```elm
-import Maestro.Tone exposing (Key(..), Adjustment(..), newTone)
+import Maestro.PitchClass exposing (PitchClass(..), Adjustment(..), newTone)
 import Maestro.Interval exposing (Interval(..), addInterval)
 
 example : Note
@@ -131,7 +131,7 @@ A Scale is represented as a list of Tone. It is built from a pitch and a mode as
 follows:
 
 ```elm
-import Maestro.Tone exposing (newTone, Key(..), Adjustment(..))
+import Maestro.PitchClass exposing (newTone, PitchClass(..), Adjustment(..))
 import Maestro.Scale exposing (scale, Mode(..))
 
 example : Scale

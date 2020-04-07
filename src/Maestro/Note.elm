@@ -15,7 +15,7 @@ Notes being represented as a tone and an octave convertible to an index (MIDI va
 
 -}
 
-import Maestro.Tone exposing (Adjustment, Key, Tone, adjustmentToValue, chromaticTones, keyToValue, newTone, toneToIndex)
+import Maestro.PitchClass exposing (Adjustment, PitchClass, Tone, adjustmentToValue, chromaticTones, keyToValue, newTone, toneToIndex)
 
 
 {-| Octave represents an octave number, as represented in piano or MIDI notation
@@ -34,9 +34,9 @@ type alias Note =
 
 {-| newNote is a helper function to create a note
 -}
-newNote : Key -> Adjustment -> Octave -> Note
-newNote key adjustment oct =
-    { tone = newTone key adjustment, octave = oct }
+newNote : PitchClass -> Adjustment -> Octave -> Note
+newNote class adjustment oct =
+    { tone = newTone class adjustment, octave = oct }
 
 
 {-| noteToIndex returns the MIDI value of a given note
@@ -48,4 +48,4 @@ noteToIndex note =
 
 octave : Int -> Adjustment -> List Note
 octave number adj =
-    List.map (\t -> newNote t.key t.adjustment number) (chromaticTones adj)
+    List.map (\t -> newNote t.class t.adjustment number) (chromaticTones adj)

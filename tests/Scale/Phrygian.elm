@@ -3,8 +3,8 @@ module Scale.Phrygian exposing (all)
 import Expect
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Note exposing (Note)
+import Maestro.PitchClass exposing (Adjustment(..), PitchClass(..), newTone)
 import Maestro.Scale exposing (Mode(..), Scale, scale)
-import Maestro.Tone exposing (Adjustment(..), Key(..), newTone)
 import Test exposing (..)
 
 
