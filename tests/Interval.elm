@@ -1,9 +1,10 @@
 module Interval exposing (all)
 
 import Expect
+import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Interval exposing (Degree(..), Interval(..), addInterval, diatonicDegreeOf, distance)
-import Maestro.Note exposing (Note, newNote)
-import Maestro.PitchClass exposing (Accidental(..), PitchClass(..))
+import Maestro.Note exposing (newNote)
+import Maestro.PitchClass exposing (PitchClass(..))
 import String
 import Test exposing (..)
 

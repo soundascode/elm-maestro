@@ -1,9 +1,11 @@
 module Scale.Phrygian exposing (all)
 
 import Expect
+import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Note exposing (Note)
-import Maestro.PitchClass exposing (Accidental(..), PitchClass(..), newPitch)
+import Maestro.Pitch exposing (newPitch)
+import Maestro.PitchClass exposing (PitchClass(..))
 import Maestro.Scale exposing (Mode(..), Scale, scale)
 import Test exposing (..)
 

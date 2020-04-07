@@ -22,7 +22,7 @@ manipulate chords.
 import ListUtils exposing (rotate)
 import Maestro.Interval exposing (Interval(..), addInterval)
 import Maestro.Note exposing (newNote)
-import Maestro.PitchClass exposing (Pitch)
+import Maestro.Pitch exposing (Pitch)
 
 
 {-| Chord represents a list of pitches composing it

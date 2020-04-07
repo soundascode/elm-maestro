@@ -1,11 +1,14 @@
 module Maestro.Pitch exposing (..)
 
-import Maestro.PitchClass
+import Maestro.Accidental
     exposing
         ( Accidental(..)
-        , PitchClass(..)
         , accidentalToString
         , accidentalToValue
+        )
+import Maestro.PitchClass
+    exposing
+        ( PitchClass(..)
         , pitchClassToString
         , pitchClassToValue
         )

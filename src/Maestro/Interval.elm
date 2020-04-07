@@ -26,16 +26,13 @@ manipulate intervals.
 
 -}
 
+import Maestro.Accidental exposing (Accidental(..), accidentalFromValue, accidentalToValue)
 import Maestro.Note exposing (Note, noteToIndex)
+import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass
     exposing
-        ( Accidental(..)
-        , Pitch
-        , accidentalFromValue
-        , accidentalToValue
-        , diatonicPitchClassFromValue
+        ( diatonicPitchClassFromValue
         , diatonicPitchClassValue
-        , newPitch
         )
 
 

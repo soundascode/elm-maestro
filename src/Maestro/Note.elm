@@ -15,7 +15,9 @@ Notes being represented as a pitch and an octave convertible to an index (MIDI v
 
 -}
 
-import Maestro.PitchClass exposing (Accidental, Pitch, PitchClass, accidentalToValue, chromaticPitches, newPitch, pitchClassToValue, pitchToIndex)
+import Maestro.Accidental exposing (Accidental(..))
+import Maestro.Pitch exposing (Pitch, chromaticPitches, newPitch, pitchToIndex)
+import Maestro.PitchClass exposing (PitchClass)
 
 
 {-| Octave represents an octave number, as represented in piano or MIDI notation

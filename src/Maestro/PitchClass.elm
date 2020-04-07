@@ -1,9 +1,8 @@
 module Maestro.PitchClass exposing
-    ( Pitch, PitchClass(..), Accidental(..)
-    , newPitch, pitchClassToValue, pitchClassFromValue, pitchClassFromString
-    , accidentalToValue, accidentalFromValue, accidentalFromString
+    ( PitchClass(..)
+    , pitchClassToValue, pitchClassFromValue, pitchClassFromString
     , diatonicPitchClassValue, diatonicPitchClassFromValue
-    , accidentalToString, chromaticPitches, pitchClassToString, pitchToIndex, pitchToString
+    , pitchClassToString
     )
 
 {-| This module provides types and functions to manipulate musical pitches.
@@ -37,96 +36,6 @@ type PitchClass
     | G
     | A
     | B
-
-
-{-| Accidental represents an accidental applied to a key
--}
-type Accidental
-    = Natural
-    | Sharp
-    | Flat
-    | SharpSharp
-    | FlatFlat
-
-
-{-| Pitch represents a pitch and is defined by a class and an accidental
--}
-type alias Pitch =
-    { class : PitchClass, accidental : Accidental }
-
-
-{-| newPitch is a helper function to create a pitch
--}
-newPitch : PitchClass -> Accidental -> Pitch
-newPitch class accidental =
-    { class = class, accidental = accidental }
-
-
-{-| pitchToIndex returns the index in an octave of the provided note. C would be zero,
-while E Flat would be 3, or G Sharp would be 8.
--}
-pitchToIndex : Pitch -> Int
-pitchToIndex t =
-    remainderBy 12 (pitchClassToValue t.class + accidentalToValue t.accidental)
-
-
-pitchToString : Pitch -> String
-pitchToString t =
-    pitchClassToString t.class ++ accidentalToString t.accidental
-
-
-{-| chromaticPitches returns the chromatic scale pitches starting at C.
-The adjusted pitches will be sharped or flatted according to the provided Accidental.
-This is mostly a helper function.
--}
-chromaticPitches : Accidental -> List Pitch
-chromaticPitches adj =
-    let
-        sharpedPitches =
-            [ newPitch C Natural
-            , newPitch C Sharp
-            , newPitch D Natural
-            , newPitch D Sharp
-            , newPitch E Natural
-            , newPitch F Natural
-            , newPitch F Sharp
-            , newPitch G Natural
-            , newPitch G Sharp
-            , newPitch A Natural
-            , newPitch A Sharp
-            , newPitch B Natural
-            ]
-
-        flattedPitches =
-            [ newPitch C Natural
-            , newPitch D Flat
-            , newPitch D Natural
-            , newPitch E Flat
-            , newPitch E Natural
-            , newPitch F Natural
-            , newPitch G Flat
-            , newPitch G Natural
-            , newPitch A Flat
-            , newPitch A Natural
-            , newPitch B Flat
-            , newPitch B Natural
-            ]
-    in
-    case adj of
-        Natural ->
-            sharpedPitches
-
-        Sharp ->
-            sharpedPitches
-
-        Flat ->
-            flattedPitches
-
-        SharpSharp ->
-            sharpedPitches
-
-        FlatFlat ->
-            flattedPitches
 
 
 {-| pitchClassToValue returns the chromatic position of a PitchClass relative to an octave
@@ -241,100 +150,6 @@ pitchClassToString k =
 
         B ->
             "B"
-
-
-{-| accidentalToValue returns the numbers of semipitches to apply to a
-PitchClass when calculating its position.
--}
-accidentalToValue : Accidental -> Int
-accidentalToValue accidental =
-    case accidental of
-        Flat ->
-            -1
-
-        FlatFlat ->
-            -2
-
-        Natural ->
-            0
-
-        Sharp ->
-            1
-
-        SharpSharp ->
-            2
-
-
-{-| accidentalFromValue returns the accidental corresponding to a given
-number of semipitches
--}
-accidentalFromValue : Int -> Accidental
-accidentalFromValue value =
-    if value == -2 then
-        FlatFlat
-
-    else if value == -1 then
-        Flat
-
-    else if value == 0 then
-        Natural
-
-    else if value == 1 then
-        Sharp
-
-    else if value == 2 then
-        SharpSharp
-
-    else
-        Natural
-
-
-{-| accidentalFromString parses an accidental from a String
--}
-accidentalFromString : String -> Maybe Accidental
-accidentalFromString adj =
-    case toLower adj of
-        "" ->
-            Just Natural
-
-        "natural" ->
-            Just Natural
-
-        "#" ->
-            Just Sharp
-
-        "sharp" ->
-            Just Sharp
-
-        "b" ->
-            Just Flat
-
-        "flat" ->
-            Just Flat
-
-        _ ->
-            Nothing
-
-
-{-| accidentalFromString parses an accidental from a String
--}
-accidentalToString : Accidental -> String
-accidentalToString adj =
-    case adj of
-        Natural ->
-            ""
-
-        Sharp ->
-            "♯"
-
-        SharpSharp ->
-            "♯♯"
-
-        Flat ->
-            "♭"
-
-        FlatFlat ->
-            "♭♭"
 
 
 {-| diatonicPitchClassValue returns the diatonic position of a PitchClass relative to an octave

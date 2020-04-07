@@ -38,7 +38,7 @@ import Maestro.Interval
         , phrygianIntervals
         )
 import Maestro.Note exposing (Note, newNote)
-import Maestro.PitchClass exposing (Pitch)
+import Maestro.Pitch exposing (Pitch)
 import String exposing (toLower)
 
 

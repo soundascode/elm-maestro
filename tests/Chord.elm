@@ -1,8 +1,10 @@
 module Chord exposing (all)
 
 import Expect
+import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Chord exposing (Quality(..), chord, inversion)
-import Maestro.PitchClass exposing (Accidental(..), Pitch, PitchClass(..), newPitch)
+import Maestro.Pitch exposing (newPitch)
+import Maestro.PitchClass exposing (PitchClass(..))
 import Test exposing (..)
 
 
