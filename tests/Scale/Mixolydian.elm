@@ -3,7 +3,7 @@ module Scale.Mixolydian exposing (all)
 import Expect
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Note exposing (Note)
-import Maestro.PitchClass exposing (Adjustment(..), PitchClass(..), newTone)
+import Maestro.PitchClass exposing (Adjustment(..), PitchClass(..), newPitch)
 import Maestro.Scale exposing (Mode(..), Scale, scale)
 import Test exposing (..)
 
@@ -14,212 +14,212 @@ all =
         [ describe "Mixolydian scale tests"
             [ test "C Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone C Natural) Mixolydian)
-                        [ newTone C Natural
-                        , newTone D Natural
-                        , newTone E Natural
-                        , newTone F Natural
-                        , newTone G Natural
-                        , newTone A Natural
-                        , newTone B Flat
+                    Expect.equal (scale (newPitch C Natural) Mixolydian)
+                        [ newPitch C Natural
+                        , newPitch D Natural
+                        , newPitch E Natural
+                        , newPitch F Natural
+                        , newPitch G Natural
+                        , newPitch A Natural
+                        , newPitch B Flat
                         ]
             , test "C# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone C Sharp) Mixolydian)
-                        [ newTone C Sharp
-                        , newTone D Sharp
-                        , newTone E Sharp
-                        , newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Sharp
-                        , newTone B Natural
+                    Expect.equal (scale (newPitch C Sharp) Mixolydian)
+                        [ newPitch C Sharp
+                        , newPitch D Sharp
+                        , newPitch E Sharp
+                        , newPitch F Sharp
+                        , newPitch G Sharp
+                        , newPitch A Sharp
+                        , newPitch B Natural
                         ]
             , test "Db Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone D Flat) Mixolydian)
-                        [ newTone D Flat
-                        , newTone E Flat
-                        , newTone F Natural
-                        , newTone G Flat
-                        , newTone A Flat
-                        , newTone B Flat
-                        , newTone C Flat
+                    Expect.equal (scale (newPitch D Flat) Mixolydian)
+                        [ newPitch D Flat
+                        , newPitch E Flat
+                        , newPitch F Natural
+                        , newPitch G Flat
+                        , newPitch A Flat
+                        , newPitch B Flat
+                        , newPitch C Flat
                         ]
             , test "D Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone D Natural) Mixolydian)
-                        [ newTone D Natural
-                        , newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Natural
-                        , newTone A Natural
-                        , newTone B Natural
-                        , newTone C Natural
+                    Expect.equal (scale (newPitch D Natural) Mixolydian)
+                        [ newPitch D Natural
+                        , newPitch E Natural
+                        , newPitch F Sharp
+                        , newPitch G Natural
+                        , newPitch A Natural
+                        , newPitch B Natural
+                        , newPitch C Natural
                         ]
             , test "D# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone D Sharp) Mixolydian)
-                        [ newTone D Sharp
-                        , newTone E Sharp
-                        , newTone F SharpSharp
-                        , newTone G Sharp
-                        , newTone A Sharp
-                        , newTone B Sharp
-                        , newTone C Sharp
+                    Expect.equal (scale (newPitch D Sharp) Mixolydian)
+                        [ newPitch D Sharp
+                        , newPitch E Sharp
+                        , newPitch F SharpSharp
+                        , newPitch G Sharp
+                        , newPitch A Sharp
+                        , newPitch B Sharp
+                        , newPitch C Sharp
                         ]
             , test "Eb Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Flat) Mixolydian)
-                        [ newTone E Flat
-                        , newTone F Natural
-                        , newTone G Natural
-                        , newTone A Flat
-                        , newTone B Flat
-                        , newTone C Natural
-                        , newTone D Flat
+                    Expect.equal (scale (newPitch E Flat) Mixolydian)
+                        [ newPitch E Flat
+                        , newPitch F Natural
+                        , newPitch G Natural
+                        , newPitch A Flat
+                        , newPitch B Flat
+                        , newPitch C Natural
+                        , newPitch D Flat
                         ]
             , test "E Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Natural) Mixolydian)
-                        [ newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Natural
-                        , newTone B Natural
-                        , newTone C Sharp
-                        , newTone D Natural
+                    Expect.equal (scale (newPitch E Natural) Mixolydian)
+                        [ newPitch E Natural
+                        , newPitch F Sharp
+                        , newPitch G Sharp
+                        , newPitch A Natural
+                        , newPitch B Natural
+                        , newPitch C Sharp
+                        , newPitch D Natural
                         ]
             , test "E# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Sharp) Mixolydian)
-                        [ newTone E Sharp
-                        , newTone F SharpSharp
-                        , newTone G SharpSharp
-                        , newTone A Sharp
-                        , newTone B Sharp
-                        , newTone C SharpSharp
-                        , newTone D Sharp
+                    Expect.equal (scale (newPitch E Sharp) Mixolydian)
+                        [ newPitch E Sharp
+                        , newPitch F SharpSharp
+                        , newPitch G SharpSharp
+                        , newPitch A Sharp
+                        , newPitch B Sharp
+                        , newPitch C SharpSharp
+                        , newPitch D Sharp
                         ]
             , test "Fb Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Flat) Mixolydian)
-                        [ newTone F Flat
-                        , newTone G Flat
-                        , newTone A Flat
-                        , newTone B FlatFlat
-                        , newTone C Flat
-                        , newTone D Flat
-                        , newTone E FlatFlat
+                    Expect.equal (scale (newPitch F Flat) Mixolydian)
+                        [ newPitch F Flat
+                        , newPitch G Flat
+                        , newPitch A Flat
+                        , newPitch B FlatFlat
+                        , newPitch C Flat
+                        , newPitch D Flat
+                        , newPitch E FlatFlat
                         ]
             , test "F Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Natural) Mixolydian)
-                        [ newTone F Natural
-                        , newTone G Natural
-                        , newTone A Natural
-                        , newTone B Flat
-                        , newTone C Natural
-                        , newTone D Natural
-                        , newTone E Flat
+                    Expect.equal (scale (newPitch F Natural) Mixolydian)
+                        [ newPitch F Natural
+                        , newPitch G Natural
+                        , newPitch A Natural
+                        , newPitch B Flat
+                        , newPitch C Natural
+                        , newPitch D Natural
+                        , newPitch E Flat
                         ]
             , test "F# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Sharp) Mixolydian)
-                        [ newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Sharp
-                        , newTone B Natural
-                        , newTone C Sharp
-                        , newTone D Sharp
-                        , newTone E Natural
+                    Expect.equal (scale (newPitch F Sharp) Mixolydian)
+                        [ newPitch F Sharp
+                        , newPitch G Sharp
+                        , newPitch A Sharp
+                        , newPitch B Natural
+                        , newPitch C Sharp
+                        , newPitch D Sharp
+                        , newPitch E Natural
                         ]
             , test "Gb Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Flat) Mixolydian)
-                        [ newTone G Flat
-                        , newTone A Flat
-                        , newTone B Flat
-                        , newTone C Flat
-                        , newTone D Flat
-                        , newTone E Flat
-                        , newTone F Flat
+                    Expect.equal (scale (newPitch G Flat) Mixolydian)
+                        [ newPitch G Flat
+                        , newPitch A Flat
+                        , newPitch B Flat
+                        , newPitch C Flat
+                        , newPitch D Flat
+                        , newPitch E Flat
+                        , newPitch F Flat
                         ]
             , test "G Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Natural) Mixolydian)
-                        [ newTone G Natural
-                        , newTone A Natural
-                        , newTone B Natural
-                        , newTone C Natural
-                        , newTone D Natural
-                        , newTone E Natural
-                        , newTone F Natural
+                    Expect.equal (scale (newPitch G Natural) Mixolydian)
+                        [ newPitch G Natural
+                        , newPitch A Natural
+                        , newPitch B Natural
+                        , newPitch C Natural
+                        , newPitch D Natural
+                        , newPitch E Natural
+                        , newPitch F Natural
                         ]
             , test "G# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Sharp) Mixolydian)
-                        [ newTone G Sharp
-                        , newTone A Sharp
-                        , newTone B Sharp
-                        , newTone C Sharp
-                        , newTone D Sharp
-                        , newTone E Sharp
-                        , newTone F Sharp
+                    Expect.equal (scale (newPitch G Sharp) Mixolydian)
+                        [ newPitch G Sharp
+                        , newPitch A Sharp
+                        , newPitch B Sharp
+                        , newPitch C Sharp
+                        , newPitch D Sharp
+                        , newPitch E Sharp
+                        , newPitch F Sharp
                         ]
             , test "Ab Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Flat) Mixolydian)
-                        [ newTone A Flat
-                        , newTone B Flat
-                        , newTone C Natural
-                        , newTone D Flat
-                        , newTone E Flat
-                        , newTone F Natural
-                        , newTone G Flat
+                    Expect.equal (scale (newPitch A Flat) Mixolydian)
+                        [ newPitch A Flat
+                        , newPitch B Flat
+                        , newPitch C Natural
+                        , newPitch D Flat
+                        , newPitch E Flat
+                        , newPitch F Natural
+                        , newPitch G Flat
                         ]
             , test "A Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Natural) Mixolydian)
-                        [ newTone A Natural
-                        , newTone B Natural
-                        , newTone C Sharp
-                        , newTone D Natural
-                        , newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Natural
+                    Expect.equal (scale (newPitch A Natural) Mixolydian)
+                        [ newPitch A Natural
+                        , newPitch B Natural
+                        , newPitch C Sharp
+                        , newPitch D Natural
+                        , newPitch E Natural
+                        , newPitch F Sharp
+                        , newPitch G Natural
                         ]
             , test "A# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Sharp) Mixolydian)
-                        [ newTone A Sharp
-                        , newTone B Sharp
-                        , newTone C SharpSharp
-                        , newTone D Sharp
-                        , newTone E Sharp
-                        , newTone F SharpSharp
-                        , newTone G Sharp
+                    Expect.equal (scale (newPitch A Sharp) Mixolydian)
+                        [ newPitch A Sharp
+                        , newPitch B Sharp
+                        , newPitch C SharpSharp
+                        , newPitch D Sharp
+                        , newPitch E Sharp
+                        , newPitch F SharpSharp
+                        , newPitch G Sharp
                         ]
             , test "Bb Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone B Flat) Mixolydian)
-                        [ newTone B Flat
-                        , newTone C Natural
-                        , newTone D Natural
-                        , newTone E Flat
-                        , newTone F Natural
-                        , newTone G Natural
-                        , newTone A Flat
+                    Expect.equal (scale (newPitch B Flat) Mixolydian)
+                        [ newPitch B Flat
+                        , newPitch C Natural
+                        , newPitch D Natural
+                        , newPitch E Flat
+                        , newPitch F Natural
+                        , newPitch G Natural
+                        , newPitch A Flat
                         ]
             , test "B Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newTone B Natural) Mixolydian)
-                        [ newTone B Natural
-                        , newTone C Sharp
-                        , newTone D Sharp
-                        , newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Natural
+                    Expect.equal (scale (newPitch B Natural) Mixolydian)
+                        [ newPitch B Natural
+                        , newPitch C Sharp
+                        , newPitch D Sharp
+                        , newPitch E Natural
+                        , newPitch F Sharp
+                        , newPitch G Sharp
+                        , newPitch A Natural
                         ]
             ]
         ]

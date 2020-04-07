@@ -30,12 +30,12 @@ import Maestro.Note exposing (Note, noteToIndex)
 import Maestro.PitchClass
     exposing
         ( Adjustment(..)
-        , Tone
+        , Pitch
         , adjustmentFromValue
         , adjustmentToValue
         , diatonicPitchClassFromValue
         , diatonicPitchClassValue
-        , newTone
+        , newPitch
         )
 
 
@@ -108,19 +108,19 @@ addInterval note interval =
         newNaturalNote =
             diatonicDegreeOf (intervalDegree interval) note
 
-        intervalSemitones =
+        intervalSemipitches =
             intervalToValue interval
 
-        startToNewNaturalSemitones =
+        startToNewNaturalSemipitches =
             distance note newNaturalNote
 
         adjustment =
-            adjustmentFromValue (intervalSemitones - startToNewNaturalSemitones)
+            adjustmentFromValue (intervalSemipitches - startToNewNaturalSemipitches)
 
         newOctave =
             (noteToIndex newNaturalNote + adjustmentToValue adjustment) // 12
     in
-    { tone = newTone newNaturalNote.tone.class adjustment, octave = newOctave }
+    { pitch = newPitch newNaturalNote.pitch.class adjustment, octave = newOctave }
 
 
 {-| diatonicDegreeOf will compute the note being the given
@@ -130,27 +130,27 @@ diatonicDegreeOf : Degree -> Note -> Note
 diatonicDegreeOf degree note =
     let
         diatonicPitchClass =
-            diatonicPitchClassFromValue <| remainderBy 7 (diatonicPitchClassValue note.tone.class + degreeToValue degree)
+            diatonicPitchClassFromValue <| remainderBy 7 (diatonicPitchClassValue note.pitch.class + degreeToValue degree)
 
         octaveShift =
-            (diatonicPitchClassValue note.tone.class + degreeToValue degree) // 7
+            (diatonicPitchClassValue note.pitch.class + degreeToValue degree) // 7
     in
     case diatonicPitchClass of
         Just dk ->
-            { tone = newTone dk Natural, octave = note.octave + octaveShift }
+            { pitch = newPitch dk Natural, octave = note.octave + octaveShift }
 
         Nothing ->
             note
 
 
-{-| distance computes the distance in semitones between two notes
+{-| distance computes the distance in semipitches between two notes
 -}
 distance : Note -> Note -> Int
 distance from to =
     noteToIndex to - noteToIndex from
 
 
-{-| intervalToValue returns the number of semitones corresponding
+{-| intervalToValue returns the number of semipitches corresponding
 to the provided interval
 -}
 intervalToValue : Interval -> Int

@@ -1,24 +1,24 @@
 module Maestro.PitchClass exposing
-    ( Tone, PitchClass(..), Adjustment(..)
-    , newTone, keyToValue, keyFromValue, keyFromString
+    ( Pitch, PitchClass(..), Adjustment(..)
+    , newPitch, pitchClassToValue, pitchClassFromValue, pitchClassFromString
     , adjustmentToValue, adjustmentFromValue, adjustmentFromString
     , diatonicPitchClassValue, diatonicPitchClassFromValue
-    , adjustmentToString, chromaticTones, keyToString, toneToIndex, toneToString
+    , adjustmentToString, chromaticPitches, pitchClassToString, pitchToIndex, pitchToString
     )
 
-{-| This module provides types and functions to manipulate musical tones.
-It allows you to represent tones (pitches) like `C`, `C Sharp` and so on, as
+{-| This module provides types and functions to manipulate musical pitches.
+It allows you to represent pitches (pitches) like `C`, `C Sharp` and so on, as
 well as helpers to represent these as numerical values.
 
 
 # Types
 
-@docs Tone, PitchClass, Adjustment
+@docs Pitch, PitchClass, Adjustment
 
 
 # Common Helpers
 
-@docs newTone, keyToValue, keyFromValue, keyFromString
+@docs newPitch, pitchClassToValue, pitchClassFromValue, pitchClassFromString
 @docs adjustmentToValue, adjustmentFromValue, adjustmentFromString
 @docs diatonicPitchClassValue, diatonicPitchClassFromValue
 
@@ -49,91 +49,91 @@ type Adjustment
     | FlatFlat
 
 
-{-| Tone represents a pitch and is defined by a class and an adjustment
+{-| Pitch represents a pitch and is defined by a class and an adjustment
 -}
-type alias Tone =
+type alias Pitch =
     { class : PitchClass, adjustment : Adjustment }
 
 
-{-| newTone is a helper function to create a tone
+{-| newPitch is a helper function to create a pitch
 -}
-newTone : PitchClass -> Adjustment -> Tone
-newTone class adjustment =
+newPitch : PitchClass -> Adjustment -> Pitch
+newPitch class adjustment =
     { class = class, adjustment = adjustment }
 
 
-{-| toneToIndex returns the index in an octave of the provided note. C would be zero,
+{-| pitchToIndex returns the index in an octave of the provided note. C would be zero,
 while E Flat would be 3, or G Sharp would be 8.
 -}
-toneToIndex : Tone -> Int
-toneToIndex t =
-    remainderBy 12 (keyToValue t.class + adjustmentToValue t.adjustment)
+pitchToIndex : Pitch -> Int
+pitchToIndex t =
+    remainderBy 12 (pitchClassToValue t.class + adjustmentToValue t.adjustment)
 
 
-toneToString : Tone -> String
-toneToString t =
-    keyToString t.class ++ adjustmentToString t.adjustment
+pitchToString : Pitch -> String
+pitchToString t =
+    pitchClassToString t.class ++ adjustmentToString t.adjustment
 
 
-{-| chromaticTones returns the chromatic scale tones starting at C.
-The adjusted tones will be sharped or flatted according to the provided Adjustment.
+{-| chromaticPitches returns the chromatic scale pitches starting at C.
+The adjusted pitches will be sharped or flatted according to the provided Adjustment.
 This is mostly a helper function.
 -}
-chromaticTones : Adjustment -> List Tone
-chromaticTones adj =
+chromaticPitches : Adjustment -> List Pitch
+chromaticPitches adj =
     let
-        sharpedTones =
-            [ newTone C Natural
-            , newTone C Sharp
-            , newTone D Natural
-            , newTone D Sharp
-            , newTone E Natural
-            , newTone F Natural
-            , newTone F Sharp
-            , newTone G Natural
-            , newTone G Sharp
-            , newTone A Natural
-            , newTone A Sharp
-            , newTone B Natural
+        sharpedPitches =
+            [ newPitch C Natural
+            , newPitch C Sharp
+            , newPitch D Natural
+            , newPitch D Sharp
+            , newPitch E Natural
+            , newPitch F Natural
+            , newPitch F Sharp
+            , newPitch G Natural
+            , newPitch G Sharp
+            , newPitch A Natural
+            , newPitch A Sharp
+            , newPitch B Natural
             ]
 
-        flattedTones =
-            [ newTone C Natural
-            , newTone D Flat
-            , newTone D Natural
-            , newTone E Flat
-            , newTone E Natural
-            , newTone F Natural
-            , newTone G Flat
-            , newTone G Natural
-            , newTone A Flat
-            , newTone A Natural
-            , newTone B Flat
-            , newTone B Natural
+        flattedPitches =
+            [ newPitch C Natural
+            , newPitch D Flat
+            , newPitch D Natural
+            , newPitch E Flat
+            , newPitch E Natural
+            , newPitch F Natural
+            , newPitch G Flat
+            , newPitch G Natural
+            , newPitch A Flat
+            , newPitch A Natural
+            , newPitch B Flat
+            , newPitch B Natural
             ]
     in
     case adj of
         Natural ->
-            sharpedTones
+            sharpedPitches
 
         Sharp ->
-            sharpedTones
+            sharpedPitches
 
         Flat ->
-            flattedTones
+            flattedPitches
 
         SharpSharp ->
-            sharpedTones
+            sharpedPitches
 
         FlatFlat ->
-            flattedTones
+            flattedPitches
 
 
-{-| keyToValue returns the chromatic position of a PitchClass relative to an octave
+{-| pitchClassToValue returns the chromatic position of a PitchClass relative to an octave
 as a numeric value
 -}
-keyToValue : PitchClass -> Int
-keyToValue class =
+pitchClassToValue : PitchClass -> Int
+pitchClassToValue class =
     case class of
         C ->
             0
@@ -157,11 +157,11 @@ keyToValue class =
             11
 
 
-{-| keyFromValue given a position relative to an octave returns the
+{-| pitchClassFromValue given a position relative to an octave returns the
 corresponding key
 -}
-keyFromValue : Int -> Maybe PitchClass
-keyFromValue value =
+pitchClassFromValue : Int -> Maybe PitchClass
+pitchClassFromValue value =
     case value of
         0 ->
             Just C
@@ -188,10 +188,10 @@ keyFromValue value =
             Nothing
 
 
-{-| keyFromString parses a PitchClass from a String
+{-| pitchClassFromString parses a PitchClass from a String
 -}
-keyFromString : String -> Maybe PitchClass
-keyFromString class =
+pitchClassFromString : String -> Maybe PitchClass
+pitchClassFromString class =
     case toLower class of
         "c" ->
             Just C
@@ -218,8 +218,8 @@ keyFromString class =
             Nothing
 
 
-keyToString : PitchClass -> String
-keyToString k =
+pitchClassToString : PitchClass -> String
+pitchClassToString k =
     case k of
         C ->
             "C"
@@ -243,7 +243,7 @@ keyToString k =
             "B"
 
 
-{-| adjustmentToValue returns the numbers of semitones to apply to a
+{-| adjustmentToValue returns the numbers of semipitches to apply to a
 PitchClass when calculating its position.
 -}
 adjustmentToValue : Adjustment -> Int
@@ -266,7 +266,7 @@ adjustmentToValue adjustment =
 
 
 {-| adjustmentFromValue returns the adjustment corresponding to a given
-number of semitones
+number of semipitches
 -}
 adjustmentFromValue : Int -> Adjustment
 adjustmentFromValue value =

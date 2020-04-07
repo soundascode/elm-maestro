@@ -21,12 +21,12 @@ or add the dependency in your `elm-package.json` file directly
 
 ### Types and abstractions
 
-#### Tone
+#### Pitch
 
 The `Maestro.PitchClass` module exposes the following types:
 
 ```elm
-type alias Tone =
+type alias Pitch =
     { class : PitchClass, adjustment : Adjustment }
 
 type PitchClass
@@ -46,14 +46,14 @@ type Adjustment
     | FlatFlat
 ```
 
-in order to represent pitches/tones as follows:
+in order to represent pitches/pitches as follows:
 
 ```elm
 import Maestro.PitchClass exposing(PitchClass(..), Adjustment(..))
 
-cNatural = newTone C Natural
-dSharp = newTone D Sharp
-bFlat = newTone B Flat
+cNatural = newPitch C Natural
+dSharp = newPitch D Sharp
+bFlat = newPitch B Flat
 ```
 
 #### Note
@@ -62,7 +62,7 @@ The `Maestro.Note` module exposes the following types:
 
 ```elm
 type alias Note =
-    { tone : Tone
+    { pitch : Pitch
     , octave : Octave
     }
 
@@ -73,7 +73,7 @@ type alias Octave =
 in order to represent notes as follows:
 
 ```elm
-import Maestro.PitchClass exposing (Tone, PitchClass(..), Adjustment(..))
+import Maestro.PitchClass exposing (Pitch, PitchClass(..), Adjustment(..))
 import Maestro.Note exposing (newNote)
 
 e3Natural = newNote E Natural 3
@@ -117,7 +117,7 @@ and will allow you to find the note at interval from a start note
 like follows:
 
 ```elm
-import Maestro.PitchClass exposing (PitchClass(..), Adjustment(..), newTone)
+import Maestro.PitchClass exposing (PitchClass(..), Adjustment(..), newPitch)
 import Maestro.Interval exposing (Interval(..), addInterval)
 
 example : Note
@@ -127,15 +127,15 @@ example =
 
 ### Scale
 
-A Scale is represented as a list of Tone. It is built from a pitch and a mode as
+A Scale is represented as a list of Pitch. It is built from a pitch and a mode as
 follows:
 
 ```elm
-import Maestro.PitchClass exposing (newTone, PitchClass(..), Adjustment(..))
+import Maestro.PitchClass exposing (newPitch, PitchClass(..), Adjustment(..))
 import Maestro.Scale exposing (scale, Mode(..))
 
 example : Scale
 example =
-    doSomethingWith <| scale (newTone C Natural) Major
+    doSomethingWith <| scale (newPitch C Natural) Major
 
 ```

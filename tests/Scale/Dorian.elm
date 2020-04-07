@@ -3,7 +3,7 @@ module Scale.Dorian exposing (all)
 import Expect
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Note exposing (Note)
-import Maestro.PitchClass exposing (Adjustment(..), PitchClass(..), newTone)
+import Maestro.PitchClass exposing (Adjustment(..), PitchClass(..), newPitch)
 import Maestro.Scale exposing (Mode(..), Scale, scale)
 import Test exposing (..)
 
@@ -14,212 +14,212 @@ all =
         [ describe "dorian mode tests"
             [ test "C Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone C Natural) Dorian)
-                        [ newTone C Natural
-                        , newTone D Natural
-                        , newTone E Flat
-                        , newTone F Natural
-                        , newTone G Natural
-                        , newTone A Natural
-                        , newTone B Flat
+                    Expect.equal (scale (newPitch C Natural) Dorian)
+                        [ newPitch C Natural
+                        , newPitch D Natural
+                        , newPitch E Flat
+                        , newPitch F Natural
+                        , newPitch G Natural
+                        , newPitch A Natural
+                        , newPitch B Flat
                         ]
             , test "C# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone C Sharp) Dorian)
-                        [ newTone C Sharp
-                        , newTone D Sharp
-                        , newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Sharp
-                        , newTone B Natural
+                    Expect.equal (scale (newPitch C Sharp) Dorian)
+                        [ newPitch C Sharp
+                        , newPitch D Sharp
+                        , newPitch E Natural
+                        , newPitch F Sharp
+                        , newPitch G Sharp
+                        , newPitch A Sharp
+                        , newPitch B Natural
                         ]
             , test "Db Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone D Flat) Dorian)
-                        [ newTone D Flat
-                        , newTone E Flat
-                        , newTone F Flat
-                        , newTone G Flat
-                        , newTone A Flat
-                        , newTone B Flat
-                        , newTone C Flat
+                    Expect.equal (scale (newPitch D Flat) Dorian)
+                        [ newPitch D Flat
+                        , newPitch E Flat
+                        , newPitch F Flat
+                        , newPitch G Flat
+                        , newPitch A Flat
+                        , newPitch B Flat
+                        , newPitch C Flat
                         ]
             , test "D Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone D Natural) Dorian)
-                        [ newTone D Natural
-                        , newTone E Natural
-                        , newTone F Natural
-                        , newTone G Natural
-                        , newTone A Natural
-                        , newTone B Natural
-                        , newTone C Natural
+                    Expect.equal (scale (newPitch D Natural) Dorian)
+                        [ newPitch D Natural
+                        , newPitch E Natural
+                        , newPitch F Natural
+                        , newPitch G Natural
+                        , newPitch A Natural
+                        , newPitch B Natural
+                        , newPitch C Natural
                         ]
             , test "D# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone D Sharp) Dorian)
-                        [ newTone D Sharp
-                        , newTone E Sharp
-                        , newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Sharp
-                        , newTone B Sharp
-                        , newTone C Sharp
+                    Expect.equal (scale (newPitch D Sharp) Dorian)
+                        [ newPitch D Sharp
+                        , newPitch E Sharp
+                        , newPitch F Sharp
+                        , newPitch G Sharp
+                        , newPitch A Sharp
+                        , newPitch B Sharp
+                        , newPitch C Sharp
                         ]
             , test "Eb Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Flat) Dorian)
-                        [ newTone E Flat
-                        , newTone F Natural
-                        , newTone G Flat
-                        , newTone A Flat
-                        , newTone B Flat
-                        , newTone C Natural
-                        , newTone D Flat
+                    Expect.equal (scale (newPitch E Flat) Dorian)
+                        [ newPitch E Flat
+                        , newPitch F Natural
+                        , newPitch G Flat
+                        , newPitch A Flat
+                        , newPitch B Flat
+                        , newPitch C Natural
+                        , newPitch D Flat
                         ]
             , test "E Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Natural) Dorian)
-                        [ newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Natural
-                        , newTone A Natural
-                        , newTone B Natural
-                        , newTone C Sharp
-                        , newTone D Natural
+                    Expect.equal (scale (newPitch E Natural) Dorian)
+                        [ newPitch E Natural
+                        , newPitch F Sharp
+                        , newPitch G Natural
+                        , newPitch A Natural
+                        , newPitch B Natural
+                        , newPitch C Sharp
+                        , newPitch D Natural
                         ]
             , test "E# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Sharp) Dorian)
-                        [ newTone E Sharp
-                        , newTone F SharpSharp
-                        , newTone G Sharp
-                        , newTone A Sharp
-                        , newTone B Sharp
-                        , newTone C SharpSharp
-                        , newTone D Sharp
+                    Expect.equal (scale (newPitch E Sharp) Dorian)
+                        [ newPitch E Sharp
+                        , newPitch F SharpSharp
+                        , newPitch G Sharp
+                        , newPitch A Sharp
+                        , newPitch B Sharp
+                        , newPitch C SharpSharp
+                        , newPitch D Sharp
                         ]
             , test "Fb Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Flat) Dorian)
-                        [ newTone F Flat
-                        , newTone G Flat
-                        , newTone A FlatFlat
-                        , newTone B FlatFlat
-                        , newTone C Flat
-                        , newTone D Flat
-                        , newTone E FlatFlat
+                    Expect.equal (scale (newPitch F Flat) Dorian)
+                        [ newPitch F Flat
+                        , newPitch G Flat
+                        , newPitch A FlatFlat
+                        , newPitch B FlatFlat
+                        , newPitch C Flat
+                        , newPitch D Flat
+                        , newPitch E FlatFlat
                         ]
             , test "F Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Natural) Dorian)
-                        [ newTone F Natural
-                        , newTone G Natural
-                        , newTone A Flat
-                        , newTone B Flat
-                        , newTone C Natural
-                        , newTone D Natural
-                        , newTone E Flat
+                    Expect.equal (scale (newPitch F Natural) Dorian)
+                        [ newPitch F Natural
+                        , newPitch G Natural
+                        , newPitch A Flat
+                        , newPitch B Flat
+                        , newPitch C Natural
+                        , newPitch D Natural
+                        , newPitch E Flat
                         ]
             , test "F# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Sharp) Dorian)
-                        [ newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Natural
-                        , newTone B Natural
-                        , newTone C Sharp
-                        , newTone D Sharp
-                        , newTone E Natural
+                    Expect.equal (scale (newPitch F Sharp) Dorian)
+                        [ newPitch F Sharp
+                        , newPitch G Sharp
+                        , newPitch A Natural
+                        , newPitch B Natural
+                        , newPitch C Sharp
+                        , newPitch D Sharp
+                        , newPitch E Natural
                         ]
             , test "Gb Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Flat) Dorian)
-                        [ newTone G Flat
-                        , newTone A Flat
-                        , newTone B FlatFlat
-                        , newTone C Flat
-                        , newTone D Flat
-                        , newTone E Flat
-                        , newTone F Flat
+                    Expect.equal (scale (newPitch G Flat) Dorian)
+                        [ newPitch G Flat
+                        , newPitch A Flat
+                        , newPitch B FlatFlat
+                        , newPitch C Flat
+                        , newPitch D Flat
+                        , newPitch E Flat
+                        , newPitch F Flat
                         ]
             , test "G Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Natural) Dorian)
-                        [ newTone G Natural
-                        , newTone A Natural
-                        , newTone B Flat
-                        , newTone C Natural
-                        , newTone D Natural
-                        , newTone E Natural
-                        , newTone F Natural
+                    Expect.equal (scale (newPitch G Natural) Dorian)
+                        [ newPitch G Natural
+                        , newPitch A Natural
+                        , newPitch B Flat
+                        , newPitch C Natural
+                        , newPitch D Natural
+                        , newPitch E Natural
+                        , newPitch F Natural
                         ]
             , test "G# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Sharp) Dorian)
-                        [ newTone G Sharp
-                        , newTone A Sharp
-                        , newTone B Natural
-                        , newTone C Sharp
-                        , newTone D Sharp
-                        , newTone E Sharp
-                        , newTone F Sharp
+                    Expect.equal (scale (newPitch G Sharp) Dorian)
+                        [ newPitch G Sharp
+                        , newPitch A Sharp
+                        , newPitch B Natural
+                        , newPitch C Sharp
+                        , newPitch D Sharp
+                        , newPitch E Sharp
+                        , newPitch F Sharp
                         ]
             , test "Ab Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Flat) Dorian)
-                        [ newTone A Flat
-                        , newTone B Flat
-                        , newTone C Flat
-                        , newTone D Flat
-                        , newTone E Flat
-                        , newTone F Natural
-                        , newTone G Flat
+                    Expect.equal (scale (newPitch A Flat) Dorian)
+                        [ newPitch A Flat
+                        , newPitch B Flat
+                        , newPitch C Flat
+                        , newPitch D Flat
+                        , newPitch E Flat
+                        , newPitch F Natural
+                        , newPitch G Flat
                         ]
             , test "A Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Natural) Dorian)
-                        [ newTone A Natural
-                        , newTone B Natural
-                        , newTone C Natural
-                        , newTone D Natural
-                        , newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Natural
+                    Expect.equal (scale (newPitch A Natural) Dorian)
+                        [ newPitch A Natural
+                        , newPitch B Natural
+                        , newPitch C Natural
+                        , newPitch D Natural
+                        , newPitch E Natural
+                        , newPitch F Sharp
+                        , newPitch G Natural
                         ]
             , test "A# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Sharp) Dorian)
-                        [ newTone A Sharp
-                        , newTone B Sharp
-                        , newTone C Sharp
-                        , newTone D Sharp
-                        , newTone E Sharp
-                        , newTone F SharpSharp
-                        , newTone G Sharp
+                    Expect.equal (scale (newPitch A Sharp) Dorian)
+                        [ newPitch A Sharp
+                        , newPitch B Sharp
+                        , newPitch C Sharp
+                        , newPitch D Sharp
+                        , newPitch E Sharp
+                        , newPitch F SharpSharp
+                        , newPitch G Sharp
                         ]
             , test "Bb Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone B Flat) Dorian)
-                        [ newTone B Flat
-                        , newTone C Natural
-                        , newTone D Flat
-                        , newTone E Flat
-                        , newTone F Natural
-                        , newTone G Natural
-                        , newTone A Flat
+                    Expect.equal (scale (newPitch B Flat) Dorian)
+                        [ newPitch B Flat
+                        , newPitch C Natural
+                        , newPitch D Flat
+                        , newPitch E Flat
+                        , newPitch F Natural
+                        , newPitch G Natural
+                        , newPitch A Flat
                         ]
             , test "B Dorian" <|
                 \() ->
-                    Expect.equal (scale (newTone B Natural) Dorian)
-                        [ newTone B Natural
-                        , newTone C Sharp
-                        , newTone D Natural
-                        , newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Natural
+                    Expect.equal (scale (newPitch B Natural) Dorian)
+                        [ newPitch B Natural
+                        , newPitch C Sharp
+                        , newPitch D Natural
+                        , newPitch E Natural
+                        , newPitch F Sharp
+                        , newPitch G Sharp
+                        , newPitch A Natural
                         ]
             ]
         ]

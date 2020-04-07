@@ -22,13 +22,13 @@ manipulate chords.
 import ListUtils exposing (rotate)
 import Maestro.Interval exposing (Interval(..), addInterval)
 import Maestro.Note exposing (newNote)
-import Maestro.PitchClass exposing (Tone)
+import Maestro.PitchClass exposing (Pitch)
 
 
-{-| Chord represents a list of tones composing it
+{-| Chord represents a list of pitches composing it
 -}
 type alias Chord =
-    List Tone
+    List Pitch
 
 
 {-| Quality represents the quality of a scale.
@@ -49,12 +49,12 @@ type Quality
     | SeventhFlatFive
 
 
-{-| Given a Tone and a Quality, generates the tones
+{-| Given a Pitch and a Quality, generates the pitches
 composing a chord.
 
     (==)
         chord
-        (newTone C Natural)
+        (newPitch C Natural)
         Major
         [ { class = C, adjustment = Natural }
         , { class = E, adjustment = Natural }
@@ -62,13 +62,13 @@ composing a chord.
         ]
 
 -}
-chord : Tone -> Quality -> Chord
-chord tone quality =
+chord : Pitch -> Quality -> Chord
+chord pitch quality =
     let
         placeholderNote =
-            newNote tone.class tone.adjustment 3
+            newNote pitch.class pitch.adjustment 3
     in
-    List.map (\i -> (addInterval placeholderNote i).tone) (qualityToIntervals quality)
+    List.map (\i -> (addInterval placeholderNote i).pitch) (qualityToIntervals quality)
 
 
 inversion : Int -> Chord -> Chord
@@ -167,8 +167,8 @@ qualityToString q =
             "7♭5"
 
 
-tonesCount : Quality -> Int
-tonesCount q =
+pitchesCount : Quality -> Int
+pitchesCount q =
     case q of
         MajorTriad ->
             3

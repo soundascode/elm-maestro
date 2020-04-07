@@ -38,14 +38,14 @@ import Maestro.Interval
         , phrygianIntervals
         )
 import Maestro.Note exposing (Note, newNote)
-import Maestro.PitchClass exposing (Tone)
+import Maestro.PitchClass exposing (Pitch)
 import String exposing (toLower)
 
 
-{-| Scale represents a list of tones composing it
+{-| Scale represents a list of pitches composing it
 -}
 type alias Scale =
-    List Tone
+    List Pitch
 
 
 {-| Mode represents the mode of a scale.
@@ -60,12 +60,12 @@ type Mode
     | Locrian
 
 
-{-| Given a Tone and a Mode, generates the tones
+{-| Given a Pitch and a Mode, generates the pitches
 composing a scale.
 
     (==)
         scale
-        (newTone C Natural)
+        (newPitch C Natural)
         Major
         [ { class = C, adjustment = Natural }
         , { class = D, adjustment = Natural }
@@ -77,17 +77,17 @@ composing a scale.
         ]
 
 -}
-scale : Tone -> Mode -> List Tone
-scale tone mode =
+scale : Pitch -> Mode -> List Pitch
+scale pitch mode =
     let
         placeholderNote =
-            newNote tone.class tone.adjustment 3
+            newNote pitch.class pitch.adjustment 3
     in
-    List.map (\i -> (addInterval placeholderNote i).tone) (modeToIntervals mode)
+    List.map (\i -> (addInterval placeholderNote i).pitch) (modeToIntervals mode)
 
 
 {-| scaleFrom generates the notes composing a scale, according
-to a provided note (tone + octave) and mode
+to a provided note (pitch + octave) and mode
 -}
 scaleFrom : Note -> Mode -> List Note
 scaleFrom note mode =

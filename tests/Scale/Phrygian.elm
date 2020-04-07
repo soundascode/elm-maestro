@@ -3,7 +3,7 @@ module Scale.Phrygian exposing (all)
 import Expect
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Note exposing (Note)
-import Maestro.PitchClass exposing (Adjustment(..), PitchClass(..), newTone)
+import Maestro.PitchClass exposing (Adjustment(..), PitchClass(..), newPitch)
 import Maestro.Scale exposing (Mode(..), Scale, scale)
 import Test exposing (..)
 
@@ -14,212 +14,212 @@ all =
         [ describe "phrygian mode tests"
             [ test "C Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone C Natural) Phrygian)
-                        [ newTone C Natural
-                        , newTone D Flat
-                        , newTone E Flat
-                        , newTone F Natural
-                        , newTone G Natural
-                        , newTone A Flat
-                        , newTone B Flat
+                    Expect.equal (scale (newPitch C Natural) Phrygian)
+                        [ newPitch C Natural
+                        , newPitch D Flat
+                        , newPitch E Flat
+                        , newPitch F Natural
+                        , newPitch G Natural
+                        , newPitch A Flat
+                        , newPitch B Flat
                         ]
             , test "C# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone C Sharp) Phrygian)
-                        [ newTone C Sharp
-                        , newTone D Natural
-                        , newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Natural
-                        , newTone B Natural
+                    Expect.equal (scale (newPitch C Sharp) Phrygian)
+                        [ newPitch C Sharp
+                        , newPitch D Natural
+                        , newPitch E Natural
+                        , newPitch F Sharp
+                        , newPitch G Sharp
+                        , newPitch A Natural
+                        , newPitch B Natural
                         ]
             , test "Db Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone D Flat) Phrygian)
-                        [ newTone D Flat
-                        , newTone E FlatFlat
-                        , newTone F Flat
-                        , newTone G Flat
-                        , newTone A Flat
-                        , newTone B FlatFlat
-                        , newTone C Flat
+                    Expect.equal (scale (newPitch D Flat) Phrygian)
+                        [ newPitch D Flat
+                        , newPitch E FlatFlat
+                        , newPitch F Flat
+                        , newPitch G Flat
+                        , newPitch A Flat
+                        , newPitch B FlatFlat
+                        , newPitch C Flat
                         ]
             , test "D Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone D Natural) Phrygian)
-                        [ newTone D Natural
-                        , newTone E Flat
-                        , newTone F Natural
-                        , newTone G Natural
-                        , newTone A Natural
-                        , newTone B Flat
-                        , newTone C Natural
+                    Expect.equal (scale (newPitch D Natural) Phrygian)
+                        [ newPitch D Natural
+                        , newPitch E Flat
+                        , newPitch F Natural
+                        , newPitch G Natural
+                        , newPitch A Natural
+                        , newPitch B Flat
+                        , newPitch C Natural
                         ]
             , test "D# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone D Sharp) Phrygian)
-                        [ newTone D Sharp
-                        , newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Sharp
-                        , newTone B Natural
-                        , newTone C Sharp
+                    Expect.equal (scale (newPitch D Sharp) Phrygian)
+                        [ newPitch D Sharp
+                        , newPitch E Natural
+                        , newPitch F Sharp
+                        , newPitch G Sharp
+                        , newPitch A Sharp
+                        , newPitch B Natural
+                        , newPitch C Sharp
                         ]
             , test "Eb Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Flat) Phrygian)
-                        [ newTone E Flat
-                        , newTone F Flat
-                        , newTone G Flat
-                        , newTone A Flat
-                        , newTone B Flat
-                        , newTone C Flat
-                        , newTone D Flat
+                    Expect.equal (scale (newPitch E Flat) Phrygian)
+                        [ newPitch E Flat
+                        , newPitch F Flat
+                        , newPitch G Flat
+                        , newPitch A Flat
+                        , newPitch B Flat
+                        , newPitch C Flat
+                        , newPitch D Flat
                         ]
             , test "E Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Natural) Phrygian)
-                        [ newTone E Natural
-                        , newTone F Natural
-                        , newTone G Natural
-                        , newTone A Natural
-                        , newTone B Natural
-                        , newTone C Natural
-                        , newTone D Natural
+                    Expect.equal (scale (newPitch E Natural) Phrygian)
+                        [ newPitch E Natural
+                        , newPitch F Natural
+                        , newPitch G Natural
+                        , newPitch A Natural
+                        , newPitch B Natural
+                        , newPitch C Natural
+                        , newPitch D Natural
                         ]
             , test "E# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone E Sharp) Phrygian)
-                        [ newTone E Sharp
-                        , newTone F Sharp
-                        , newTone G Sharp
-                        , newTone A Sharp
-                        , newTone B Sharp
-                        , newTone C Sharp
-                        , newTone D Sharp
+                    Expect.equal (scale (newPitch E Sharp) Phrygian)
+                        [ newPitch E Sharp
+                        , newPitch F Sharp
+                        , newPitch G Sharp
+                        , newPitch A Sharp
+                        , newPitch B Sharp
+                        , newPitch C Sharp
+                        , newPitch D Sharp
                         ]
             , test "Fb Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Flat) Phrygian)
-                        [ newTone F Flat
-                        , newTone G FlatFlat
-                        , newTone A FlatFlat
-                        , newTone B FlatFlat
-                        , newTone C Flat
-                        , newTone D FlatFlat
-                        , newTone E FlatFlat
+                    Expect.equal (scale (newPitch F Flat) Phrygian)
+                        [ newPitch F Flat
+                        , newPitch G FlatFlat
+                        , newPitch A FlatFlat
+                        , newPitch B FlatFlat
+                        , newPitch C Flat
+                        , newPitch D FlatFlat
+                        , newPitch E FlatFlat
                         ]
             , test "F Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Natural) Phrygian)
-                        [ newTone F Natural
-                        , newTone G Flat
-                        , newTone A Flat
-                        , newTone B Flat
-                        , newTone C Natural
-                        , newTone D Flat
-                        , newTone E Flat
+                    Expect.equal (scale (newPitch F Natural) Phrygian)
+                        [ newPitch F Natural
+                        , newPitch G Flat
+                        , newPitch A Flat
+                        , newPitch B Flat
+                        , newPitch C Natural
+                        , newPitch D Flat
+                        , newPitch E Flat
                         ]
             , test "F# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone F Sharp) Phrygian)
-                        [ newTone F Sharp
-                        , newTone G Natural
-                        , newTone A Natural
-                        , newTone B Natural
-                        , newTone C Sharp
-                        , newTone D Natural
-                        , newTone E Natural
+                    Expect.equal (scale (newPitch F Sharp) Phrygian)
+                        [ newPitch F Sharp
+                        , newPitch G Natural
+                        , newPitch A Natural
+                        , newPitch B Natural
+                        , newPitch C Sharp
+                        , newPitch D Natural
+                        , newPitch E Natural
                         ]
             , test "Gb Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Flat) Phrygian)
-                        [ newTone G Flat
-                        , newTone A FlatFlat
-                        , newTone B FlatFlat
-                        , newTone C Flat
-                        , newTone D Flat
-                        , newTone E FlatFlat
-                        , newTone F Flat
+                    Expect.equal (scale (newPitch G Flat) Phrygian)
+                        [ newPitch G Flat
+                        , newPitch A FlatFlat
+                        , newPitch B FlatFlat
+                        , newPitch C Flat
+                        , newPitch D Flat
+                        , newPitch E FlatFlat
+                        , newPitch F Flat
                         ]
             , test "G Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Natural) Phrygian)
-                        [ newTone G Natural
-                        , newTone A Flat
-                        , newTone B Flat
-                        , newTone C Natural
-                        , newTone D Natural
-                        , newTone E Flat
-                        , newTone F Natural
+                    Expect.equal (scale (newPitch G Natural) Phrygian)
+                        [ newPitch G Natural
+                        , newPitch A Flat
+                        , newPitch B Flat
+                        , newPitch C Natural
+                        , newPitch D Natural
+                        , newPitch E Flat
+                        , newPitch F Natural
                         ]
             , test "G# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone G Sharp) Phrygian)
-                        [ newTone G Sharp
-                        , newTone A Natural
-                        , newTone B Natural
-                        , newTone C Sharp
-                        , newTone D Sharp
-                        , newTone E Natural
-                        , newTone F Sharp
+                    Expect.equal (scale (newPitch G Sharp) Phrygian)
+                        [ newPitch G Sharp
+                        , newPitch A Natural
+                        , newPitch B Natural
+                        , newPitch C Sharp
+                        , newPitch D Sharp
+                        , newPitch E Natural
+                        , newPitch F Sharp
                         ]
             , test "Ab Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Flat) Phrygian)
-                        [ newTone A Flat
-                        , newTone B FlatFlat
-                        , newTone C Flat
-                        , newTone D Flat
-                        , newTone E Flat
-                        , newTone F Flat
-                        , newTone G Flat
+                    Expect.equal (scale (newPitch A Flat) Phrygian)
+                        [ newPitch A Flat
+                        , newPitch B FlatFlat
+                        , newPitch C Flat
+                        , newPitch D Flat
+                        , newPitch E Flat
+                        , newPitch F Flat
+                        , newPitch G Flat
                         ]
             , test "A Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Natural) Phrygian)
-                        [ newTone A Natural
-                        , newTone B Flat
-                        , newTone C Natural
-                        , newTone D Natural
-                        , newTone E Natural
-                        , newTone F Natural
-                        , newTone G Natural
+                    Expect.equal (scale (newPitch A Natural) Phrygian)
+                        [ newPitch A Natural
+                        , newPitch B Flat
+                        , newPitch C Natural
+                        , newPitch D Natural
+                        , newPitch E Natural
+                        , newPitch F Natural
+                        , newPitch G Natural
                         ]
             , test "A# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone A Sharp) Phrygian)
-                        [ newTone A Sharp
-                        , newTone B Natural
-                        , newTone C Sharp
-                        , newTone D Sharp
-                        , newTone E Sharp
-                        , newTone F Sharp
-                        , newTone G Sharp
+                    Expect.equal (scale (newPitch A Sharp) Phrygian)
+                        [ newPitch A Sharp
+                        , newPitch B Natural
+                        , newPitch C Sharp
+                        , newPitch D Sharp
+                        , newPitch E Sharp
+                        , newPitch F Sharp
+                        , newPitch G Sharp
                         ]
             , test "Bb Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone B Flat) Phrygian)
-                        [ newTone B Flat
-                        , newTone C Flat
-                        , newTone D Flat
-                        , newTone E Flat
-                        , newTone F Natural
-                        , newTone G Flat
-                        , newTone A Flat
+                    Expect.equal (scale (newPitch B Flat) Phrygian)
+                        [ newPitch B Flat
+                        , newPitch C Flat
+                        , newPitch D Flat
+                        , newPitch E Flat
+                        , newPitch F Natural
+                        , newPitch G Flat
+                        , newPitch A Flat
                         ]
             , test "B Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newTone B Natural) Phrygian)
-                        [ newTone B Natural
-                        , newTone C Natural
-                        , newTone D Natural
-                        , newTone E Natural
-                        , newTone F Sharp
-                        , newTone G Natural
-                        , newTone A Natural
+                    Expect.equal (scale (newPitch B Natural) Phrygian)
+                        [ newPitch B Natural
+                        , newPitch C Natural
+                        , newPitch D Natural
+                        , newPitch E Natural
+                        , newPitch F Sharp
+                        , newPitch G Natural
+                        , newPitch A Natural
                         ]
             ]
         ]
