@@ -3,7 +3,7 @@ module Scale.Ionian exposing (all)
 import Expect
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Note exposing (Note)
-import Maestro.PitchClass exposing (Adjustment(..), PitchClass(..), newPitch)
+import Maestro.PitchClass exposing (Accidental(..), PitchClass(..), newPitch)
 import Maestro.Scale exposing (Mode(..), Scale, scale)
 import Test exposing (..)
 

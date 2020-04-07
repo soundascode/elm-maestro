@@ -1,9 +1,9 @@
 module Maestro.PitchClass exposing
-    ( Pitch, PitchClass(..), Adjustment(..)
+    ( Pitch, PitchClass(..), Accidental(..)
     , newPitch, pitchClassToValue, pitchClassFromValue, pitchClassFromString
-    , adjustmentToValue, adjustmentFromValue, adjustmentFromString
+    , accidentalToValue, accidentalFromValue, accidentalFromString
     , diatonicPitchClassValue, diatonicPitchClassFromValue
-    , adjustmentToString, chromaticPitches, pitchClassToString, pitchToIndex, pitchToString
+    , accidentalToString, chromaticPitches, pitchClassToString, pitchToIndex, pitchToString
     )
 
 {-| This module provides types and functions to manipulate musical pitches.
@@ -13,13 +13,13 @@ well as helpers to represent these as numerical values.
 
 # Types
 
-@docs Pitch, PitchClass, Adjustment
+@docs Pitch, PitchClass, Accidental
 
 
 # Common Helpers
 
 @docs newPitch, pitchClassToValue, pitchClassFromValue, pitchClassFromString
-@docs adjustmentToValue, adjustmentFromValue, adjustmentFromString
+@docs accidentalToValue, accidentalFromValue, accidentalFromString
 @docs diatonicPitchClassValue, diatonicPitchClassFromValue
 
 -}
@@ -27,7 +27,7 @@ well as helpers to represent these as numerical values.
 import String exposing (toLower)
 
 
-{-| PitchClass represents a Pitch class without adjustment
+{-| PitchClass represents a Pitch class without accidental
 -}
 type PitchClass
     = C
@@ -39,9 +39,9 @@ type PitchClass
     | B
 
 
-{-| Adjustment represents an adjustment applied to a key
+{-| Accidental represents an accidental applied to a key
 -}
-type Adjustment
+type Accidental
     = Natural
     | Sharp
     | Flat
@@ -49,17 +49,17 @@ type Adjustment
     | FlatFlat
 
 
-{-| Pitch represents a pitch and is defined by a class and an adjustment
+{-| Pitch represents a pitch and is defined by a class and an accidental
 -}
 type alias Pitch =
-    { class : PitchClass, adjustment : Adjustment }
+    { class : PitchClass, accidental : Accidental }
 
 
 {-| newPitch is a helper function to create a pitch
 -}
-newPitch : PitchClass -> Adjustment -> Pitch
-newPitch class adjustment =
-    { class = class, adjustment = adjustment }
+newPitch : PitchClass -> Accidental -> Pitch
+newPitch class accidental =
+    { class = class, accidental = accidental }
 
 
 {-| pitchToIndex returns the index in an octave of the provided note. C would be zero,
@@ -67,19 +67,19 @@ while E Flat would be 3, or G Sharp would be 8.
 -}
 pitchToIndex : Pitch -> Int
 pitchToIndex t =
-    remainderBy 12 (pitchClassToValue t.class + adjustmentToValue t.adjustment)
+    remainderBy 12 (pitchClassToValue t.class + accidentalToValue t.accidental)
 
 
 pitchToString : Pitch -> String
 pitchToString t =
-    pitchClassToString t.class ++ adjustmentToString t.adjustment
+    pitchClassToString t.class ++ accidentalToString t.accidental
 
 
 {-| chromaticPitches returns the chromatic scale pitches starting at C.
-The adjusted pitches will be sharped or flatted according to the provided Adjustment.
+The adjusted pitches will be sharped or flatted according to the provided Accidental.
 This is mostly a helper function.
 -}
-chromaticPitches : Adjustment -> List Pitch
+chromaticPitches : Accidental -> List Pitch
 chromaticPitches adj =
     let
         sharpedPitches =
@@ -243,12 +243,12 @@ pitchClassToString k =
             "B"
 
 
-{-| adjustmentToValue returns the numbers of semipitches to apply to a
+{-| accidentalToValue returns the numbers of semipitches to apply to a
 PitchClass when calculating its position.
 -}
-adjustmentToValue : Adjustment -> Int
-adjustmentToValue adjustment =
-    case adjustment of
+accidentalToValue : Accidental -> Int
+accidentalToValue accidental =
+    case accidental of
         Flat ->
             -1
 
@@ -265,11 +265,11 @@ adjustmentToValue adjustment =
             2
 
 
-{-| adjustmentFromValue returns the adjustment corresponding to a given
+{-| accidentalFromValue returns the accidental corresponding to a given
 number of semipitches
 -}
-adjustmentFromValue : Int -> Adjustment
-adjustmentFromValue value =
+accidentalFromValue : Int -> Accidental
+accidentalFromValue value =
     if value == -2 then
         FlatFlat
 
@@ -289,10 +289,10 @@ adjustmentFromValue value =
         Natural
 
 
-{-| adjustmentFromString parses an adjustment from a String
+{-| accidentalFromString parses an accidental from a String
 -}
-adjustmentFromString : String -> Maybe Adjustment
-adjustmentFromString adj =
+accidentalFromString : String -> Maybe Accidental
+accidentalFromString adj =
     case toLower adj of
         "" ->
             Just Natural
@@ -316,10 +316,10 @@ adjustmentFromString adj =
             Nothing
 
 
-{-| adjustmentFromString parses an adjustment from a String
+{-| accidentalFromString parses an accidental from a String
 -}
-adjustmentToString : Adjustment -> String
-adjustmentToString adj =
+accidentalToString : Accidental -> String
+accidentalToString adj =
     case adj of
         Natural ->
             ""

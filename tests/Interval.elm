@@ -3,7 +3,7 @@ module Interval exposing (all)
 import Expect
 import Maestro.Interval exposing (Degree(..), Interval(..), addInterval, diatonicDegreeOf, distance)
 import Maestro.Note exposing (Note, newNote)
-import Maestro.PitchClass exposing (Adjustment(..), PitchClass(..))
+import Maestro.PitchClass exposing (Accidental(..), PitchClass(..))
 import String
 import Test exposing (..)
 

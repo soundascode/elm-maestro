@@ -67,13 +67,13 @@ composing a scale.
         scale
         (newPitch C Natural)
         Major
-        [ { class = C, adjustment = Natural }
-        , { class = D, adjustment = Natural }
-        , { class = E, adjustment = Natural }
-        , { class = F, adjustment = Natural }
-        , { class = G, adjustment = Natural }
-        , { class = A, adjustment = Natural }
-        , { class = B, adjustment = Natural }
+        [ { class = C, accidental = Natural }
+        , { class = D, accidental = Natural }
+        , { class = E, accidental = Natural }
+        , { class = F, accidental = Natural }
+        , { class = G, accidental = Natural }
+        , { class = A, accidental = Natural }
+        , { class = B, accidental = Natural }
         ]
 
 -}
@@ -81,7 +81,7 @@ scale : Pitch -> Mode -> List Pitch
 scale pitch mode =
     let
         placeholderNote =
-            newNote pitch.class pitch.adjustment 3
+            newNote pitch.class pitch.accidental 3
     in
     List.map (\i -> (addInterval placeholderNote i).pitch) (modeToIntervals mode)
 

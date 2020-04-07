@@ -27,7 +27,7 @@ The `Maestro.PitchClass` module exposes the following types:
 
 ```elm
 type alias Pitch =
-    { class : PitchClass, adjustment : Adjustment }
+    { class : PitchClass, accidental : Accidental }
 
 type PitchClass
     = C
@@ -38,7 +38,7 @@ type PitchClass
     | A
     | B
 
-type Adjustment
+type Accidental
     = Natural
     | Sharp
     | Flat
@@ -49,7 +49,7 @@ type Adjustment
 in order to represent pitches/pitches as follows:
 
 ```elm
-import Maestro.PitchClass exposing(PitchClass(..), Adjustment(..))
+import Maestro.PitchClass exposing(PitchClass(..), Accidental(..))
 
 cNatural = newPitch C Natural
 dSharp = newPitch D Sharp
@@ -73,7 +73,7 @@ type alias Octave =
 in order to represent notes as follows:
 
 ```elm
-import Maestro.PitchClass exposing (Pitch, PitchClass(..), Adjustment(..))
+import Maestro.PitchClass exposing (Pitch, PitchClass(..), Accidental(..))
 import Maestro.Note exposing (newNote)
 
 e3Natural = newNote E Natural 3
@@ -117,7 +117,7 @@ and will allow you to find the note at interval from a start note
 like follows:
 
 ```elm
-import Maestro.PitchClass exposing (PitchClass(..), Adjustment(..), newPitch)
+import Maestro.PitchClass exposing (PitchClass(..), Accidental(..), newPitch)
 import Maestro.Interval exposing (Interval(..), addInterval)
 
 example : Note
@@ -131,7 +131,7 @@ A Scale is represented as a list of Pitch. It is built from a pitch and a mode a
 follows:
 
 ```elm
-import Maestro.PitchClass exposing (newPitch, PitchClass(..), Adjustment(..))
+import Maestro.PitchClass exposing (newPitch, PitchClass(..), Accidental(..))
 import Maestro.Scale exposing (scale, Mode(..))
 
 example : Scale

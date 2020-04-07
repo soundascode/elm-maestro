@@ -56,9 +56,9 @@ composing a chord.
         chord
         (newPitch C Natural)
         Major
-        [ { class = C, adjustment = Natural }
-        , { class = E, adjustment = Natural }
-        , { class = G, adjustment = Natural }
+        [ { class = C, accidental = Natural }
+        , { class = E, accidental = Natural }
+        , { class = G, accidental = Natural }
         ]
 
 -}
@@ -66,7 +66,7 @@ chord : Pitch -> Quality -> Chord
 chord pitch quality =
     let
         placeholderNote =
-            newNote pitch.class pitch.adjustment 3
+            newNote pitch.class pitch.accidental 3
     in
     List.map (\i -> (addInterval placeholderNote i).pitch) (qualityToIntervals quality)
 

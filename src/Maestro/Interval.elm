@@ -29,10 +29,10 @@ manipulate intervals.
 import Maestro.Note exposing (Note, noteToIndex)
 import Maestro.PitchClass
     exposing
-        ( Adjustment(..)
+        ( Accidental(..)
         , Pitch
-        , adjustmentFromValue
-        , adjustmentToValue
+        , accidentalFromValue
+        , accidentalToValue
         , diatonicPitchClassFromValue
         , diatonicPitchClassValue
         , newPitch
@@ -114,13 +114,13 @@ addInterval note interval =
         startToNewNaturalSemipitches =
             distance note newNaturalNote
 
-        adjustment =
-            adjustmentFromValue (intervalSemipitches - startToNewNaturalSemipitches)
+        accidental =
+            accidentalFromValue (intervalSemipitches - startToNewNaturalSemipitches)
 
         newOctave =
-            (noteToIndex newNaturalNote + adjustmentToValue adjustment) // 12
+            (noteToIndex newNaturalNote + accidentalToValue accidental) // 12
     in
-    { pitch = newPitch newNaturalNote.pitch.class adjustment, octave = newOctave }
+    { pitch = newPitch newNaturalNote.pitch.class accidental, octave = newOctave }
 
 
 {-| diatonicDegreeOf will compute the note being the given
