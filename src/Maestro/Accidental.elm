@@ -1,4 +1,10 @@
-module Maestro.Accidental exposing (..)
+module Maestro.Accidental exposing
+    ( Accidental(..)
+    , accidentalFromString
+    , accidentalFromValue
+    , accidentalToString
+    , accidentalToValue
+    )
 
 {-| Accidental represents an accidental applied to a key
 -}

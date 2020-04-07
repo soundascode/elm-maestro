@@ -1,4 +1,4 @@
-module Maestro exposing (..)
+module Maestro exposing (octaveOf, noteOf, keyAtOctave)
 
 {-| This library provides music theory abstractions and functionalities.
 

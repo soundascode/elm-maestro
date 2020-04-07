@@ -1,7 +1,9 @@
-module ListUtils exposing (..)
+module ListUtils exposing
+    ( first
+    , rotate
+    )
 
-import List exposing ((::), tail)
-import List.Extra exposing (last, unfoldr)
+import List
 
 
 first : List a -> Maybe a
