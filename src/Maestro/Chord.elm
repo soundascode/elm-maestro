@@ -167,49 +167,6 @@ qualityToString q =
             "7♭5"
 
 
-pitchesCount : Quality -> Int
-pitchesCount q =
-    case q of
-        MajorTriad ->
-            3
-
-        MinorTriad ->
-            3
-
-        AugmentedTriad ->
-            3
-
-        DiminishedTriad ->
-            3
-
-        Seventh ->
-            4
-
-        MajorSeventh ->
-            4
-
-        MinorMajorSeventh ->
-            4
-
-        MinorSeventh ->
-            4
-
-        AugmentedMajorSeventh ->
-            4
-
-        AugmentedSeventh ->
-            4
-
-        HalfDiminishedSeventh ->
-            4
-
-        DiminishedSeventh ->
-            4
-
-        SeventhFlatFive ->
-            4
-
-
 majorTriad : List Interval
 majorTriad =
     [ Maestro.Interval.PerfectUnison

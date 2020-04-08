@@ -1,4 +1,10 @@
-module Maestro.Pitch exposing (..)
+module Maestro.Pitch exposing
+    ( Pitch
+    , chromaticPitches
+    , newPitch
+    , pitchToIndex
+    , pitchToString
+    )
 
 import Maestro.Accidental
     exposing

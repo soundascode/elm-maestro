@@ -3,12 +3,10 @@ module Scale.Aeolian exposing (all)
 import Expect
 import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Interval exposing (Degree(..), Interval(..))
-import Maestro.Note exposing (Note)
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
-import Maestro.Scale exposing (Mode(..), Scale, scale)
-import String
-import Test exposing (..)
+import Maestro.Scale exposing (Mode(..), scale)
+import Test exposing (Test, describe, test)
 
 
 all : Test

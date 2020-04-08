@@ -5,7 +5,7 @@ import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Chord exposing (Quality(..), chord, inversion)
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
-import Test exposing (..)
+import Test exposing (Test, describe, test)
 
 
 all : Test

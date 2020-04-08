@@ -1,4 +1,8 @@
-module Maestro.Note exposing (..)
+module Maestro.Note exposing
+    ( Note
+    , newNote, noteToIndex
+    , octave
+    )
 
 {-| This module provides types and functions to manipulate musical notes.
 Notes being represented as a pitch and an octave convertible to an index (MIDI value)
