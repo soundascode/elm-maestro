@@ -5,7 +5,7 @@ import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
-import Maestro.Scale exposing (Mode(..), scale)
+import Maestro.Scale exposing (Scale(..), pitches)
 import Test exposing (Test, describe, test)
 
 
@@ -15,7 +15,8 @@ all =
         [ describe "dorian mode tests"
             [ test "C Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Natural) Dorian)
+                    pitches (newPitch C Natural) Dorian
+                    |> Expect.equal
                         [ newPitch C Natural
                         , newPitch D Natural
                         , newPitch E Flat
@@ -26,7 +27,8 @@ all =
                         ]
             , test "C# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Sharp) Dorian)
+                    pitches (newPitch C Sharp) Dorian
+                    |> Expect.equal
                         [ newPitch C Sharp
                         , newPitch D Sharp
                         , newPitch E Natural
@@ -37,7 +39,8 @@ all =
                         ]
             , test "Db Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Flat) Dorian)
+                    pitches (newPitch D Flat) Dorian
+                    |> Expect.equal
                         [ newPitch D Flat
                         , newPitch E Flat
                         , newPitch F Flat
@@ -48,7 +51,8 @@ all =
                         ]
             , test "D Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Natural) Dorian)
+                    pitches (newPitch D Natural) Dorian
+                    |> Expect.equal
                         [ newPitch D Natural
                         , newPitch E Natural
                         , newPitch F Natural
@@ -59,7 +63,8 @@ all =
                         ]
             , test "D# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Sharp) Dorian)
+                    pitches (newPitch D Sharp) Dorian
+                    |> Expect.equal
                         [ newPitch D Sharp
                         , newPitch E Sharp
                         , newPitch F Sharp
@@ -70,7 +75,8 @@ all =
                         ]
             , test "Eb Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Flat) Dorian)
+                    pitches (newPitch E Flat) Dorian
+                    |> Expect.equal
                         [ newPitch E Flat
                         , newPitch F Natural
                         , newPitch G Flat
@@ -81,7 +87,8 @@ all =
                         ]
             , test "E Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Natural) Dorian)
+                    pitches (newPitch E Natural) Dorian
+                    |> Expect.equal
                         [ newPitch E Natural
                         , newPitch F Sharp
                         , newPitch G Natural
@@ -92,7 +99,8 @@ all =
                         ]
             , test "E# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Sharp) Dorian)
+                    pitches (newPitch E Sharp) Dorian
+                    |> Expect.equal
                         [ newPitch E Sharp
                         , newPitch F SharpSharp
                         , newPitch G Sharp
@@ -103,7 +111,8 @@ all =
                         ]
             , test "Fb Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Flat) Dorian)
+                    pitches (newPitch F Flat) Dorian
+                    |> Expect.equal
                         [ newPitch F Flat
                         , newPitch G Flat
                         , newPitch A FlatFlat
@@ -114,7 +123,8 @@ all =
                         ]
             , test "F Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Natural) Dorian)
+                    pitches (newPitch F Natural) Dorian
+                    |> Expect.equal
                         [ newPitch F Natural
                         , newPitch G Natural
                         , newPitch A Flat
@@ -125,7 +135,8 @@ all =
                         ]
             , test "F# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Sharp) Dorian)
+                    pitches (newPitch F Sharp) Dorian
+                    |> Expect.equal
                         [ newPitch F Sharp
                         , newPitch G Sharp
                         , newPitch A Natural
@@ -136,7 +147,8 @@ all =
                         ]
             , test "Gb Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Flat) Dorian)
+                    pitches (newPitch G Flat) Dorian
+                    |> Expect.equal
                         [ newPitch G Flat
                         , newPitch A Flat
                         , newPitch B FlatFlat
@@ -147,7 +159,8 @@ all =
                         ]
             , test "G Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Natural) Dorian)
+                    pitches (newPitch G Natural) Dorian
+                    |> Expect.equal
                         [ newPitch G Natural
                         , newPitch A Natural
                         , newPitch B Flat
@@ -158,7 +171,8 @@ all =
                         ]
             , test "G# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Sharp) Dorian)
+                    pitches (newPitch G Sharp) Dorian
+                    |> Expect.equal
                         [ newPitch G Sharp
                         , newPitch A Sharp
                         , newPitch B Natural
@@ -169,7 +183,8 @@ all =
                         ]
             , test "Ab Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Flat) Dorian)
+                    pitches (newPitch A Flat) Dorian
+                    |> Expect.equal
                         [ newPitch A Flat
                         , newPitch B Flat
                         , newPitch C Flat
@@ -180,7 +195,8 @@ all =
                         ]
             , test "A Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Natural) Dorian)
+                    pitches (newPitch A Natural) Dorian
+                    |> Expect.equal
                         [ newPitch A Natural
                         , newPitch B Natural
                         , newPitch C Natural
@@ -191,7 +207,8 @@ all =
                         ]
             , test "A# Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Sharp) Dorian)
+                    pitches (newPitch A Sharp) Dorian
+                    |> Expect.equal
                         [ newPitch A Sharp
                         , newPitch B Sharp
                         , newPitch C Sharp
@@ -202,7 +219,8 @@ all =
                         ]
             , test "Bb Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Flat) Dorian)
+                    pitches (newPitch B Flat) Dorian
+                    |> Expect.equal
                         [ newPitch B Flat
                         , newPitch C Natural
                         , newPitch D Flat
@@ -213,7 +231,8 @@ all =
                         ]
             , test "B Dorian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Natural) Dorian)
+                    pitches (newPitch B Natural) Dorian
+                    |> Expect.equal
                         [ newPitch B Natural
                         , newPitch C Sharp
                         , newPitch D Natural

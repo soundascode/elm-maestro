@@ -5,7 +5,7 @@ import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
-import Maestro.Scale exposing (Mode(..), scale)
+import Maestro.Scale exposing (Scale(..), pitches)
 import Test exposing (Test, describe, test)
 
 
@@ -15,7 +15,8 @@ all =
         [ describe "Mixolydian scale tests"
             [ test "C Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Natural) Mixolydian)
+                    pitches (newPitch C Natural) Mixolydian
+                    |> Expect.equal
                         [ newPitch C Natural
                         , newPitch D Natural
                         , newPitch E Natural
@@ -26,7 +27,8 @@ all =
                         ]
             , test "C# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Sharp) Mixolydian)
+                    pitches (newPitch C Sharp) Mixolydian
+                    |> Expect.equal
                         [ newPitch C Sharp
                         , newPitch D Sharp
                         , newPitch E Sharp
@@ -37,7 +39,8 @@ all =
                         ]
             , test "Db Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Flat) Mixolydian)
+                    pitches (newPitch D Flat) Mixolydian
+                    |> Expect.equal
                         [ newPitch D Flat
                         , newPitch E Flat
                         , newPitch F Natural
@@ -48,7 +51,8 @@ all =
                         ]
             , test "D Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Natural) Mixolydian)
+                    pitches (newPitch D Natural) Mixolydian
+                    |> Expect.equal
                         [ newPitch D Natural
                         , newPitch E Natural
                         , newPitch F Sharp
@@ -59,7 +63,8 @@ all =
                         ]
             , test "D# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Sharp) Mixolydian)
+                    pitches (newPitch D Sharp) Mixolydian
+                    |> Expect.equal
                         [ newPitch D Sharp
                         , newPitch E Sharp
                         , newPitch F SharpSharp
@@ -70,7 +75,8 @@ all =
                         ]
             , test "Eb Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Flat) Mixolydian)
+                    pitches (newPitch E Flat) Mixolydian
+                    |> Expect.equal
                         [ newPitch E Flat
                         , newPitch F Natural
                         , newPitch G Natural
@@ -81,7 +87,8 @@ all =
                         ]
             , test "E Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Natural) Mixolydian)
+                    pitches (newPitch E Natural) Mixolydian
+                    |> Expect.equal
                         [ newPitch E Natural
                         , newPitch F Sharp
                         , newPitch G Sharp
@@ -92,7 +99,8 @@ all =
                         ]
             , test "E# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Sharp) Mixolydian)
+                    pitches (newPitch E Sharp) Mixolydian
+                    |> Expect.equal
                         [ newPitch E Sharp
                         , newPitch F SharpSharp
                         , newPitch G SharpSharp
@@ -103,7 +111,8 @@ all =
                         ]
             , test "Fb Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Flat) Mixolydian)
+                    pitches (newPitch F Flat) Mixolydian
+                    |> Expect.equal
                         [ newPitch F Flat
                         , newPitch G Flat
                         , newPitch A Flat
@@ -114,7 +123,8 @@ all =
                         ]
             , test "F Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Natural) Mixolydian)
+                    pitches (newPitch F Natural) Mixolydian
+                    |> Expect.equal
                         [ newPitch F Natural
                         , newPitch G Natural
                         , newPitch A Natural
@@ -125,7 +135,8 @@ all =
                         ]
             , test "F# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Sharp) Mixolydian)
+                    pitches (newPitch F Sharp) Mixolydian
+                    |> Expect.equal
                         [ newPitch F Sharp
                         , newPitch G Sharp
                         , newPitch A Sharp
@@ -136,7 +147,8 @@ all =
                         ]
             , test "Gb Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Flat) Mixolydian)
+                    pitches (newPitch G Flat) Mixolydian
+                    |> Expect.equal
                         [ newPitch G Flat
                         , newPitch A Flat
                         , newPitch B Flat
@@ -147,7 +159,8 @@ all =
                         ]
             , test "G Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Natural) Mixolydian)
+                    pitches (newPitch G Natural) Mixolydian
+                    |> Expect.equal
                         [ newPitch G Natural
                         , newPitch A Natural
                         , newPitch B Natural
@@ -158,7 +171,8 @@ all =
                         ]
             , test "G# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Sharp) Mixolydian)
+                    pitches (newPitch G Sharp) Mixolydian
+                    |> Expect.equal
                         [ newPitch G Sharp
                         , newPitch A Sharp
                         , newPitch B Sharp
@@ -169,7 +183,8 @@ all =
                         ]
             , test "Ab Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Flat) Mixolydian)
+                    pitches (newPitch A Flat) Mixolydian
+                    |> Expect.equal
                         [ newPitch A Flat
                         , newPitch B Flat
                         , newPitch C Natural
@@ -180,7 +195,8 @@ all =
                         ]
             , test "A Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Natural) Mixolydian)
+                    pitches (newPitch A Natural) Mixolydian
+                    |> Expect.equal
                         [ newPitch A Natural
                         , newPitch B Natural
                         , newPitch C Sharp
@@ -191,7 +207,8 @@ all =
                         ]
             , test "A# Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Sharp) Mixolydian)
+                    pitches (newPitch A Sharp) Mixolydian
+                    |> Expect.equal
                         [ newPitch A Sharp
                         , newPitch B Sharp
                         , newPitch C SharpSharp
@@ -202,7 +219,8 @@ all =
                         ]
             , test "Bb Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Flat) Mixolydian)
+                    pitches (newPitch B Flat) Mixolydian
+                    |> Expect.equal
                         [ newPitch B Flat
                         , newPitch C Natural
                         , newPitch D Natural
@@ -213,7 +231,8 @@ all =
                         ]
             , test "B Mixolydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Natural) Mixolydian)
+                    pitches (newPitch B Natural) Mixolydian
+                    |> Expect.equal
                         [ newPitch B Natural
                         , newPitch C Sharp
                         , newPitch D Sharp

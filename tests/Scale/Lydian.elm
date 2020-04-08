@@ -5,7 +5,7 @@ import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
-import Maestro.Scale exposing (Mode(..), scale)
+import Maestro.Scale exposing (Scale(..), pitches)
 import Test exposing (Test, describe, test)
 
 
@@ -15,7 +15,8 @@ all =
         [ describe "Lydian scale tests"
             [ test "C Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Natural) Lydian)
+                    pitches (newPitch C Natural) Lydian
+                    |> Expect.equal
                         [ newPitch C Natural
                         , newPitch D Natural
                         , newPitch E Natural
@@ -26,7 +27,8 @@ all =
                         ]
             , test "C# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Sharp) Lydian)
+                    pitches (newPitch C Sharp) Lydian
+                    |> Expect.equal
                         [ newPitch C Sharp
                         , newPitch D Sharp
                         , newPitch E Sharp
@@ -37,7 +39,8 @@ all =
                         ]
             , test "Db Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Flat) Lydian)
+                    pitches (newPitch D Flat) Lydian
+                    |> Expect.equal
                         [ newPitch D Flat
                         , newPitch E Flat
                         , newPitch F Natural
@@ -48,7 +51,8 @@ all =
                         ]
             , test "D Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Natural) Lydian)
+                    pitches (newPitch D Natural) Lydian
+                    |> Expect.equal
                         [ newPitch D Natural
                         , newPitch E Natural
                         , newPitch F Sharp
@@ -59,7 +63,8 @@ all =
                         ]
             , test "D# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Sharp) Lydian)
+                    pitches (newPitch D Sharp) Lydian
+                    |> Expect.equal
                         [ newPitch D Sharp
                         , newPitch E Sharp
                         , newPitch F SharpSharp
@@ -70,7 +75,8 @@ all =
                         ]
             , test "Eb Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Flat) Lydian)
+                    pitches (newPitch E Flat) Lydian
+                    |> Expect.equal
                         [ newPitch E Flat
                         , newPitch F Natural
                         , newPitch G Natural
@@ -81,7 +87,8 @@ all =
                         ]
             , test "E Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Natural) Lydian)
+                    pitches (newPitch E Natural) Lydian
+                    |> Expect.equal
                         [ newPitch E Natural
                         , newPitch F Sharp
                         , newPitch G Sharp
@@ -92,7 +99,8 @@ all =
                         ]
             , test "E# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Sharp) Lydian)
+                    pitches (newPitch E Sharp) Lydian
+                    |> Expect.equal
                         [ newPitch E Sharp
                         , newPitch F SharpSharp
                         , newPitch G SharpSharp
@@ -103,7 +111,8 @@ all =
                         ]
             , test "Fb Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Flat) Lydian)
+                    pitches (newPitch F Flat) Lydian
+                    |> Expect.equal
                         [ newPitch F Flat
                         , newPitch G Flat
                         , newPitch A Flat
@@ -114,7 +123,8 @@ all =
                         ]
             , test "F Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Natural) Lydian)
+                    pitches (newPitch F Natural) Lydian
+                    |> Expect.equal
                         [ newPitch F Natural
                         , newPitch G Natural
                         , newPitch A Natural
@@ -125,7 +135,8 @@ all =
                         ]
             , test "F# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Sharp) Lydian)
+                    pitches (newPitch F Sharp) Lydian
+                    |> Expect.equal
                         [ newPitch F Sharp
                         , newPitch G Sharp
                         , newPitch A Sharp
@@ -136,7 +147,8 @@ all =
                         ]
             , test "Gb Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Flat) Lydian)
+                    pitches (newPitch G Flat) Lydian
+                    |> Expect.equal
                         [ newPitch G Flat
                         , newPitch A Flat
                         , newPitch B Flat
@@ -147,7 +159,8 @@ all =
                         ]
             , test "G Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Natural) Lydian)
+                    pitches (newPitch G Natural) Lydian
+                    |> Expect.equal
                         [ newPitch G Natural
                         , newPitch A Natural
                         , newPitch B Natural
@@ -158,7 +171,8 @@ all =
                         ]
             , test "G# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Sharp) Lydian)
+                    pitches (newPitch G Sharp) Lydian
+                    |> Expect.equal
                         [ newPitch G Sharp
                         , newPitch A Sharp
                         , newPitch B Sharp
@@ -169,7 +183,8 @@ all =
                         ]
             , test "Ab Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Flat) Lydian)
+                    pitches (newPitch A Flat) Lydian
+                    |> Expect.equal
                         [ newPitch A Flat
                         , newPitch B Flat
                         , newPitch C Natural
@@ -180,7 +195,8 @@ all =
                         ]
             , test "A Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Natural) Lydian)
+                    pitches (newPitch A Natural) Lydian
+                    |> Expect.equal
                         [ newPitch A Natural
                         , newPitch B Natural
                         , newPitch C Sharp
@@ -191,7 +207,8 @@ all =
                         ]
             , test "A# Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Sharp) Lydian)
+                    pitches (newPitch A Sharp) Lydian
+                    |> Expect.equal
                         [ newPitch A Sharp
                         , newPitch B Sharp
                         , newPitch C SharpSharp
@@ -202,7 +219,8 @@ all =
                         ]
             , test "Bb Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Flat) Lydian)
+                    pitches (newPitch B Flat) Lydian
+                    |> Expect.equal
                         [ newPitch B Flat
                         , newPitch C Natural
                         , newPitch D Natural
@@ -213,7 +231,8 @@ all =
                         ]
             , test "B Lydian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Natural) Lydian)
+                    pitches (newPitch B Natural) Lydian
+                    |> Expect.equal
                         [ newPitch B Natural
                         , newPitch C Sharp
                         , newPitch D Sharp

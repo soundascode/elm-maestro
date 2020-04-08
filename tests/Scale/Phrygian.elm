@@ -5,7 +5,7 @@ import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
-import Maestro.Scale exposing (Mode(..), scale)
+import Maestro.Scale exposing (Scale(..), pitches)
 import Test exposing (Test, describe, test)
 
 
@@ -15,7 +15,8 @@ all =
         [ describe "phrygian mode tests"
             [ test "C Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Natural) Phrygian)
+                    pitches (newPitch C Natural) Phrygian
+                    |> Expect.equal
                         [ newPitch C Natural
                         , newPitch D Flat
                         , newPitch E Flat
@@ -26,7 +27,8 @@ all =
                         ]
             , test "C# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Sharp) Phrygian)
+                    pitches (newPitch C Sharp) Phrygian
+                    |> Expect.equal
                         [ newPitch C Sharp
                         , newPitch D Natural
                         , newPitch E Natural
@@ -37,7 +39,8 @@ all =
                         ]
             , test "Db Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Flat) Phrygian)
+                    pitches (newPitch D Flat) Phrygian
+                    |> Expect.equal
                         [ newPitch D Flat
                         , newPitch E FlatFlat
                         , newPitch F Flat
@@ -48,7 +51,8 @@ all =
                         ]
             , test "D Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Natural) Phrygian)
+                    pitches (newPitch D Natural) Phrygian
+                    |> Expect.equal
                         [ newPitch D Natural
                         , newPitch E Flat
                         , newPitch F Natural
@@ -59,7 +63,8 @@ all =
                         ]
             , test "D# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Sharp) Phrygian)
+                    pitches (newPitch D Sharp) Phrygian
+                    |> Expect.equal
                         [ newPitch D Sharp
                         , newPitch E Natural
                         , newPitch F Sharp
@@ -70,7 +75,8 @@ all =
                         ]
             , test "Eb Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Flat) Phrygian)
+                    pitches (newPitch E Flat) Phrygian
+                    |> Expect.equal
                         [ newPitch E Flat
                         , newPitch F Flat
                         , newPitch G Flat
@@ -81,7 +87,8 @@ all =
                         ]
             , test "E Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Natural) Phrygian)
+                    pitches (newPitch E Natural) Phrygian
+                    |> Expect.equal
                         [ newPitch E Natural
                         , newPitch F Natural
                         , newPitch G Natural
@@ -92,7 +99,8 @@ all =
                         ]
             , test "E# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Sharp) Phrygian)
+                    pitches (newPitch E Sharp) Phrygian
+                    |> Expect.equal
                         [ newPitch E Sharp
                         , newPitch F Sharp
                         , newPitch G Sharp
@@ -103,7 +111,8 @@ all =
                         ]
             , test "Fb Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Flat) Phrygian)
+                    pitches (newPitch F Flat) Phrygian
+                    |> Expect.equal
                         [ newPitch F Flat
                         , newPitch G FlatFlat
                         , newPitch A FlatFlat
@@ -114,7 +123,8 @@ all =
                         ]
             , test "F Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Natural) Phrygian)
+                    pitches (newPitch F Natural) Phrygian
+                    |> Expect.equal
                         [ newPitch F Natural
                         , newPitch G Flat
                         , newPitch A Flat
@@ -125,7 +135,8 @@ all =
                         ]
             , test "F# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Sharp) Phrygian)
+                    pitches (newPitch F Sharp) Phrygian
+                    |> Expect.equal
                         [ newPitch F Sharp
                         , newPitch G Natural
                         , newPitch A Natural
@@ -136,7 +147,8 @@ all =
                         ]
             , test "Gb Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Flat) Phrygian)
+                    pitches (newPitch G Flat) Phrygian
+                    |> Expect.equal
                         [ newPitch G Flat
                         , newPitch A FlatFlat
                         , newPitch B FlatFlat
@@ -147,7 +159,8 @@ all =
                         ]
             , test "G Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Natural) Phrygian)
+                    pitches (newPitch G Natural) Phrygian
+                    |> Expect.equal
                         [ newPitch G Natural
                         , newPitch A Flat
                         , newPitch B Flat
@@ -158,7 +171,8 @@ all =
                         ]
             , test "G# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Sharp) Phrygian)
+                    pitches (newPitch G Sharp) Phrygian
+                    |> Expect.equal
                         [ newPitch G Sharp
                         , newPitch A Natural
                         , newPitch B Natural
@@ -169,7 +183,8 @@ all =
                         ]
             , test "Ab Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Flat) Phrygian)
+                    pitches (newPitch A Flat) Phrygian
+                    |> Expect.equal
                         [ newPitch A Flat
                         , newPitch B FlatFlat
                         , newPitch C Flat
@@ -180,7 +195,8 @@ all =
                         ]
             , test "A Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Natural) Phrygian)
+                    pitches (newPitch A Natural) Phrygian
+                    |> Expect.equal
                         [ newPitch A Natural
                         , newPitch B Flat
                         , newPitch C Natural
@@ -191,7 +207,8 @@ all =
                         ]
             , test "A# Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Sharp) Phrygian)
+                    pitches (newPitch A Sharp) Phrygian
+                    |> Expect.equal
                         [ newPitch A Sharp
                         , newPitch B Natural
                         , newPitch C Sharp
@@ -202,7 +219,8 @@ all =
                         ]
             , test "Bb Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Flat) Phrygian)
+                    pitches (newPitch B Flat) Phrygian
+                    |> Expect.equal
                         [ newPitch B Flat
                         , newPitch C Flat
                         , newPitch D Flat
@@ -213,7 +231,8 @@ all =
                         ]
             , test "B Phrygian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Natural) Phrygian)
+                    pitches (newPitch B Natural) Phrygian
+                    |> Expect.equal
                         [ newPitch B Natural
                         , newPitch C Natural
                         , newPitch D Natural

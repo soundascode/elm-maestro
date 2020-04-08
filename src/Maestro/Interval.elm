@@ -1,8 +1,8 @@
 module Maestro.Interval exposing
     ( Degree(..), Interval(..)
-    , addInterval, distance, diatonicDegreeOf
-    , ionianIntervals, dorianIntervals, phrygianIntervals, lydianIntervals
-    , mixolydianIntervals, aeolianIntervals, locrianIntervals
+    , addInterval
+    , distance
+    , diatonicDegreeOf
     )
 
 {-| This module provides types and functions to compute, represent and
@@ -430,108 +430,3 @@ degreeToValue d =
 
         Fourteenth ->
             13
-
-
-{-| ionianIntervals represents the sequence of intervals composing
-the Major scale
--}
-ionianIntervals : List Interval
-ionianIntervals =
-    [ PerfectUnison
-    , MajorSecond
-    , MajorThird
-    , PerfectFourth
-    , PerfectFifth
-    , MajorSixth
-    , MajorSeventh
-    ]
-
-
-{-| dorianIntervals represents the sequence of intervals composing
-the Dorian mode
--}
-dorianIntervals : List Interval
-dorianIntervals =
-    [ PerfectUnison
-    , MajorSecond
-    , MinorThird
-    , PerfectFourth
-    , PerfectFifth
-    , MajorSixth
-    , MinorSeventh
-    ]
-
-
-{-| phrygianIntervals represents the sequence of intervals composing
-the Phrygian mode
--}
-phrygianIntervals : List Interval
-phrygianIntervals =
-    [ PerfectUnison
-    , MinorSecond
-    , MinorThird
-    , PerfectFourth
-    , PerfectFifth
-    , MinorSixth
-    , MinorSeventh
-    ]
-
-
-{-| lydianIntervals represents the sequence of intervals composing
-the Lydian mode
--}
-lydianIntervals : List Interval
-lydianIntervals =
-    [ PerfectUnison
-    , MajorSecond
-    , MajorThird
-    , AugmentedFourth
-    , PerfectFifth
-    , MajorSixth
-    , MajorSeventh
-    ]
-
-
-{-| mixolydian represents the sequence of intervals composing
-the Mixolydian scale
--}
-mixolydianIntervals : List Interval
-mixolydianIntervals =
-    [ PerfectUnison
-    , MajorSecond
-    , MajorThird
-    , PerfectFourth
-    , PerfectFifth
-    , MajorSixth
-    , MinorSeventh
-    ]
-
-
-{-| aeolianIntervals represents the sequence of intervals composing
-the minor scale
--}
-aeolianIntervals : List Interval
-aeolianIntervals =
-    [ PerfectUnison
-    , MajorSecond
-    , MinorThird
-    , PerfectFourth
-    , PerfectFifth
-    , MinorSixth
-    , MinorSeventh
-    ]
-
-
-{-| locrianIntervals represents the sequence of intervals composing
-the locrian scale
--}
-locrianIntervals : List Interval
-locrianIntervals =
-    [ PerfectUnison
-    , MinorSecond
-    , MinorThird
-    , PerfectFourth
-    , DiminishedFifth
-    , MinorSixth
-    , MinorSeventh
-    ]

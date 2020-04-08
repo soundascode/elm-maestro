@@ -5,7 +5,7 @@ import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
-import Maestro.Scale exposing (Mode(..), scale)
+import Maestro.Scale exposing (Scale(..), pitches)
 import Test exposing (Test, describe, test)
 
 
@@ -15,7 +15,8 @@ all =
         [ describe "locrian scale tests"
             [ test "C locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Natural) Locrian)
+                    pitches (newPitch C Natural) Locrian
+                    |> Expect.equal
                         [ newPitch C Natural
                         , newPitch D Flat
                         , newPitch E Flat
@@ -26,7 +27,8 @@ all =
                         ]
             , test "C# locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Sharp) Locrian)
+                    pitches (newPitch C Sharp) Locrian
+                    |> Expect.equal
                         [ newPitch C Sharp
                         , newPitch D Natural
                         , newPitch E Natural
@@ -37,7 +39,8 @@ all =
                         ]
             , test "Db locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Flat) Locrian)
+                    pitches (newPitch D Flat) Locrian
+                    |> Expect.equal
                         [ newPitch D Flat
                         , newPitch E FlatFlat
                         , newPitch F Flat
@@ -48,7 +51,8 @@ all =
                         ]
             , test "D locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Natural) Locrian)
+                    pitches (newPitch D Natural) Locrian
+                    |> Expect.equal
                         [ newPitch D Natural
                         , newPitch E Flat
                         , newPitch F Natural
@@ -59,7 +63,8 @@ all =
                         ]
             , test "D# locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Sharp) Locrian)
+                    pitches (newPitch D Sharp) Locrian
+                    |> Expect.equal
                         [ newPitch D Sharp
                         , newPitch E Natural
                         , newPitch F Sharp
@@ -70,7 +75,8 @@ all =
                         ]
             , test "Eb locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Flat) Locrian)
+                    pitches (newPitch E Flat) Locrian
+                    |> Expect.equal
                         [ newPitch E Flat
                         , newPitch F Flat
                         , newPitch G Flat
@@ -81,7 +87,8 @@ all =
                         ]
             , test "E locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Natural) Locrian)
+                    pitches (newPitch E Natural) Locrian
+                    |> Expect.equal
                         [ newPitch E Natural
                         , newPitch F Natural
                         , newPitch G Natural
@@ -92,7 +99,8 @@ all =
                         ]
             , test "E# locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Sharp) Locrian)
+                    pitches (newPitch E Sharp) Locrian
+                    |> Expect.equal
                         [ newPitch E Sharp
                         , newPitch F Sharp
                         , newPitch G Sharp
@@ -103,7 +111,8 @@ all =
                         ]
             , test "Fb locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Flat) Locrian)
+                    pitches (newPitch F Flat) Locrian
+                    |> Expect.equal
                         [ newPitch F Flat
                         , newPitch G FlatFlat
                         , newPitch A FlatFlat
@@ -114,7 +123,8 @@ all =
                         ]
             , test "F locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Natural) Locrian)
+                    pitches (newPitch F Natural) Locrian
+                    |> Expect.equal
                         [ newPitch F Natural
                         , newPitch G Flat
                         , newPitch A Flat
@@ -125,7 +135,8 @@ all =
                         ]
             , test "F# locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Sharp) Locrian)
+                    pitches (newPitch F Sharp) Locrian
+                    |> Expect.equal
                         [ newPitch F Sharp
                         , newPitch G Natural
                         , newPitch A Natural
@@ -136,7 +147,8 @@ all =
                         ]
             , test "Gb locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Flat) Locrian)
+                    pitches (newPitch G Flat) Locrian
+                    |> Expect.equal
                         [ newPitch G Flat
                         , newPitch A FlatFlat
                         , newPitch B FlatFlat
@@ -147,7 +159,8 @@ all =
                         ]
             , test "G locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Natural) Locrian)
+                    pitches (newPitch G Natural) Locrian
+                    |> Expect.equal
                         [ newPitch G Natural
                         , newPitch A Flat
                         , newPitch B Flat
@@ -158,7 +171,8 @@ all =
                         ]
             , test "G# locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Sharp) Locrian)
+                    pitches (newPitch G Sharp) Locrian
+                    |> Expect.equal
                         [ newPitch G Sharp
                         , newPitch A Natural
                         , newPitch B Natural
@@ -169,7 +183,8 @@ all =
                         ]
             , test "Ab locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Flat) Locrian)
+                    pitches (newPitch A Flat) Locrian
+                    |> Expect.equal
                         [ newPitch A Flat
                         , newPitch B FlatFlat
                         , newPitch C Flat
@@ -180,7 +195,8 @@ all =
                         ]
             , test "A locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Natural) Locrian)
+                    pitches (newPitch A Natural) Locrian
+                    |> Expect.equal
                         [ newPitch A Natural
                         , newPitch B Flat
                         , newPitch C Natural
@@ -191,7 +207,8 @@ all =
                         ]
             , test "A# locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Sharp) Locrian)
+                    pitches (newPitch A Sharp) Locrian
+                    |> Expect.equal
                         [ newPitch A Sharp
                         , newPitch B Natural
                         , newPitch C Sharp
@@ -202,7 +219,8 @@ all =
                         ]
             , test "Bb locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Flat) Locrian)
+                    pitches (newPitch B Flat) Locrian
+                    |> Expect.equal
                         [ newPitch B Flat
                         , newPitch C Flat
                         , newPitch D Flat
@@ -213,7 +231,8 @@ all =
                         ]
             , test "B locrian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Natural) Locrian)
+                    pitches (newPitch B Natural) Locrian
+                    |> Expect.equal
                         [ newPitch B Natural
                         , newPitch C Natural
                         , newPitch D Natural

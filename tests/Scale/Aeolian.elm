@@ -5,7 +5,7 @@ import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
-import Maestro.Scale exposing (Mode(..), scale)
+import Maestro.Scale exposing (Scale(..), pitches)
 import Test exposing (Test, describe, test)
 
 
@@ -15,7 +15,8 @@ all =
         [ describe "minor scale tests"
             [ test "C minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Natural) Aeolian)
+                    pitches (newPitch C Natural) Aeolian
+                    |> Expect.equal
                         [ newPitch C Natural
                         , newPitch D Natural
                         , newPitch E Flat
@@ -26,7 +27,8 @@ all =
                         ]
             , test "C# minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Sharp) Aeolian)
+                    pitches (newPitch C Sharp) Aeolian
+                    |> Expect.equal
                         [ newPitch C Sharp
                         , newPitch D Sharp
                         , newPitch E Natural
@@ -37,7 +39,8 @@ all =
                         ]
             , test "D minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Natural) Aeolian)
+                    pitches (newPitch D Natural) Aeolian
+                    |> Expect.equal
                         [ newPitch D Natural
                         , newPitch E Natural
                         , newPitch F Natural
@@ -48,7 +51,8 @@ all =
                         ]
             , test "D# minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Sharp) Aeolian)
+                    pitches (newPitch D Sharp) Aeolian
+                    |> Expect.equal
                         [ newPitch D Sharp
                         , newPitch E Sharp
                         , newPitch F Sharp
@@ -59,7 +63,8 @@ all =
                         ]
             , test "E minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Natural) Aeolian)
+                    pitches (newPitch E Natural) Aeolian
+                    |> Expect.equal
                         [ newPitch E Natural
                         , newPitch F Sharp
                         , newPitch G Natural
@@ -70,7 +75,8 @@ all =
                         ]
             , test "E# minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Sharp) Aeolian)
+                    pitches (newPitch E Sharp) Aeolian
+                    |> Expect.equal
                         [ newPitch E Sharp
                         , newPitch F SharpSharp
                         , newPitch G Sharp
@@ -81,7 +87,8 @@ all =
                         ]
             , test "F minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Natural) Aeolian)
+                    pitches (newPitch F Natural) Aeolian
+                    |> Expect.equal
                         [ newPitch F Natural
                         , newPitch G Natural
                         , newPitch A Flat
@@ -92,7 +99,8 @@ all =
                         ]
             , test "F# minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Sharp) Aeolian)
+                    pitches (newPitch F Sharp) Aeolian
+                    |> Expect.equal
                         [ newPitch F Sharp
                         , newPitch G Sharp
                         , newPitch A Natural
@@ -103,7 +111,8 @@ all =
                         ]
             , test "G minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Natural) Aeolian)
+                    pitches (newPitch G Natural) Aeolian
+                    |> Expect.equal
                         [ newPitch G Natural
                         , newPitch A Natural
                         , newPitch B Flat
@@ -114,7 +123,8 @@ all =
                         ]
             , test "G# minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Sharp) Aeolian)
+                    pitches (newPitch G Sharp) Aeolian
+                    |> Expect.equal
                         [ newPitch G Sharp
                         , newPitch A Sharp
                         , newPitch B Natural
@@ -125,7 +135,8 @@ all =
                         ]
             , test "A minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Natural) Aeolian)
+                    pitches (newPitch A Natural) Aeolian
+                    |> Expect.equal
                         [ newPitch A Natural
                         , newPitch B Natural
                         , newPitch C Natural
@@ -136,7 +147,8 @@ all =
                         ]
             , test "A# minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Sharp) Aeolian)
+                    pitches (newPitch A Sharp) Aeolian
+                    |> Expect.equal
                         [ newPitch A Sharp
                         , newPitch B Sharp
                         , newPitch C Sharp
@@ -147,7 +159,8 @@ all =
                         ]
             , test "B minor" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Natural) Aeolian)
+                    pitches (newPitch B Natural) Aeolian
+                    |> Expect.equal
                         [ newPitch B Natural
                         , newPitch C Sharp
                         , newPitch D Natural

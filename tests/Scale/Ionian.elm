@@ -5,7 +5,7 @@ import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Interval exposing (Degree(..), Interval(..))
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
-import Maestro.Scale exposing (Mode(..), scale)
+import Maestro.Scale exposing (Scale(..), pitches)
 import Test exposing (Test, describe, test)
 
 
@@ -15,7 +15,8 @@ all =
         [ describe "Ionian scale tests"
             [ test "C Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Natural) Ionian)
+                    pitches (newPitch C Natural) Ionian
+                    |> Expect.equal
                         [ newPitch C Natural
                         , newPitch D Natural
                         , newPitch E Natural
@@ -26,7 +27,8 @@ all =
                         ]
             , test "C# Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch C Sharp) Ionian)
+                    pitches (newPitch C Sharp) Ionian
+                    |> Expect.equal
                         [ newPitch C Sharp
                         , newPitch D Sharp
                         , newPitch E Sharp
@@ -37,7 +39,8 @@ all =
                         ]
             , test "Db Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Flat) Ionian)
+                    pitches (newPitch D Flat) Ionian
+                    |> Expect.equal
                         [ newPitch D Flat
                         , newPitch E Flat
                         , newPitch F Natural
@@ -48,7 +51,8 @@ all =
                         ]
             , test "D Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Natural) Ionian)
+                    pitches (newPitch D Natural) Ionian
+                    |> Expect.equal
                         [ newPitch D Natural
                         , newPitch E Natural
                         , newPitch F Sharp
@@ -59,7 +63,8 @@ all =
                         ]
             , test "D# Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch D Sharp) Ionian)
+                    pitches (newPitch D Sharp) Ionian
+                    |> Expect.equal
                         [ newPitch D Sharp
                         , newPitch E Sharp
                         , newPitch F SharpSharp
@@ -70,7 +75,8 @@ all =
                         ]
             , test "Eb Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Flat) Ionian)
+                    pitches (newPitch E Flat) Ionian
+                    |> Expect.equal
                         [ newPitch E Flat
                         , newPitch F Natural
                         , newPitch G Natural
@@ -81,7 +87,8 @@ all =
                         ]
             , test "E Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Natural) Ionian)
+                    pitches (newPitch E Natural) Ionian
+                    |> Expect.equal
                         [ newPitch E Natural
                         , newPitch F Sharp
                         , newPitch G Sharp
@@ -92,7 +99,8 @@ all =
                         ]
             , test "E# Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch E Sharp) Ionian)
+                    pitches (newPitch E Sharp) Ionian
+                    |> Expect.equal
                         [ newPitch E Sharp
                         , newPitch F SharpSharp
                         , newPitch G SharpSharp
@@ -103,7 +111,8 @@ all =
                         ]
             , test "Fb Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Flat) Ionian)
+                    pitches (newPitch F Flat) Ionian
+                    |> Expect.equal
                         [ newPitch F Flat
                         , newPitch G Flat
                         , newPitch A Flat
@@ -114,7 +123,8 @@ all =
                         ]
             , test "F Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Natural) Ionian)
+                    pitches (newPitch F Natural) Ionian
+                    |> Expect.equal
                         [ newPitch F Natural
                         , newPitch G Natural
                         , newPitch A Natural
@@ -125,7 +135,8 @@ all =
                         ]
             , test "F# Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch F Sharp) Ionian)
+                    pitches (newPitch F Sharp) Ionian
+                    |> Expect.equal
                         [ newPitch F Sharp
                         , newPitch G Sharp
                         , newPitch A Sharp
@@ -136,7 +147,8 @@ all =
                         ]
             , test "Gb Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Flat) Ionian)
+                    pitches (newPitch G Flat) Ionian
+                    |> Expect.equal
                         [ newPitch G Flat
                         , newPitch A Flat
                         , newPitch B Flat
@@ -147,7 +159,8 @@ all =
                         ]
             , test "G Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Natural) Ionian)
+                    pitches (newPitch G Natural) Ionian
+                    |> Expect.equal
                         [ newPitch G Natural
                         , newPitch A Natural
                         , newPitch B Natural
@@ -158,7 +171,8 @@ all =
                         ]
             , test "G# Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch G Sharp) Ionian)
+                    pitches (newPitch G Sharp) Ionian
+                    |> Expect.equal
                         [ newPitch G Sharp
                         , newPitch A Sharp
                         , newPitch B Sharp
@@ -169,7 +183,8 @@ all =
                         ]
             , test "Ab Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Flat) Ionian)
+                    pitches (newPitch A Flat) Ionian
+                    |> Expect.equal
                         [ newPitch A Flat
                         , newPitch B Flat
                         , newPitch C Natural
@@ -180,7 +195,8 @@ all =
                         ]
             , test "A Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Natural) Ionian)
+                    pitches (newPitch A Natural) Ionian
+                    |> Expect.equal
                         [ newPitch A Natural
                         , newPitch B Natural
                         , newPitch C Sharp
@@ -191,7 +207,8 @@ all =
                         ]
             , test "A# Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch A Sharp) Ionian)
+                    pitches (newPitch A Sharp) Ionian
+                    |> Expect.equal
                         [ newPitch A Sharp
                         , newPitch B Sharp
                         , newPitch C SharpSharp
@@ -202,7 +219,8 @@ all =
                         ]
             , test "Bb Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Flat) Ionian)
+                    pitches (newPitch B Flat) Ionian
+                    |> Expect.equal
                         [ newPitch B Flat
                         , newPitch C Natural
                         , newPitch D Natural
@@ -213,7 +231,8 @@ all =
                         ]
             , test "B Ionian" <|
                 \() ->
-                    Expect.equal (scale (newPitch B Natural) Ionian)
+                    pitches (newPitch B Natural) Ionian
+                    |> Expect.equal
                         [ newPitch B Natural
                         , newPitch C Sharp
                         , newPitch D Sharp

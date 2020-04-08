@@ -1,9 +1,10 @@
-module Maestro.Scale exposing
-    ( Scale, Mode(..)
-    , scale
-    , modeFromString
-    , scaleFrom
-    )
+module Maestro.Scale
+    exposing
+        ( Scale(..)
+        , pitches
+        , toString
+        , fromString
+        )
 
 {-| This module provides types and functions to create and
 manipulate scales.
@@ -29,28 +30,15 @@ import Maestro.Interval
     exposing
         ( Interval(..)
         , addInterval
-        , aeolianIntervals
-        , dorianIntervals
-        , ionianIntervals
-        , locrianIntervals
-        , lydianIntervals
-        , mixolydianIntervals
-        , phrygianIntervals
         )
-import Maestro.Note exposing (Note, newNote)
+import Maestro.Note exposing (newNote)
 import Maestro.Pitch exposing (Pitch)
 import String exposing (toLower)
 
 
 {-| Scale represents a list of pitches composing it
 -}
-type alias Scale =
-    List Pitch
-
-
-{-| Mode represents the mode of a scale.
--}
-type Mode
+type Scale
     = Ionian
     | Dorian
     | Phrygian
@@ -60,8 +48,7 @@ type Mode
     | Locrian
 
 
-{-| Given a Pitch and a Mode, generates the pitches
-composing a scale.
+{-| Given a Pitch and a Scale, returns the pitches composing it.
 
     (==)
         scale
@@ -77,52 +64,120 @@ composing a scale.
         ]
 
 -}
-scale : Pitch -> Mode -> List Pitch
-scale pitch mode =
+pitches : Pitch -> Scale -> List Pitch
+pitches pitch mode =
     let
         placeholderNote =
             newNote pitch.class pitch.accidental 3
     in
-    List.map (\i -> (addInterval placeholderNote i).pitch) (modeToIntervals mode)
+        List.map (\i -> (addInterval placeholderNote i).pitch) (toIntervals mode)
 
 
-{-| scaleFrom generates the notes composing a scale, according
-to a provided note (pitch + octave) and mode
--}
-scaleFrom : Note -> Mode -> List Note
-scaleFrom note mode =
-    List.map (\i -> addInterval note i) (modeToIntervals mode)
-
-
-modeToIntervals : Mode -> List Interval
-modeToIntervals mode =
+toIntervals : Scale -> List Interval
+toIntervals mode =
     case mode of
         Ionian ->
-            ionianIntervals
+            [ PerfectUnison
+            , MajorSecond
+            , MajorThird
+            , PerfectFourth
+            , PerfectFifth
+            , MajorSixth
+            , MajorSeventh
+            ]
 
         Dorian ->
-            dorianIntervals
+            [ PerfectUnison
+            , MajorSecond
+            , MinorThird
+            , PerfectFourth
+            , PerfectFifth
+            , MajorSixth
+            , MinorSeventh
+            ]
 
         Phrygian ->
-            phrygianIntervals
+            [ PerfectUnison
+            , MinorSecond
+            , MinorThird
+            , PerfectFourth
+            , PerfectFifth
+            , MinorSixth
+            , MinorSeventh
+            ]
 
         Lydian ->
-            lydianIntervals
+            [ PerfectUnison
+            , MajorSecond
+            , MajorThird
+            , AugmentedFourth
+            , PerfectFifth
+            , MajorSixth
+            , MajorSeventh
+            ]
 
         Mixolydian ->
-            mixolydianIntervals
+            [ PerfectUnison
+            , MajorSecond
+            , MajorThird
+            , PerfectFourth
+            , PerfectFifth
+            , MajorSixth
+            , MinorSeventh
+            ]
 
         Aeolian ->
-            aeolianIntervals
+            [ PerfectUnison
+            , MajorSecond
+            , MinorThird
+            , PerfectFourth
+            , PerfectFifth
+            , MinorSixth
+            , MinorSeventh
+            ]
 
         Locrian ->
-            locrianIntervals
+            [ PerfectUnison
+            , MinorSecond
+            , MinorThird
+            , PerfectFourth
+            , DiminishedFifth
+            , MinorSixth
+            , MinorSeventh
+            ]
 
 
-{-| modeFromString parses a Mode from a String
+{-| toString converts a scale to its name as a String
 -}
-modeFromString : String -> Maybe Mode
-modeFromString mode =
+toString : Scale -> String
+toString s =
+    case s of
+        Ionian ->
+            "ionian"
+
+        Dorian ->
+            "dorian"
+
+        Phrygian ->
+            "phryigian"
+
+        Lydian ->
+            "lydian"
+
+        Mixolydian ->
+            "mixolydian"
+
+        Aeolian ->
+            "aeolian"
+
+        Locrian ->
+            "locrian"
+
+
+{-| fromString parses a scale from a string
+-}
+fromString : String -> Maybe Scale
+fromString mode =
     case toLower mode of
         "major" ->
             Just Ionian
