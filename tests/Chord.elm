@@ -2,9 +2,10 @@ module Chord exposing (all)
 
 import Expect
 import Maestro.Accidental exposing (Accidental(..))
-import Maestro.Chord exposing (Quality(..), chord, inversion)
+import Maestro.Chord exposing (inversion, newChord, pitches)
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
+import Maestro.Quality exposing (Quality(..))
 import Test exposing (Test, describe, test)
 
 
@@ -14,7 +15,7 @@ all =
         [ describe "Inversions tests"
             [ test "first inversion of major triad" <|
                 \_ ->
-                    chord (newPitch C Natural) MajorTriad
+                    newChord (newPitch C Natural) MajorTriad
                         |> inversion 1
                         |> Expect.equal
                             [ newPitch C Natural
@@ -23,7 +24,7 @@ all =
                             ]
             , test "second inversion of major triad" <|
                 \_ ->
-                    chord (newPitch C Natural) MajorTriad
+                    newChord (newPitch C Natural) MajorTriad
                         |> inversion 2
                         |> Expect.equal
                             [ newPitch E Natural
@@ -32,7 +33,7 @@ all =
                             ]
             , test "third inversion of major triad" <|
                 \_ ->
-                    chord (newPitch C Natural) MajorTriad
+                    newChord (newPitch C Natural) MajorTriad
                         |> inversion 3
                         |> Expect.equal
                             [ newPitch G Natural
@@ -43,173 +44,221 @@ all =
         , describe "Major chords tests"
             [ test "C Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch C Natural) MajorTriad)
-                        [ newPitch C Natural
-                        , newPitch E Natural
-                        , newPitch G Natural
-                        ]
+                    newChord (newPitch C Natural) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            ]
             , test "C# Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch C Sharp) MajorTriad)
-                        [ newPitch C Sharp
-                        , newPitch E Sharp
-                        , newPitch G Sharp
-                        ]
+                    newChord (newPitch C Sharp) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Sharp
+                            , newPitch E Sharp
+                            , newPitch G Sharp
+                            ]
             , test "D Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch D Natural) MajorTriad)
-                        [ newPitch D Natural
-                        , newPitch F Sharp
-                        , newPitch A Natural
-                        ]
+                    newChord (newPitch D Natural) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch D Natural
+                            , newPitch F Sharp
+                            , newPitch A Natural
+                            ]
             , test "D# Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch D Sharp) MajorTriad)
-                        [ newPitch D Sharp
-                        , newPitch F SharpSharp
-                        , newPitch A Sharp
-                        ]
+                    newChord (newPitch D Sharp) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch D Sharp
+                            , newPitch F SharpSharp
+                            , newPitch A Sharp
+                            ]
             , test "E Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch E Natural) MajorTriad)
-                        [ newPitch E Natural
-                        , newPitch G Sharp
-                        , newPitch B Natural
-                        ]
+                    newChord (newPitch E Natural) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch E Natural
+                            , newPitch G Sharp
+                            , newPitch B Natural
+                            ]
             , test "F Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch F Natural) MajorTriad)
-                        [ newPitch F Natural
-                        , newPitch A Natural
-                        , newPitch C Natural
-                        ]
+                    newChord (newPitch F Natural) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch F Natural
+                            , newPitch A Natural
+                            , newPitch C Natural
+                            ]
             , test "F# Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch F Sharp) MajorTriad)
-                        [ newPitch F Sharp
-                        , newPitch A Sharp
-                        , newPitch C Sharp
-                        ]
+                    newChord (newPitch F Sharp) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch F Sharp
+                            , newPitch A Sharp
+                            , newPitch C Sharp
+                            ]
             , test "G Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch G Natural) MajorTriad)
-                        [ newPitch G Natural
-                        , newPitch B Natural
-                        , newPitch D Natural
-                        ]
+                    newChord (newPitch G Natural) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch G Natural
+                            , newPitch B Natural
+                            , newPitch D Natural
+                            ]
             , test "G# Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch G Sharp) MajorTriad)
-                        [ newPitch G Sharp
-                        , newPitch B Sharp
-                        , newPitch D Sharp
-                        ]
+                    newChord (newPitch G Sharp) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch G Sharp
+                            , newPitch B Sharp
+                            , newPitch D Sharp
+                            ]
             , test "A Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch A Natural) MajorTriad)
-                        [ newPitch A Natural
-                        , newPitch C Sharp
-                        , newPitch E Natural
-                        ]
+                    newChord (newPitch A Natural) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch A Natural
+                            , newPitch C Sharp
+                            , newPitch E Natural
+                            ]
             , test "A# Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch A Sharp) MajorTriad)
-                        [ newPitch A Sharp
-                        , newPitch C SharpSharp
-                        , newPitch E Sharp
-                        ]
+                    newChord (newPitch A Sharp) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch A Sharp
+                            , newPitch C SharpSharp
+                            , newPitch E Sharp
+                            ]
             , test "B Major" <|
                 \() ->
-                    Expect.equal (chord (newPitch B Natural) MajorTriad)
-                        [ newPitch B Natural
-                        , newPitch D Sharp
-                        , newPitch F Sharp
-                        ]
+                    newChord (newPitch B Natural) MajorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch B Natural
+                            , newPitch D Sharp
+                            , newPitch F Sharp
+                            ]
             ]
         , describe "Minor chords tests"
             [ test "C minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch C Natural) MinorTriad)
-                        [ newPitch C Natural
-                        , newPitch E Flat
-                        , newPitch G Natural
-                        ]
+                    newChord (newPitch C Natural) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Flat
+                            , newPitch G Natural
+                            ]
             , test "Db minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch D Flat) MinorTriad)
-                        [ newPitch D Flat
-                        , newPitch F Flat
-                        , newPitch A Flat
-                        ]
+                    newChord (newPitch D Flat) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch D Flat
+                            , newPitch F Flat
+                            , newPitch A Flat
+                            ]
             , test "D minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch D Natural) MinorTriad)
-                        [ newPitch D Natural
-                        , newPitch F Natural
-                        , newPitch A Natural
-                        ]
+                    newChord (newPitch D Natural) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch D Natural
+                            , newPitch F Natural
+                            , newPitch A Natural
+                            ]
             , test "Eb minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch E Flat) MinorTriad)
-                        [ newPitch E Flat
-                        , newPitch G Flat
-                        , newPitch B Flat
-                        ]
+                    newChord (newPitch E Flat) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch E Flat
+                            , newPitch G Flat
+                            , newPitch B Flat
+                            ]
             , test "E minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch E Natural) MinorTriad)
-                        [ newPitch E Natural
-                        , newPitch G Natural
-                        , newPitch B Natural
-                        ]
+                    newChord (newPitch E Natural) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch B Natural
+                            ]
             , test "F minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch F Natural) MinorTriad)
-                        [ newPitch F Natural
-                        , newPitch A Flat
-                        , newPitch C Natural
-                        ]
+                    newChord (newPitch F Natural) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch F Natural
+                            , newPitch A Flat
+                            , newPitch C Natural
+                            ]
             , test "Gb minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch G Flat) MinorTriad)
-                        [ newPitch G Flat
-                        , newPitch B FlatFlat
-                        , newPitch D Flat
-                        ]
+                    newChord (newPitch G Flat) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch G Flat
+                            , newPitch B FlatFlat
+                            , newPitch D Flat
+                            ]
             , test "G minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch G Natural) MinorTriad)
-                        [ newPitch G Natural
-                        , newPitch B Flat
-                        , newPitch D Natural
-                        ]
+                    newChord (newPitch G Natural) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch G Natural
+                            , newPitch B Flat
+                            , newPitch D Natural
+                            ]
             , test "Ab minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch A Flat) MinorTriad)
-                        [ newPitch A Flat
-                        , newPitch C Flat
-                        , newPitch E Flat
-                        ]
+                    newChord (newPitch A Flat) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch A Flat
+                            , newPitch C Flat
+                            , newPitch E Flat
+                            ]
             , test "A minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch A Natural) MinorTriad)
-                        [ newPitch A Natural
-                        , newPitch C Natural
-                        , newPitch E Natural
-                        ]
+                    newChord (newPitch A Natural) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch A Natural
+                            , newPitch C Natural
+                            , newPitch E Natural
+                            ]
             , test "Bb minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch B Flat) MinorTriad)
-                        [ newPitch B Flat
-                        , newPitch D Flat
-                        , newPitch F Natural
-                        ]
+                    newChord (newPitch B Flat) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch B Flat
+                            , newPitch D Flat
+                            , newPitch F Natural
+                            ]
             , test "B minor" <|
                 \() ->
-                    Expect.equal (chord (newPitch B Natural) MinorTriad)
-                        [ newPitch B Natural
-                        , newPitch D Natural
-                        , newPitch F Sharp
-                        ]
+                    newChord (newPitch B Natural) MinorTriad
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch B Natural
+                            , newPitch D Natural
+                            , newPitch F Sharp
+                            ]
             ]
         ]
