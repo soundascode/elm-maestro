@@ -25,7 +25,7 @@ chords k =
     , function Supertonic k
     , function Mediant k
     , function Subdominant k
-    , function Dominant k
+    , function Maestro.Function.Dominant k
     , function Submediant k
     , function LeadingTone k
     ]
@@ -35,25 +35,25 @@ function : Function -> Key -> Chord
 function f k =
     case f of
         Tonic ->
-            newChord { class = k.class, accidental = k.accidental } MajorTriad
+            newChord { class = k.class, accidental = k.accidental } Major
 
         Supertonic ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } MajorSecond) MinorTriad
+            newChord (addInterval { class = k.class, accidental = k.accidental } MajorSecond) Minor
 
         Mediant ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } MajorThird) MinorTriad
+            newChord (addInterval { class = k.class, accidental = k.accidental } MajorThird) Minor
 
         Subdominant ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } PerfectFourth) MajorTriad
+            newChord (addInterval { class = k.class, accidental = k.accidental } PerfectFourth) Major
 
-        Dominant ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } PerfectFifth) MajorTriad
+        Maestro.Function.Dominant ->
+            newChord (addInterval { class = k.class, accidental = k.accidental } PerfectFifth) Major
 
         Submediant ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } MajorSixth) MinorTriad
+            newChord (addInterval { class = k.class, accidental = k.accidental } MajorSixth) Minor
 
         LeadingTone ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } Maestro.Interval.MajorSeventh) DiminishedTriad
+            newChord (addInterval { class = k.class, accidental = k.accidental } Maestro.Interval.MajorSeventh) Diminished
 
 
 {-| addInterval applies an interval to a given note, and returns

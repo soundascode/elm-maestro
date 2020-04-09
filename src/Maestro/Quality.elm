@@ -10,108 +10,52 @@ import Maestro.Interval exposing (Interval(..))
 {-| ChordQuality represents the quality of a chord.
 -}
 type Quality
-    = MajorTriad
-    | MinorTriad
-    | AugmentedTriad
-    | DiminishedTriad
-    | Seventh
-    | MajorSeventh
-    | MinorMajorSeventh
-    | MinorSeventh
-    | AugmentedMajorSeventh
-    | AugmentedSeventh
-    | HalfDiminishedSeventh
-    | DiminishedSeventh
-    | SeventhFlatFive
+    = Major
+    | Minor
+    | Augmented
+    | Diminished
+    | HalfDiminished
+    | Dominant
 
 
 toIntervals : Quality -> List Interval
 toIntervals quality =
     case quality of
-        MajorTriad ->
+        Major ->
             [ Maestro.Interval.PerfectUnison
             , Maestro.Interval.MajorThird
             , Maestro.Interval.PerfectFifth
             ]
 
-        MinorTriad ->
+        Minor ->
             [ Maestro.Interval.PerfectUnison
             , Maestro.Interval.MinorThird
             , Maestro.Interval.PerfectFifth
             ]
 
-        AugmentedTriad ->
+        Augmented ->
             [ Maestro.Interval.PerfectUnison
             , Maestro.Interval.MajorThird
             , Maestro.Interval.AugmentedFifth
             ]
 
-        DiminishedTriad ->
+        Diminished ->
             [ Maestro.Interval.PerfectUnison
             , Maestro.Interval.MinorThird
             , Maestro.Interval.DiminishedFifth
             ]
 
-        Seventh ->
-            [ Maestro.Interval.PerfectUnison
-            , Maestro.Interval.MajorThird
-            , Maestro.Interval.PerfectFifth
-            , Maestro.Interval.MinorSeventh
-            ]
-
-        MajorSeventh ->
-            [ Maestro.Interval.PerfectUnison
-            , Maestro.Interval.MajorThird
-            , Maestro.Interval.PerfectFifth
-            , Maestro.Interval.MajorSeventh
-            ]
-
-        MinorMajorSeventh ->
-            [ Maestro.Interval.PerfectUnison
-            , Maestro.Interval.MinorThird
-            , Maestro.Interval.PerfectFifth
-            , Maestro.Interval.MajorSeventh
-            ]
-
-        MinorSeventh ->
-            [ Maestro.Interval.PerfectUnison
-            , Maestro.Interval.MinorThird
-            , Maestro.Interval.PerfectFifth
-            , Maestro.Interval.MinorSeventh
-            ]
-
-        AugmentedMajorSeventh ->
-            [ Maestro.Interval.PerfectUnison
-            , Maestro.Interval.MajorThird
-            , Maestro.Interval.AugmentedFifth
-            , Maestro.Interval.MajorSeventh
-            ]
-
-        AugmentedSeventh ->
-            [ Maestro.Interval.PerfectUnison
-            , Maestro.Interval.MajorThird
-            , Maestro.Interval.AugmentedFifth
-            , Maestro.Interval.MinorSeventh
-            ]
-
-        HalfDiminishedSeventh ->
+        HalfDiminished ->
             [ Maestro.Interval.PerfectUnison
             , Maestro.Interval.MinorThird
             , Maestro.Interval.DiminishedFifth
             , Maestro.Interval.MinorSeventh
             ]
 
-        DiminishedSeventh ->
-            [ Maestro.Interval.PerfectUnison
-            , Maestro.Interval.MinorThird
-            , Maestro.Interval.DiminishedFifth
-            , Maestro.Interval.DiminishedSeventh
-            ]
-
-        SeventhFlatFive ->
+        Dominant ->
             [ Maestro.Interval.PerfectUnison
             , Maestro.Interval.MajorThird
-            , Maestro.Interval.DiminishedFifth
+            , Maestro.Interval.PerfectFifth
             , Maestro.Interval.MinorSeventh
             ]
 
@@ -119,41 +63,20 @@ toIntervals quality =
 toString : Quality -> String
 toString q =
     case q of
-        MajorTriad ->
+        Major ->
             "M"
 
-        MinorTriad ->
+        Minor ->
             "m"
 
-        AugmentedTriad ->
+        Augmented ->
             "+"
 
-        DiminishedTriad ->
-            "-"
+        Diminished ->
+            "o"
 
-        Seventh ->
-            "7"
+        HalfDiminished ->
+            "ø"
 
-        MajorSeventh ->
-            "maj7"
-
-        MinorMajorSeventh ->
-            "mM7"
-
-        MinorSeventh ->
-            "7"
-
-        AugmentedMajorSeventh ->
-            "+M7"
-
-        AugmentedSeventh ->
-            "+7"
-
-        HalfDiminishedSeventh ->
-            "ø7"
-
-        DiminishedSeventh ->
-            "-7"
-
-        SeventhFlatFive ->
-            "7♭5"
+        Dominant ->
+            "dom"

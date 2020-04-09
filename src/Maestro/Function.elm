@@ -18,25 +18,25 @@ quality : Function -> Quality
 quality f =
     case f of
         Tonic ->
-            MajorTriad
+            Major
 
         Supertonic ->
-            MinorTriad
+            Minor
 
         Mediant ->
-            MinorTriad
+            Minor
 
         Subdominant ->
-            MajorTriad
+            Major
 
         Dominant ->
-            MajorTriad
+            Major
 
         Submediant ->
-            MinorTriad
+            Minor
 
         LeadingTone ->
-            MinorTriad
+            Minor
 
 
 toDegree : Function -> Degree
