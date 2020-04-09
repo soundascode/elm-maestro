@@ -1,7 +1,7 @@
 module Maestro.Key exposing (Key, chords, newKey)
 
 import Maestro.Chord exposing (Chord, newChord)
-import Maestro.Degree exposing (Degree)
+import Maestro.Function exposing (Function(..))
 import Maestro.Interval exposing (Interval(..), addInterval)
 import Maestro.Pitch exposing (Pitch)
 import Maestro.Quality exposing (Quality(..))
@@ -25,7 +25,7 @@ chords k =
     , function Supertonic k
     , function Mediant k
     , function Subdominant k
-    , function Maestro.Function.Dominant k
+    , function Dominant k
     , function Submediant k
     , function LeadingTone k
     ]
@@ -35,25 +35,25 @@ function : Function -> Key -> Chord
 function f k =
     case f of
         Tonic ->
-            newChord k.pitch MajorTriad
+            newChord { class = k.class, accidental = k.accidental } MajorTriad
 
         Supertonic ->
-            newChord (.pitch <| addInterval k MajorSecond) MinorTriad
+            newChord (addInterval { class = k.class, accidental = k.accidental } MajorSecond) MinorTriad
 
         Mediant ->
-            newChord (.pitch <| addInterval k MajorThird) MinorTriad
+            newChord (addInterval { class = k.class, accidental = k.accidental } MajorThird) MinorTriad
 
         Subdominant ->
-            newChord (.pitch <| addInterval k PerfectFourth) MajorTriad
+            newChord (addInterval { class = k.class, accidental = k.accidental } PerfectFourth) MajorTriad
 
-        Maestro.Function.Dominant ->
-            newChord (.pitch <| addInterval k PerfectFifth) MajorTriad
+        Dominant ->
+            newChord (addInterval { class = k.class, accidental = k.accidental } PerfectFifth) MajorTriad
 
         Submediant ->
-            newChord (.pitch <| addInterval k MajorSixth) MinorTriad
+            newChord (addInterval { class = k.class, accidental = k.accidental } MajorSixth) MinorTriad
 
         LeadingTone ->
-            newChord (.pitch <| addInterval k Maestro.Interval.MajorSeventh) DiminishedTriad
+            newChord (addInterval { class = k.class, accidental = k.accidental } Maestro.Interval.MajorSeventh) DiminishedTriad
 
 
 {-| addInterval applies an interval to a given note, and returns
