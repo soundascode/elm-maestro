@@ -67,15 +67,12 @@ type Interval
     | AugmentedSeventh
     | MinorNinth
     | MajorNinth
-    | MinorTenth
-    | MajorTenth
+    | AugmentedNinth
     | PerfectEleventh
     | AugmentedEleventh
     | PerfectTwelfth
-    | MinorThirteen
-    | MajorThirteen
-    | MinorFourteenth
-    | MajorFourteenth
+    | MinorThirteenth
+    | MajorThirteenth
 
 
 {-| addInterval applies an interval to a given note, and returns
@@ -219,11 +216,8 @@ toSemitones interval =
         MajorNinth ->
             14
 
-        MinorTenth ->
+        AugmentedNinth ->
             15
-
-        MajorTenth ->
-            16
 
         PerfectEleventh ->
             17
@@ -234,17 +228,11 @@ toSemitones interval =
         PerfectTwelfth ->
             19
 
-        MinorThirteen ->
+        MinorThirteenth ->
             20
 
-        MajorThirteen ->
+        MajorThirteenth ->
             21
-
-        MinorFourteenth ->
-            22
-
-        MajorFourteenth ->
-            23
 
 
 {-| toDegree returns the degree of an interval. You could consider the
@@ -338,11 +326,8 @@ toDegree interval =
         MajorNinth ->
             Ninth
 
-        MinorTenth ->
-            Tenth
-
-        MajorTenth ->
-            Tenth
+        AugmentedNinth ->
+            Ninth
 
         PerfectEleventh ->
             Eleventh
@@ -353,14 +338,8 @@ toDegree interval =
         PerfectTwelfth ->
             Twelfth
 
-        MinorThirteen ->
+        MinorThirteenth ->
             Thirteenth
 
-        MajorThirteen ->
+        MajorThirteenth ->
             Thirteenth
-
-        MinorFourteenth ->
-            Fourteenth
-
-        MajorFourteenth ->
-            Fourteenth

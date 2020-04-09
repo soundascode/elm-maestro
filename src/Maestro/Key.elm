@@ -1,6 +1,6 @@
 module Maestro.Key exposing (Key, chords, newKey)
 
-import Maestro.Chord exposing (Chord, newChord)
+import Maestro.Chord exposing (Chord, Type(..), newChord)
 import Maestro.Function exposing (Function(..))
 import Maestro.Interval exposing (Interval(..), addInterval)
 import Maestro.Pitch exposing (Pitch)
@@ -35,25 +35,25 @@ function : Function -> Key -> Chord
 function f k =
     case f of
         Tonic ->
-            newChord { class = k.class, accidental = k.accidental } Major
+            newChord { class = k.class, accidental = k.accidental } MajorTriad
 
         Supertonic ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } MajorSecond) Minor
+            newChord (addInterval { class = k.class, accidental = k.accidental } MajorSecond) MinorTriad
 
         Mediant ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } MajorThird) Minor
+            newChord (addInterval { class = k.class, accidental = k.accidental } MajorThird) MinorTriad
 
         Subdominant ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } PerfectFourth) Major
+            newChord (addInterval { class = k.class, accidental = k.accidental } PerfectFourth) MajorTriad
 
         Maestro.Function.Dominant ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } PerfectFifth) Major
+            newChord (addInterval { class = k.class, accidental = k.accidental } PerfectFifth) MajorTriad
 
         Submediant ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } MajorSixth) Minor
+            newChord (addInterval { class = k.class, accidental = k.accidental } MajorSixth) MinorTriad
 
         LeadingTone ->
-            newChord (addInterval { class = k.class, accidental = k.accidental } Maestro.Interval.MajorSeventh) Diminished
+            newChord (addInterval { class = k.class, accidental = k.accidental } Maestro.Interval.MajorSeventh) DiminishedTriad
 
 
 {-| addInterval applies an interval to a given note, and returns

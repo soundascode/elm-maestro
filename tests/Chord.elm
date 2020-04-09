@@ -2,7 +2,7 @@ module Chord exposing (all)
 
 import Expect
 import Maestro.Accidental exposing (Accidental(..))
-import Maestro.Chord exposing (inversion, newChord, pitches)
+import Maestro.Chord exposing (Type(..), inversion, newChord, pitches)
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
 import Maestro.Quality exposing (Quality(..))
@@ -11,29 +11,29 @@ import Test exposing (Test, describe, test)
 
 all : Test
 all =
-    describe "Chord Test Suite"
-        [ describe "Inversions tests"
-            [ test "first inversion of major triad" <|
+    describe "The Chord Module"
+        [ describe "Maestro.Chord.inversion"
+            [ test "produces the correct first inversion of a major triad" <|
                 \_ ->
-                    newChord (newPitch C Natural) Major
+                    newChord (newPitch C Natural) MajorTriad
                         |> inversion 1
                         |> Expect.equal
                             [ newPitch C Natural
                             , newPitch E Natural
                             , newPitch G Natural
                             ]
-            , test "second inversion of major triad" <|
+            , test "produces the correct second inversion of a major triad" <|
                 \_ ->
-                    newChord (newPitch C Natural) Major
+                    newChord (newPitch C Natural) MajorTriad
                         |> inversion 2
                         |> Expect.equal
                             [ newPitch E Natural
                             , newPitch G Natural
                             , newPitch C Natural
                             ]
-            , test "third inversion of major triad" <|
+            , test "produces the correct third inversion of a major triad" <|
                 \_ ->
-                    newChord (newPitch C Natural) Major
+                    newChord (newPitch C Natural) MajorTriad
                         |> inversion 3
                         |> Expect.equal
                             [ newPitch G Natural
@@ -41,224 +41,304 @@ all =
                             , newPitch E Natural
                             ]
             ]
-        , describe "Major chords tests"
-            [ test "C Major" <|
-                \() ->
-                    newChord (newPitch C Natural) Major
+        , describe "Maestro.Chord.pitches"
+            [ test "returns the correct pitches for a major triad" <|
+                \_ ->
+                    newChord (newPitch C Natural) MajorTriad
                         |> pitches
                         |> Expect.equal
                             [ newPitch C Natural
                             , newPitch E Natural
                             , newPitch G Natural
                             ]
-            , test "C# Major" <|
-                \() ->
-                    newChord (newPitch C Sharp) Major
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch C Sharp
-                            , newPitch E Sharp
-                            , newPitch G Sharp
-                            ]
-            , test "D Major" <|
-                \() ->
-                    newChord (newPitch D Natural) Major
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch D Natural
-                            , newPitch F Sharp
-                            , newPitch A Natural
-                            ]
-            , test "D# Major" <|
-                \() ->
-                    newChord (newPitch D Sharp) Major
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch D Sharp
-                            , newPitch F SharpSharp
-                            , newPitch A Sharp
-                            ]
-            , test "E Major" <|
-                \() ->
-                    newChord (newPitch E Natural) Major
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch E Natural
-                            , newPitch G Sharp
-                            , newPitch B Natural
-                            ]
-            , test "F Major" <|
-                \() ->
-                    newChord (newPitch F Natural) Major
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch F Natural
-                            , newPitch A Natural
-                            , newPitch C Natural
-                            ]
-            , test "F# Major" <|
-                \() ->
-                    newChord (newPitch F Sharp) Major
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch F Sharp
-                            , newPitch A Sharp
-                            , newPitch C Sharp
-                            ]
-            , test "G Major" <|
-                \() ->
-                    newChord (newPitch G Natural) Major
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch G Natural
-                            , newPitch B Natural
-                            , newPitch D Natural
-                            ]
-            , test "G# Major" <|
-                \() ->
-                    newChord (newPitch G Sharp) Major
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch G Sharp
-                            , newPitch B Sharp
-                            , newPitch D Sharp
-                            ]
-            , test "A Major" <|
-                \() ->
-                    newChord (newPitch A Natural) Major
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch A Natural
-                            , newPitch C Sharp
-                            , newPitch E Natural
-                            ]
-            , test "A# Major" <|
-                \() ->
-                    newChord (newPitch A Sharp) Major
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch A Sharp
-                            , newPitch C SharpSharp
-                            , newPitch E Sharp
-                            ]
-            , test "B Major" <|
-                \() ->
-                    newChord (newPitch B Natural) Major
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch B Natural
-                            , newPitch D Sharp
-                            , newPitch F Sharp
-                            ]
-            ]
-        , describe "Minor chords tests"
-            [ test "C minor" <|
-                \() ->
-                    newChord (newPitch C Natural) Minor
+            , test "returns the correct pitches for a minor triad" <|
+                \_ ->
+                    newChord (newPitch C Natural) MinorTriad
                         |> pitches
                         |> Expect.equal
                             [ newPitch C Natural
                             , newPitch E Flat
                             , newPitch G Natural
                             ]
-            , test "Db minor" <|
-                \() ->
-                    newChord (newPitch D Flat) Minor
+            , test "returns the correct pitches for an augmented triad" <|
+                \_ ->
+                    newChord (newPitch C Natural) AugmentedTriad
                         |> pitches
                         |> Expect.equal
-                            [ newPitch D Flat
-                            , newPitch F Flat
-                            , newPitch A Flat
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Sharp
                             ]
-            , test "D minor" <|
-                \() ->
-                    newChord (newPitch D Natural) Minor
+            , test "returns the correct pitches for a diminished triad" <|
+                \_ ->
+                    newChord (newPitch C Natural) DiminishedTriad
                         |> pitches
                         |> Expect.equal
-                            [ newPitch D Natural
-                            , newPitch F Natural
-                            , newPitch A Natural
+                            [ newPitch C Natural
+                            , newPitch E Flat
+                            , newPitch G Flat
                             ]
-            , test "Eb minor" <|
-                \() ->
-                    newChord (newPitch E Flat) Minor
+            , test "returns the correct pitches for a diminished seventh chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) DiminishedSeventh
                         |> pitches
                         |> Expect.equal
-                            [ newPitch E Flat
+                            [ newPitch C Natural
+                            , newPitch E Flat
+                            , newPitch G Flat
+                            , newPitch B FlatFlat
+                            ]
+            , test "returns the correct pitches for a half-diminished seventh chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) HalfDiminishedSeventh
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Flat
                             , newPitch G Flat
                             , newPitch B Flat
                             ]
-            , test "E minor" <|
-                \() ->
-                    newChord (newPitch E Natural) Minor
+            , test "returns the correct pitches for a minor seventh chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) MinorSeventh
                         |> pitches
                         |> Expect.equal
-                            [ newPitch E Natural
+                            [ newPitch C Natural
+                            , newPitch E Flat
+                            , newPitch G Natural
+                            , newPitch B Flat
+                            ]
+            , test "returns the correct pitches for a minor-major seventh chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) MinorMajorSeventh
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Flat
                             , newPitch G Natural
                             , newPitch B Natural
                             ]
-            , test "F minor" <|
-                \() ->
-                    newChord (newPitch F Natural) Minor
+            , test "returns the correct pitches for a dominant seventh chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) DominantSeventh
                         |> pitches
                         |> Expect.equal
-                            [ newPitch F Natural
-                            , newPitch A Flat
-                            , newPitch C Natural
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch B Flat
                             ]
-            , test "Gb minor" <|
-                \() ->
-                    newChord (newPitch G Flat) Minor
+            , test "returns the correct pitches for a major seventh chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) MajorSeventh
                         |> pitches
                         |> Expect.equal
-                            [ newPitch G Flat
-                            , newPitch B FlatFlat
-                            , newPitch D Flat
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch B Natural
                             ]
-            , test "G minor" <|
-                \() ->
-                    newChord (newPitch G Natural) Minor
+            , test "returns the correct pitches for an augmented seventh chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) AugmentedSeventh
                         |> pitches
                         |> Expect.equal
-                            [ newPitch G Natural
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Sharp
+                            , newPitch B Flat
+                            ]
+            , test "returns the correct pitches for an augmented major seventh chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) AugmentedMajorSeventh
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Sharp
+                            , newPitch B Natural
+                            ]
+            , test "returns the correct pitches for a dominant ninth chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) DominantNinth
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
                             , newPitch B Flat
                             , newPitch D Natural
                             ]
-            , test "Ab minor" <|
-                \() ->
-                    newChord (newPitch A Flat) Minor
+            , test "returns the correct pitches for a dominant eleventh chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) DominantEleventh
                         |> pitches
                         |> Expect.equal
-                            [ newPitch A Flat
-                            , newPitch C Flat
-                            , newPitch E Flat
-                            ]
-            , test "A minor" <|
-                \() ->
-                    newChord (newPitch A Natural) Minor
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch A Natural
-                            , newPitch C Natural
-                            , newPitch E Natural
-                            ]
-            , test "Bb minor" <|
-                \() ->
-                    newChord (newPitch B Flat) Minor
-                        |> pitches
-                        |> Expect.equal
-                            [ newPitch B Flat
-                            , newPitch D Flat
+                            [ newPitch C Natural
+                            , newPitch G Natural
+                            , newPitch B Flat
+                            , newPitch D Natural
                             , newPitch F Natural
                             ]
-            , test "B minor" <|
-                \() ->
-                    newChord (newPitch B Natural) Minor
+            , test "returns the correct pitches for a dominant thirteenth chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) DominantThirteenth
                         |> pitches
                         |> Expect.equal
-                            [ newPitch B Natural
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch B Flat
+                            , newPitch D Natural
+                            , newPitch A Natural
+                            ]
+            , test "returns the correct pitches for a seventh augmented fifth chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) SeventhAugmentedFifth
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Sharp
+                            , newPitch B Flat
+                            ]
+            , test "returns the correct pitches for a seventh minor ninth chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) SeventhMinorNinth
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch B Flat
+                            , newPitch D Flat
+                            ]
+            , test "returns the correct pitches for a seventh sharp ninth chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) SeventhSharpNinth
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch B Flat
+                            , newPitch D Sharp
+                            ]
+            , test "returns the correct pitches for a seventh augmented eleventh chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) SeventhAugmentedEleventh
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch B Flat
                             , newPitch D Natural
                             , newPitch F Sharp
+                            ]
+            , test "returns the correct pitches for a seventh diminished thirteenth chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) SeventhDiminishedThirteenth
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch B Flat
+                            , newPitch D Natural
+                            , newPitch F Natural
+                            , newPitch A Flat
+                            ]
+            , test "returns the correct pitches for an add ninth chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) AddNinth
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch D Natural
+                            ]
+            , test "returns the correct pitches for an add fourth chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) AddFourth
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch F Natural
+                            ]
+            , test "returns the correct pitches for an add sixth chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) AddSixth
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch A Natural
+                            ]
+            , test "returns the correct pitches for a six nine chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) SixNine
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch A Natural
+                            , newPitch D Natural
+                            ]
+            , test "returns the correct pitches for a seven six chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) SevenSix
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            , newPitch A Natural
+                            , newPitch B Flat
+                            ]
+            , test "returns the correct pitches for a mixed third chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) MixedThird
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch E Flat
+                            , newPitch E Natural
+                            , newPitch G Natural
+                            ]
+            , test "returns the correct pitches for a sus2 chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) SuspendedSecond
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch D Natural
+                            , newPitch G Natural
+                            ]
+            , test "returns the correct pitches for a sus4 chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) SuspendedFourth
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch F Natural
+                            , newPitch G Natural
+                            ]
+            , test "returns the correct pitches for a jazz sus chord" <|
+                \_ ->
+                    newChord (newPitch C Natural) JazzSus
+                        |> pitches
+                        |> Expect.equal
+                            [ newPitch C Natural
+                            , newPitch F Natural
+                            , newPitch G Natural
+                            , newPitch B Flat
+                            , newPitch D Natural
                             ]
             ]
         ]
