@@ -1,5 +1,5 @@
 module Maestro.Interval exposing
-    ( Degree(..), Interval(..)
+    ( Interval(..)
     , addInterval
     , distance
     , diatonicDegreeOf
@@ -26,7 +26,7 @@ manipulate intervals.
 
 -}
 
-import Maestro.Accidental exposing (Accidental(..), accidentalFromValue, accidentalToValue)
+import Maestro.Accidental exposing (Accidental(..), fromSemitones, toSemitones)
 import Maestro.Note exposing (Note, noteToIndex)
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass
@@ -34,24 +34,9 @@ import Maestro.PitchClass
         ( diatonicPitchClassFromValue
         , diatonicPitchClassValue
         )
+import Maestro.Degree exposing (Degree(..))
 
 
-{-| -}
-type Degree
-    = Root
-    | Second
-    | Third
-    | Fourth
-    | Fifth
-    | Sixth
-    | Seventh
-    | Octave
-    | Ninth
-    | Tenth
-    | Eleventh
-    | Twelfth
-    | Thirteenth
-    | Fourteenth
 
 
 {-| Interval represents the difference between two pitches
@@ -102,22 +87,22 @@ the resulting note
 addInterval : Note -> Interval -> Note
 addInterval note interval =
     let
-        newNaturalNote =
-            diatonicDegreeOf (intervalDegree interval) note
+        newDiatonicNote =
+            diatonicDegreeOf (toDegree interval) note
 
-        intervalSemipitches =
-            intervalToValue interval
+        intervalSemitones =
+            toSemitones interval
 
-        startToNewNaturalSemipitches =
-            distance note newNaturalNote
+        startToNewDiatonicSemitones =
+            distance note newDiatonicNote
 
         accidental =
-            accidentalFromValue (intervalSemipitches - startToNewNaturalSemipitches)
+            Maestro.Accidental.fromSemitones (intervalSemitones - startToNewDiatonicSemitones)
 
         newOctave =
-            (noteToIndex newNaturalNote + accidentalToValue accidental) // 12
+            (noteToIndex newDiatonicNote + Maestro.Accidental.toSemitones accidental) // 12
     in
-    { pitch = newPitch newNaturalNote.pitch.class accidental, octave = newOctave }
+    { pitch = newPitch newDiatonicNote.pitch.class accidental, octave = newOctave }
 
 
 {-| diatonicDegreeOf will compute the note being the given
@@ -127,10 +112,10 @@ diatonicDegreeOf : Degree -> Note -> Note
 diatonicDegreeOf degree note =
     let
         diatonicPitchClass =
-            diatonicPitchClassFromValue <| remainderBy 7 (diatonicPitchClassValue note.pitch.class + degreeToValue degree)
+            diatonicPitchClassFromValue <| remainderBy 7 (diatonicPitchClassValue note.pitch.class + Maestro.Degree.toValue degree)
 
         octaveShift =
-            (diatonicPitchClassValue note.pitch.class + degreeToValue degree) // 7
+            (diatonicPitchClassValue note.pitch.class + Maestro.Degree.toValue degree) // 7
     in
     case diatonicPitchClass of
         Just dk ->
@@ -140,18 +125,18 @@ diatonicDegreeOf degree note =
             note
 
 
-{-| distance computes the distance in semipitches between two notes
+{-| distance computes the distance in semitones between two notes
 -}
 distance : Note -> Note -> Int
 distance from to =
     noteToIndex to - noteToIndex from
 
 
-{-| intervalToValue returns the number of semipitches corresponding
+{-| intervalToSemitones returns the number of semitones corresponding
 to the provided interval
 -}
-intervalToValue : Interval -> Int
-intervalToValue interval =
+toSemitones : Interval -> Int
+toSemitones interval =
     case interval of
         PerfectUnison ->
             0
@@ -265,12 +250,12 @@ intervalToValue interval =
             23
 
 
-{-| intervalDegree returns the degree of an interval. You could consider the
+{-| toDegree returns the degree of an interval. You could consider the
 degree as the absolute value of an interval; an interval stripped of its modal
 quality (Perfect, Major, minor, augmented, diminished).
 -}
-intervalDegree : Interval -> Degree
-intervalDegree interval =
+toDegree : Interval -> Degree
+toDegree interval =
     case interval of
         PerfectUnison ->
             Root
@@ -382,51 +367,3 @@ intervalDegree interval =
 
         MajorFourteenth ->
             Fourteenth
-
-
-{-| degreeToValue returns the numeric value of a degree
--}
-degreeToValue : Degree -> Int
-degreeToValue d =
-    case d of
-        Root ->
-            0
-
-        Second ->
-            1
-
-        Third ->
-            2
-
-        Fourth ->
-            3
-
-        Fifth ->
-            4
-
-        Sixth ->
-            5
-
-        Seventh ->
-            6
-
-        Octave ->
-            7
-
-        Ninth ->
-            8
-
-        Tenth ->
-            9
-
-        Eleventh ->
-            10
-
-        Twelfth ->
-            11
-
-        Thirteenth ->
-            12
-
-        Fourteenth ->
-            13

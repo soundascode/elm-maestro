@@ -18,7 +18,7 @@ well as helpers to represent these as numerical values.
 # Common Helpers
 
 @docs newPitch, pitchClassToValue, pitchClassFromValue, pitchClassFromString
-@docs accidentalToValue, accidentalFromValue, accidentalFromString
+@docs Maestro.Accidental.toSemitones, Maestro.Accidental.fromSemitones, accidentalFromString
 @docs diatonicPitchClassValue, diatonicPitchClassFromValue
 
 -}

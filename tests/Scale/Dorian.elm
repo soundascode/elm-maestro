@@ -2,7 +2,8 @@ module Scale.Dorian exposing (all)
 
 import Expect
 import Maestro.Accidental exposing (Accidental(..))
-import Maestro.Interval exposing (Degree(..), Interval(..))
+import Maestro.Interval exposing (Interval(..))
+import Maestro.Degree exposing (Degree(..))
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass exposing (PitchClass(..))
 import Maestro.Scale exposing (Scale(..), pitches)

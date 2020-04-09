@@ -1,9 +1,9 @@
 module Maestro.Accidental exposing
     ( Accidental(..)
-    , accidentalFromString
-    , accidentalFromValue
-    , accidentalToString
-    , accidentalToValue
+    , fromString
+    , fromSemitones
+    , toString
+    , toSemitones
     )
 
 {-| Accidental represents an accidental applied to a key
@@ -20,11 +20,11 @@ type Accidental
     | FlatFlat
 
 
-{-| accidentalToValue returns the numbers of semipitches to apply to a
+{-| toSemitones returns the numbers of semitones to apply to a
 PitchClass when calculating its position.
 -}
-accidentalToValue : Accidental -> Int
-accidentalToValue accidental =
+toSemitones : Accidental -> Int
+toSemitones accidental =
     case accidental of
         Flat ->
             -1
@@ -42,11 +42,11 @@ accidentalToValue accidental =
             2
 
 
-{-| accidentalFromValue returns the accidental corresponding to a given
-number of semipitches
+{-| fromSemitones returns the accidental corresponding to a given
+number of semitones
 -}
-accidentalFromValue : Int -> Accidental
-accidentalFromValue value =
+fromSemitones : Int -> Accidental
+fromSemitones value =
     if value == -2 then
         FlatFlat
 
@@ -66,10 +66,10 @@ accidentalFromValue value =
         Natural
 
 
-{-| accidentalFromString parses an accidental from a String
+{-| fromString parses an accidental from a String
 -}
-accidentalFromString : String -> Maybe Accidental
-accidentalFromString adj =
+fromString : String -> Maybe Accidental
+fromString adj =
     case toLower adj of
         "" ->
             Just Natural
@@ -93,10 +93,10 @@ accidentalFromString adj =
             Nothing
 
 
-{-| accidentalFromString parses an accidental from a String
+{-| toString parses an accidental from a String
 -}
-accidentalToString : Accidental -> String
-accidentalToString adj =
+toString : Accidental -> String
+toString adj =
     case adj of
         Natural ->
             ""

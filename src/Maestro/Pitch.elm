@@ -9,8 +9,8 @@ module Maestro.Pitch exposing
 import Maestro.Accidental
     exposing
         ( Accidental(..)
-        , accidentalToString
-        , accidentalToValue
+        , toString
+        , toSemitones
         )
 import Maestro.PitchClass
     exposing
@@ -40,12 +40,12 @@ while E Flat would be 3, or G Sharp would be 8.
 -}
 pitchToIndex : Pitch -> Int
 pitchToIndex t =
-    remainderBy 12 (pitchClassToValue t.class + accidentalToValue t.accidental)
+    remainderBy 12 (pitchClassToValue t.class + Maestro.Accidental.toSemitones t.accidental)
 
 
 pitchToString : Pitch -> String
 pitchToString t =
-    pitchClassToString t.class ++ accidentalToString t.accidental
+    pitchClassToString t.class ++ Maestro.Accidental.toString t.accidental
 
 
 {-| chromaticPitches returns the chromatic scale pitches starting at C.
