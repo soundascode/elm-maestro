@@ -1,8 +1,7 @@
 module Maestro.Interval exposing
     ( Interval(..)
-    , addInterval
-    , distance
-    , diatonicDegreeOf
+    , addInterval, distance, diatonicDegreeOf
+    , toDegree, toSemitones
     )
 
 {-| This module provides types and functions to compute, represent and
@@ -27,6 +26,7 @@ manipulate intervals.
 -}
 
 import Maestro.Accidental exposing (Accidental(..), fromSemitones, toSemitones)
+import Maestro.Degree exposing (Degree(..))
 import Maestro.Note exposing (Note, noteToIndex)
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass
@@ -34,9 +34,6 @@ import Maestro.PitchClass
         ( diatonicPitchClassFromValue
         , diatonicPitchClassValue
         )
-import Maestro.Degree exposing (Degree(..))
-
-
 
 
 {-| Interval represents the difference between two pitches
