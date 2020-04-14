@@ -1,6 +1,6 @@
 module Maestro.Chord exposing
     ( Chord
-    , Type(..), inversion, newChord, pitches
+    , Type(..), inversion, newChord, pitches, typeToString
     )
 
 {-| This module provides types and functions to create and
@@ -18,8 +18,8 @@ manipulate chords.
 
 -}
 
-import Maestro.ListUtils exposing (rotate)
 import Maestro.Interval exposing (Interval(..), addInterval)
+import Maestro.ListUtils exposing (rotate)
 import Maestro.Note exposing (newNote)
 import Maestro.Pitch exposing (Pitch)
 
@@ -257,3 +257,94 @@ intervalsOf t =
 
         JazzSus ->
             List.concat [ intervalsOf SuspendedFourth, [ Maestro.Interval.MinorSeventh, MajorNinth ] ]
+
+
+typeToString : Type -> String
+typeToString t =
+    case t of
+        MajorTriad ->
+            "Δ"
+
+        MinorTriad ->
+            "m"
+
+        AugmentedTriad ->
+            "+"
+
+        DiminishedTriad ->
+            "o"
+
+        DiminishedSeventh ->
+            "o7"
+
+        HalfDiminishedSeventh ->
+            "7♭5"
+
+        MinorSeventh ->
+            "m7"
+
+        MinorMajorSeventh ->
+            "mM7"
+
+        DominantSeventh ->
+            "7"
+
+        MajorSeventh ->
+            "maj7"
+
+        AugmentedSeventh ->
+            "+7"
+
+        AugmentedMajorSeventh ->
+            "+M7"
+
+        DominantNinth ->
+            "9"
+
+        DominantEleventh ->
+            "11"
+
+        DominantThirteenth ->
+            "13"
+
+        SeventhAugmentedFifth ->
+            "7+5"
+
+        SeventhMinorNinth ->
+            "7-9"
+
+        SeventhSharpNinth ->
+            "7+9"
+
+        SeventhAugmentedEleventh ->
+            "7+11"
+
+        SeventhDiminishedThirteenth ->
+            "7-13"
+
+        AddNinth ->
+            "add9"
+
+        AddFourth ->
+            "add11"
+
+        AddSixth ->
+            "6"
+
+        SixNine ->
+            "6/9"
+
+        SevenSix ->
+            "7/6"
+
+        MixedThird ->
+            ""
+
+        SuspendedSecond ->
+            "sus2"
+
+        SuspendedFourth ->
+            "sus4"
+
+        JazzSus ->
+            "9sus4"
