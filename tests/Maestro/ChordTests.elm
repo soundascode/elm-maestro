@@ -1,4 +1,4 @@
-module Chord exposing (all)
+module Maestro.ChordTests exposing (all)
 
 import Expect
 import Maestro.Accidental exposing (Accidental(..))

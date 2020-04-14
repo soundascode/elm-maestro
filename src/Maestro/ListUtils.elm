@@ -1,4 +1,4 @@
-module ListUtils exposing
+module Maestro.ListUtils exposing
     ( first
     , rotate
     )

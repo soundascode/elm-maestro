@@ -18,11 +18,10 @@ manipulate chords.
 
 -}
 
-import ListUtils exposing (rotate)
+import Maestro.ListUtils exposing (rotate)
 import Maestro.Interval exposing (Interval(..), addInterval)
 import Maestro.Note exposing (newNote)
 import Maestro.Pitch exposing (Pitch)
-import Maestro.Quality exposing (Quality)
 
 
 type alias Chord =

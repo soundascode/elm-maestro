@@ -1,4 +1,4 @@
-module Key exposing (all)
+module Maestro.KeyTests exposing (all)
 
 import Expect
 import Maestro.Accidental exposing (Accidental(..))

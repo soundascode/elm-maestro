@@ -1,4 +1,4 @@
-module Interval exposing (all)
+module Maestro.IntervalTests exposing (all)
 
 import Expect
 import Maestro.Accidental exposing (Accidental(..))
