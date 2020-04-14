@@ -1,7 +1,7 @@
 module Maestro.Note exposing
     ( Note
     , newNote, noteToIndex
-    , octave
+    , midi, octave
     )
 
 {-| This module provides types and functions to manipulate musical notes.
@@ -55,3 +55,10 @@ noteToIndex note =
 octave : Int -> Accidental -> List Note
 octave number adj =
     List.map (\t -> newNote t.class t.accidental number) (chromaticPitches adj)
+
+
+midi : Note -> Int
+midi n =
+    -- Midi notes indexing starts at octave -2, hence adding +2 to the octave when
+    -- computing the midi note number
+    (n.octave + 2) * 12 + pitchToIndex n.pitch
