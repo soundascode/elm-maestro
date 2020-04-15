@@ -13,7 +13,7 @@ import Html.Events exposing (..)
 import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Chord exposing (..)
 import Maestro.Pitch exposing (Pitch, newPitch, pitchToString)
-import Maestro.PitchClass exposing (PitchClass(..), pitchClassToString)
+import Maestro.PitchClass exposing (PitchClass(..), toString)
 import Maestro.Note exposing (newNote, midi)
 
 main =
@@ -183,7 +183,7 @@ chordSelector model =
                     { options = []
                     , toggleMsg = MyDrop1Msg
                     , toggleButton =
-                        Dropdown.toggle [ Button.primary ] [ text <| pitchClassToString model.chord.root.class ]
+                        Dropdown.toggle [ Button.primary ] [ text <| toString model.chord.root.class ]
                     , items =
                         [ Dropdown.buttonItem [ onClick <| SetChordRootMsg <| newPitch C Natural ] [ text "C" ]
                         , Dropdown.buttonItem [ onClick <| SetChordRootMsg <| newPitch C Sharp ] [ text "C#" ]

@@ -1,29 +1,29 @@
-module Maestro.PitchClass exposing
-    ( PitchClass(..)
-    , pitchClassToValue, pitchClassFromValue, pitchClassFromString
-    , diatonicPitchClassValue, diatonicPitchClassFromValue
-    , pitchClassToString
-    )
+module Maestro.PitchClass
+    exposing
+        ( PitchClass(..)
+        , toSemitones
+        , toDiatonicIndex
+        , fromDiatonicIndex
+        , toString
+        )
 
-{-| This module provides types and functions to manipulate musical pitches.
-It allows you to represent pitches (pitches) like `C`, `C Sharp` and so on, as
-well as helpers to represent these as numerical values.
+{-| This module provides abstractions and helpers to represent and manipulate
+pitch classes (C, D, E, F, G, A, and B pitches). It is used as the main building
+block of Pitches and Notes.
+
+N.B: For lack of a better abstraction, and name, although "PitchClass" is not the absolutely
+correct name for the concept it's used, we settled on it.
 
 
 # Types
+@docs PitchClass
 
-@docs Pitch, PitchClass, Accidental
+# Conversion
+@docs toSemitones, toDiatonicIndex,
 
-
-# Common Helpers
-
-@docs newPitch, pitchClassToValue, pitchClassFromValue, pitchClassFromString
-@docs Maestro.Accidental.toSemitones, Maestro.Accidental.fromSemitones, accidentalFromString
-@docs diatonicPitchClassValue, diatonicPitchClassFromValue
-
+# Parsing
+@docs toString, fromDiatonicIndex
 -}
-
-import String exposing (toLower)
 
 
 {-| PitchClass represents a Pitch class without accidental
@@ -38,11 +38,15 @@ type PitchClass
     | B
 
 
-{-| pitchClassToValue returns the chromatic position of a PitchClass relative to an octave
-as a numeric value
+{-| Translates a PitchClass to the number of semitones it represents.
+Like on a piano, it is indexed on C (0).
+
+    toSemitones C == 0
+    toSemitones D == 2
+    toSemitones B == 11
 -}
-pitchClassToValue : PitchClass -> Int
-pitchClassToValue class =
+toSemitones : PitchClass -> Int
+toSemitones class =
     case class of
         C ->
             0
@@ -66,97 +70,15 @@ pitchClassToValue class =
             11
 
 
-{-| pitchClassFromValue given a position relative to an octave returns the
-corresponding key
+{-| Translates a PitchClass into a position on the diatonic scale (white notes on a piano).
+Like on a piano, it is indexed on C (0).
+
+    toDiatonicIndex C == 0
+    toDiatonicIndex D == 1
+    toDiatonicIndex B == 6
 -}
-pitchClassFromValue : Int -> Maybe PitchClass
-pitchClassFromValue value =
-    case value of
-        0 ->
-            Just C
-
-        2 ->
-            Just D
-
-        4 ->
-            Just E
-
-        5 ->
-            Just F
-
-        7 ->
-            Just G
-
-        9 ->
-            Just A
-
-        11 ->
-            Just B
-
-        _ ->
-            Nothing
-
-
-{-| pitchClassFromString parses a PitchClass from a String
--}
-pitchClassFromString : String -> Maybe PitchClass
-pitchClassFromString class =
-    case toLower class of
-        "c" ->
-            Just C
-
-        "d" ->
-            Just D
-
-        "e" ->
-            Just E
-
-        "f" ->
-            Just F
-
-        "g" ->
-            Just G
-
-        "a" ->
-            Just A
-
-        "b" ->
-            Just B
-
-        _ ->
-            Nothing
-
-
-pitchClassToString : PitchClass -> String
-pitchClassToString k =
-    case k of
-        C ->
-            "C"
-
-        D ->
-            "D"
-
-        E ->
-            "E"
-
-        F ->
-            "F"
-
-        G ->
-            "G"
-
-        A ->
-            "A"
-
-        B ->
-            "B"
-
-
-{-| diatonicPitchClassValue returns the diatonic position of a PitchClass relative to an octave
-(composed of only natural notes (white notes of your piano)) as a numeric value.
--}
-diatonicPitchClassValue : PitchClass -> Int
-diatonicPitchClassValue class =
+toDiatonicIndex : PitchClass -> Int
+toDiatonicIndex class =
     case class of
         C ->
             0
@@ -180,12 +102,44 @@ diatonicPitchClassValue class =
             6
 
 
-{-| diatonicPitchClassFromValue given a position relative to an octave
-(composed of only natural notes (white notes of your piano)) returns the
-corresponding key.
+{-| Converts a PitchClass into its string represenation
+
+    toString C == "C"
 -}
-diatonicPitchClassFromValue : Int -> Maybe PitchClass
-diatonicPitchClassFromValue value =
+toString : PitchClass -> String
+toString k =
+    case k of
+        C ->
+            "C"
+
+        D ->
+            "D"
+
+        E ->
+            "E"
+
+        F ->
+            "F"
+
+        G ->
+            "G"
+
+        A ->
+            "A"
+
+        B ->
+            "B"
+
+
+{-| Attempts to interpret a diatonic index as a PitchClass.
+
+    fromDiatonicIndex 0 == Just C
+    fromDiatonicIndex 1 == Just D
+    fromDiatonicIndex 6 == Just B
+    fromDiatonicIndex 42 == Nothing
+-}
+fromDiatonicIndex : Int -> Maybe PitchClass
+fromDiatonicIndex value =
     case value of
         0 ->
             Just C

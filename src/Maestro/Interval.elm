@@ -31,8 +31,8 @@ import Maestro.Note exposing (Note, noteToIndex)
 import Maestro.Pitch exposing (newPitch)
 import Maestro.PitchClass
     exposing
-        ( diatonicPitchClassFromValue
-        , diatonicPitchClassValue
+        ( fromDiatonicIndex
+        , toDiatonicIndex
         )
 
 
@@ -106,10 +106,10 @@ diatonicDegreeOf : Degree -> Note -> Note
 diatonicDegreeOf degree note =
     let
         diatonicPitchClass =
-            diatonicPitchClassFromValue <| remainderBy 7 (diatonicPitchClassValue note.pitch.class + Maestro.Degree.toValue degree)
+            fromDiatonicIndex <| remainderBy 7 (toDiatonicIndex note.pitch.class + Maestro.Degree.toValue degree)
 
         octaveShift =
-            (diatonicPitchClassValue note.pitch.class + Maestro.Degree.toValue degree) // 7
+            (toDiatonicIndex note.pitch.class + Maestro.Degree.toValue degree) // 7
     in
     case diatonicPitchClass of
         Just dk ->
