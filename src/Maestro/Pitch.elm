@@ -1,10 +1,26 @@
-module Maestro.Pitch exposing
-    ( Pitch
-    , chromaticPitches
-    , newPitch
-    , pitchToIndex
-    , pitchToString
-    )
+module Maestro.Pitch
+    exposing
+        ( Pitch
+        , chromatics
+        , newPitch
+        , toSemitones
+        , toString
+        )
+
+{-| This module provides abstractions and helpers to represent and manipulate pitches.
+A pitch is defined by a PitchClass and an Accidental. It makes it possible to represent any pitches
+of the western music system. It is the base building block of the Note type which adds the notion
+of Octave to it.
+
+# Definition
+@docs Pitch
+
+# Helpers
+@docs newPitch, chromatics
+
+# Conversion
+@docs toSemitones, toString
+-}
 
 import Maestro.Accidental
     exposing
@@ -20,40 +36,82 @@ import Maestro.PitchClass
         )
 
 
-{-| Pitch represents a pitch and is defined by a class and an accidental
+{-| Represents a pitch, as defined by a class and an accidental.
 -}
 type alias Pitch =
     { class : PitchClass
-    , accidental : Accidental
+    , accidental :
+        Accidental
+        -- // TODO: Should accidental be an optional (Maybe)?
     }
 
 
-{-| newPitch is a helper function to create a pitch
+{-| Helper function to create a pitch from a PitchClass and an Accidental
+
+    newPitch C Sharp == { class = C, accidental = Sharp}
 -}
 newPitch : PitchClass -> Accidental -> Pitch
 newPitch class accidental =
     { class = class, accidental = accidental }
 
 
-{-| pitchToIndex returns the index in an octave of the provided note. C would be zero,
-while E Flat would be 3, or G Sharp would be 8.
+{-| Translates a Pitch to the number of semitones it represents.
+Like on a piano, it is indexed on C (0).
+
+    toSemitones <| newPitch C Natural == 0
+    toSemitones <| newPitch E Flat == 3
+    toSemitones <| newPitch G Sharp == 8
 -}
-pitchToIndex : Pitch -> Int
-pitchToIndex t =
+toSemitones : Pitch -> Int
+toSemitones t =
     remainderBy 12 (Maestro.PitchClass.toSemitones t.class + Maestro.Accidental.toSemitones t.accidental)
 
 
-pitchToString : Pitch -> String
-pitchToString t =
+{-| Converts a Pitch into its string represenation
+
+    toString <| newPitch C Sharp == "C♯"
+    toString <| newPitch G Flat == "G♭"
+-}
+toString : Pitch -> String
+toString t =
     Maestro.PitchClass.toString t.class ++ Maestro.Accidental.toString t.accidental
 
 
-{-| chromaticPitches returns the chromatic scale pitches starting at C.
-The adjusted pitches will be sharped or flatted according to the provided Accidental.
-This is mostly a helper function.
+{-| Produces the list of notes out of the chromatic scale, restricting accidentals to the provided one.
+It is useful to obtain the list of all possible notes, while restricting the (piano) black notes to whether
+sharps or flats.
+
+    chromatics Sharp ==
+        [ newPitch C Natural
+        , newPitch C Sharp
+        , newPitch D Natural
+        , newPitch D Sharp
+        , newPitch E Natural
+        , newPitch F Natural
+        , newPitch F Sharp
+        , newPitch G Natural
+        , newPitch G Sharp
+        , newPitch A Natural
+        , newPitch A Sharp
+        , newPitch B Natural
+        ]
+    chromatics Flat ==
+        [ newPitch C Natural
+        , newPitch D Flat
+        , newPitch D Natural
+        , newPitch E Flat
+        , newPitch E Natural
+        , newPitch F Natural
+        , newPitch G Flat
+        , newPitch G Natural
+        , newPitch A Flat
+        , newPitch A Natural
+        , newPitch B Flat
+        , newPitch B Natural
+        ]
 -}
-chromaticPitches : Accidental -> List Pitch
-chromaticPitches adj =
+chromatics : Accidental -> List Pitch
+chromatics adj =
     let
         sharpedPitches =
             [ newPitch C Natural
@@ -85,18 +143,18 @@ chromaticPitches adj =
             , newPitch B Natural
             ]
     in
-    case adj of
-        Natural ->
-            sharpedPitches
+        case adj of
+            Natural ->
+                sharpedPitches
 
-        Sharp ->
-            sharpedPitches
+            Sharp ->
+                sharpedPitches
 
-        Flat ->
-            flattedPitches
+            Flat ->
+                flattedPitches
 
-        SharpSharp ->
-            sharpedPitches
+            SharpSharp ->
+                sharpedPitches
 
-        FlatFlat ->
-            flattedPitches
+            FlatFlat ->
+                flattedPitches

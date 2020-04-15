@@ -10,7 +10,7 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Maestro.Accidental exposing (Accidental(..))
 import Maestro.Chord exposing (..)
-import Maestro.Pitch exposing (Pitch, newPitch, pitchToString)
+import Maestro.Pitch exposing (Pitch, newPitch, toString)
 import Maestro.PitchClass exposing (PitchClass(..), toString)
 
 
@@ -173,6 +173,6 @@ view model =
                         }
                     ]
                 ]
-            , Grid.col [] [ text <| String.join " " <| List.map pitchToString <| inversion model.inversion model.chord ]
+            , Grid.col [] [ text <| String.join " " <| List.map toString <| inversion model.inversion model.chord ]
             ]
         ]

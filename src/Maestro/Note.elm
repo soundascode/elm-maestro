@@ -20,7 +20,7 @@ Notes being represented as a pitch and an octave convertible to an index (MIDI v
 -}
 
 import Maestro.Accidental exposing (Accidental(..))
-import Maestro.Pitch exposing (Pitch, chromaticPitches, newPitch, pitchToIndex)
+import Maestro.Pitch exposing (Pitch, chromatics, newPitch, toSemitones)
 import Maestro.PitchClass exposing (PitchClass)
 
 
@@ -49,16 +49,16 @@ newNote class accidental oct =
 -}
 noteToIndex : Note -> Int
 noteToIndex note =
-    note.octave * 12 + pitchToIndex note.pitch
+    note.octave * 12 + toSemitones note.pitch
 
 
 octave : Int -> Accidental -> List Note
 octave number adj =
-    List.map (\t -> newNote t.class t.accidental number) (chromaticPitches adj)
+    List.map (\t -> newNote t.class t.accidental number) (chromatics adj)
 
 
 midi : Note -> Int
 midi n =
     -- Midi notes indexing starts at octave -2, hence adding +2 to the octave when
     -- computing the midi note number
-    (n.octave + 2) * 12 + pitchToIndex n.pitch
+    (n.octave + 2) * 12 + toSemitones n.pitch
